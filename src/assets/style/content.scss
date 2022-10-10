@@ -1,0 +1,444 @@
+// @import "function";
+
+// video::-webkit-media-controls-timeline {
+//   display: none;
+// }
+
+.container {
+  position: relative;
+  width: 900px;
+  margin: 0 auto;
+}
+
+.slide1 {
+  background: url("@/assets/bg/stave.png") no-repeat;
+  background-position: bottom;
+  background-size: 100% 60px;
+
+  .video {
+    width: 100%;
+    height: auto;
+  }
+}
+
+.slide2 {
+  background: url("@/assets/bg/tel.png") no-repeat;
+  background-size: 100% 100%;
+
+  .grid {
+    position: absolute;
+    top: 45px;
+    right: 0;
+    width: 163px;
+
+    .ivu-grid-item {
+
+      &:nth-child(10) {
+        margin-left: 33.3%;
+        top: 6px;
+      }
+
+      &:nth-child(3n-1) {
+        top: 6px;
+      }
+
+      &:nth-child(3n) {
+        top: 12px;
+      }
+    }
+  }
+
+  .view {
+    position: absolute;
+    top: 83px;
+    right: 32px;
+
+    img {
+      margin-left: 2px;
+
+      &:last-child {
+        margin-bottom: -1px;
+      }
+    }
+  }
+
+  .clear {
+    position: absolute;
+    top: 155px;
+    left: 42px;
+    width: 70px;
+    height: 20px;
+  }
+}
+
+.slide3 {
+  background: url("@/assets/bg/heart.png") no-repeat;
+  background-size: 100% 100%;
+
+  .heart {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    margin-left: -52px;
+  }
+}
+
+.slide4 {
+
+  .brain {
+    position: absolute;
+    top: 130px;
+    left: 0;
+    width: 100%;
+  }
+
+  .line {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 3px;
+    background: url("@/assets/bg/line.png") no-repeat;
+    background-size: cover;
+  }
+
+}
+
+.slide5 {
+  background: url("@/assets/bg/brain.png") no-repeat;
+  background-size: 100% 100%;
+
+  .brain-light {
+    position: absolute;
+    left: 80px;
+    top: 115px;
+  }
+
+  .brain {
+    position: absolute;
+    left: -10px;
+    top: 36px;
+  }
+}
+
+.slide6 {
+  background: url("@/assets/bg/gaming.png") no-repeat;
+  background-size: 100% 100%;
+
+  .video {
+    width: 80%;
+    height: auto;
+  }
+}
+
+.slide7 {
+  background: url("@/assets/bg/games.png") no-repeat;
+  background-size: 100% 100%;
+
+  .games {
+    width: 100%;
+    height: 100%;
+
+    img {
+      position: absolute;
+
+      &.img1 {
+        left: 45px;
+        bottom: -10px;
+      }
+
+      &.img2 {
+        left: 178px;
+        top: 60px;
+      }
+
+      &.img3 {
+        right: 230px;
+        bottom: 20px;
+      }
+
+      &.img4 {
+        left: 25%;
+        top: 10px;
+      }
+
+      &.img5 {
+        right: 310px;
+        top: 145px;
+      }
+
+      &.img6 {
+        right: 350px;
+        top: 200px;
+      }
+
+      &.img7 {
+        left: 120px;
+        top: 220px;
+      }
+
+      &.img8 {
+        left: 158px;
+        bottom: 20px;
+      }
+
+      &.img9 {
+        right: 300px;
+        bottom: 70px;
+      }
+
+      &.img10 {
+        left: 0;
+        top: 60px;
+      }
+
+      &.img11 {
+        left: 224px;
+        bottom: -50px;
+      }
+
+      &.img12 {
+        left: 45px;
+        top: 105px;
+      }
+
+      &.img13 {
+        left: 302px;
+        top: 78px;
+      }
+
+      &.img14 {
+        right: 282px;
+        bottom: -10px;
+      }
+
+      &.img15 {
+        left: 375px;
+        top: 265px;
+      }
+
+    }
+  }
+
+  .files {
+    position: absolute;
+    top: 0;
+    right: 230px;
+    width: 55px;
+  }
+}
+
+.slide8 {
+  background: url("@/assets/bg/play_games.png") no-repeat;
+  background-size: 100% 100%;
+
+  .game-machine {
+    position: absolute;
+    width: 1297px;
+    // margin: 0 0 0 auto;
+    right: 0;
+    z-index: 99;
+  }
+
+  .click {
+    position: absolute;
+    bottom: 15%;
+    left: 50%;
+    margin-left: -72px;
+  }
+
+  .btn-container {
+    position: absolute;
+    width: 88px;
+    top: 280px;
+    right: 180px;
+    z-index: 99;
+
+    img {
+      width: 100%;
+      margin-bottom: 12%;
+    }
+  }
+
+  .video {
+    position: absolute;
+    width: 738px;
+    height: 325px;
+    right: 361px;
+    top: 220px;
+    z-index: 98;
+  }
+}
+
+.slide9 {
+  background: url("@/assets/bg/poster.png") no-repeat;
+  background-size: 100% 100%;
+
+  .play {
+    top: 45%;
+  }
+}
+
+.play {
+  position: absolute;
+  z-index: 100;
+  top: 300px;
+  left: 50%;
+  margin-left: -26px;
+
+  img.btn {
+    position: absolute;
+    top: 28px;
+    left: 18px;
+  }
+}
+
+.slide10 {
+  background: url("@/assets/bg/record.png") no-repeat;
+  background-size: 100% 100%;
+
+  >div {
+    width: 100%;
+    height: 100%;
+  }
+
+  .album {
+    margin: 0 auto;
+  }
+
+  .text {
+    width: 600px;
+  }
+
+  .music-play {
+    position: absolute;
+    z-index: -1;
+    width: 50%;
+    right: 0;
+    top: 10%;
+  }
+
+  .tape-play {
+    position: absolute;
+    z-index: 100;
+    width: 50px;
+    top: 35%;
+    left: 28%;
+
+    &:nth-child(2) {
+      left: 62%;
+    }
+  }
+
+  .progress {
+    // TODO
+    position: relative;
+    width: 468px;
+    height: 4px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 4px;
+
+    .progress-bar {
+      position: absolute;
+      z-index: 100;
+      width: 100%;
+      height: 100%;
+      border-radius: 4px;
+      background: linear-gradient(to right, #00ff00, #0000ff);
+    }
+
+    .circle {
+      position: absolute;
+      z-index: 101;
+      top: -4px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #00ff00;
+    }
+  }
+}
+
+.slide11 {
+  &>div {
+    width: 100%;
+
+    .content {
+      background: url("@/assets/bg/team.png") no-repeat;
+      background-size: 100% auto;
+
+      .text-container {
+        .text {
+          position: absolute;
+          width: 100%;
+
+          &.text0 {
+            top: 10px;
+            height: 66px;
+          }
+
+          &.text1 {
+            top: 104px;
+            height: 55px;
+          }
+
+          &.text2 {
+            top: 187px;
+            height: 59px;
+          }
+
+          &.text3 {
+            top: 290px;
+            height: 39px;
+          }
+
+        }
+      }
+    }
+  }
+}
+
+.page-anchor {
+  position: absolute;
+  left: 0;
+  top: 80%;
+}
+
+.heart-popup {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 255, 0.6);
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  padding-top: 25%;
+  text-align: center;
+
+  img {
+    width: 867px;
+  }
+}
+
+.team-popup {
+  position: absolute;
+  height: 100%;
+  top: 10px;
+  right: 60px;
+
+  &.img1 {
+    top: 104px;
+    right: 80px;
+  }
+
+  &.img2 {
+    top: 187px;
+    right: 82px;
+  }
+
+  &.img3 {
+    top: 280px;
+    right: 100px;
+  }
+}

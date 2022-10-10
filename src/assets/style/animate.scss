@@ -1,0 +1,63 @@
+.heart-beat {
+  animation: heartBeat calc(1s * 1.2) ease-in-out infinite;
+}
+
+@keyframes heartBeat {
+  0% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+
+  14% {
+    -webkit-transform: scale(0.8);
+    transform: scale(0.8);
+  }
+
+  28% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+
+  42% {
+    -webkit-transform: scale(0.8);
+    transform: scale(0.8);
+  }
+
+  70% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}
+
+.flush {
+  animation: flush 1s infinite;
+}
+
+@keyframes flush {
+  0% {
+    opacity: 0.4
+  }
+
+  50% {
+    opacity: 0.6
+  }
+
+  100% {
+    opacity: 0.4
+  }
+}
+
+.rotate {
+  animation: rotate 3s linear infinite;
+}
+
+@keyframes rotate {
+
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
