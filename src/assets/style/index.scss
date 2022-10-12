@@ -1,8 +1,10 @@
 @import 'swiper';
 @import 'animate';
+// @import 'fonts';
 
 body,
 html {
+  color: #4d4d4d;
   background: #000;
 }
 
@@ -28,4 +30,38 @@ html {
 
 .img-container {
   width: 100%;
+}
+
+.white {
+  color: #fff;
+}
+
+.red {
+  color: #eb5911;
+}
+
+.green {
+  color: #00ff00;
+}
+
+.blue {
+  color: #0000ff;
+}
+
+.pink {
+  color: #ff00ff;
+}
+
+.yellow {
+  color: #ffff00;
+}
+
+.bg {
+  &-green {
+    background: #00ff00;
+  }
+
+  &-blue {
+    background: #0000ff;
+  }
 }
