@@ -12,6 +12,14 @@ html {
   cursor: pointer;
 }
 
+.cursor-custom-arrow {
+  cursor: url("@/assets/file/arrow.png"), default;
+}
+
+.cursor-custom-finger {
+  cursor: url("@/assets/file/finger.png"), pointer;
+}
+
 .flex-start {
   align-items: flex-start;
 }
@@ -28,7 +36,25 @@ html {
   text-align: center;
 }
 
-.img-container {
+.page {
+  position: relative;
+  margin: 0 auto;
+  max-width: 1440px;
+  height: calc(100vh);
+}
+
+.container {
+  position: relative;
+  width: 900px;
+  margin: 0 auto;
+}
+
+.container1 {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+.img-fill {
   width: 100%;
 }
 

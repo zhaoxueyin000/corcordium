@@ -97,15 +97,10 @@
 
 .album-swiper {
   height: auto;
-  overflow: visible !important;
+  // overflow: visible !important;
 
   .swiper-slide {
     height: 356px;
-
-    &.swiper-slide-active {
-      // margin-left: 20px;
-
-    }
   }
 
   .swiper-button-prev,

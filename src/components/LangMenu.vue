@@ -46,11 +46,10 @@ export default {
 
 <style lang="scss" scoped>
 .lang-menu {
-  position: fixed;
+  position: absolute;
   top: 30%;
   left: 10px;
   z-index: 99;
-  font-size: 14px;
 
   .lang-menu-item {
     &:not(:last-child) {
