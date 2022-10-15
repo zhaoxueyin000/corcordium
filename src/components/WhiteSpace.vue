@@ -1,5 +1,5 @@
 <template>
-  <div class="white-space" :style="{ height: gutter + 'px' }" />
+  <div class="white-space" :style="{ height: gutter }" />
 </template>
 
 <script>

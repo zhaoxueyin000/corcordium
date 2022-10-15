@@ -1,7 +1,7 @@
 .slide1 {
   background: url("@/assets/bg/stave.png") no-repeat;
   background-position: bottom;
-  background-size: 100% 60px;
+  background-size: 100% auto;
 
   .video {
     width: 100%;
@@ -13,26 +13,31 @@
   background: url("@/assets/bg/tel.png") no-repeat;
   background-size: 100% 100%;
 
-
   .tels {
-    width: 204px;
-    height: 221px;
+    position: relative;
+    width: 263px;
+    height: 285px;
+    margin-left: 10px;
     background: url("@/assets/tel/phone.png") no-repeat;
     background-size: cover;
 
     .grid {
-      float: right;
-      width: 163px;
+      position: absolute;
+      right: 0;
+      width: 204px;
 
       .ivu-grid-item {
+        img {
+          height: 54px;
+        }
 
         &:nth-child(10) {
           margin-left: 33.3%;
-          top: 7px;
+          top: 10px;
         }
 
         &:nth-child(3n-1) {
-          top: 6px;
+          top: 7px;
         }
 
         &:nth-child(3n) {
@@ -43,10 +48,34 @@
 
   }
 
+  .go {
+    width: 195px;
+    margin-left: 35px;
+  }
+
+  .logo {
+    margin-top: 15px;
+    margin-right: 35px;
+    width: 215px;
+  }
+
+  .screen {
+    width: 171px;
+    margin-left: -130px;
+  }
+
+  .clear {
+    position: absolute;
+    top: 206px;
+    right: 55px;
+    width: 96px;
+    height: 38px;
+  }
+
   .view {
     position: absolute;
-    top: 84px;
-    right: 35%;
+    top: 112px;
+    right: 42px;
 
     img {
       margin-left: 2px;
@@ -57,12 +86,8 @@
     }
   }
 
-  .clear {
-    position: absolute;
-    top: 155px;
-    left: 54px;
-    width: 70px;
-    height: 20px;
+  .right-text {
+    width: 466px;
   }
 }
 
@@ -72,31 +97,31 @@
 
   .heart {
     position: absolute;
-    top: 0;
     left: 50%;
     margin-left: -52px;
   }
 }
 
 .slide4 {
+  position: relative;
 
   .brain {
     position: absolute;
-    top: 130px;
-    left: 0;
-    width: 100%;
+    top: 170px;
+    left: 50%;
+    width: 1200px;
+    margin-left: -600px;
   }
 
   .line {
-    position: absolute;
     left: 0;
     bottom: 0;
     width: 100%;
-    height: 3px;
+    height: 4px;
+    z-index: 100;
     background: url("@/assets/bg/line.png") no-repeat;
     background-size: cover;
   }
-
 }
 
 .slide5 {
@@ -105,14 +130,16 @@
 
   .brain-light {
     position: absolute;
-    left: 80px;
-    top: 115px;
+    left: 113px;
+    top: 159px;
+    width: 222px;
   }
 
   .brain {
     position: absolute;
     left: -10px;
     top: 36px;
+    width: 469px;
   }
 }
 
@@ -120,138 +147,203 @@
   background: url("@/assets/bg/gaming.png") no-repeat;
   background-size: 100% 100%;
 
-  .video {
-    width: 80%;
-    height: auto;
-  }
+  // .video {
+  //   width: 80%;
+  //   height: auto;
+  // }
 }
 
 .slide7 {
   background: url("@/assets/bg/games.png") no-repeat;
   background-size: 100% 100%;
 
-  .games {
-    width: 100%;
-    height: 100%;
+  .game {
+    position: relative;
 
-    img {
-      position: absolute;
+    .left {
+      width: 285px;
 
-      &.img1 {
-        left: 45px;
-        bottom: -10px;
+      .en-arrow {
+        height: 13px;
+
+        &-3,
+        &-7,
+        &-10 {
+          height: 16px;
+        }
+
+        &-5 {
+          height: 14px;
+        }
+
+        &-6,
+        &-9,
+        &-11 {
+          height: 15px;
+        }
+
+        &-8,
+        &-12,
+        &-13,
+        &-14 {
+          height: 12px;
+        }
       }
 
-      &.img2 {
-        left: 178px;
-        top: 60px;
+      .jp-arrow,
+      .cn-arrow {
+        height: 17px;
       }
+    }
 
-      &.img3 {
-        right: 230px;
-        bottom: 20px;
-      }
+    .games {
+      position: relative;
+      height: 600px;
 
-      &.img4 {
-        left: 25%;
-        top: 10px;
-      }
+      img {
+        position: absolute;
 
-      &.img5 {
-        right: 310px;
-        top: 145px;
-      }
+        &.img1 {
+          left: 58px;
+          top: 268px;
+          width: 578px;
+        }
 
-      &.img6 {
-        right: 350px;
-        top: 200px;
-      }
+        &.img2 {
+          right: 232px;
+          top: 60px;
+          width: 718px;
+        }
 
-      &.img7 {
-        left: 120px;
-        top: 220px;
-      }
+        &.img3 {
+          right: 0;
+          top: 238px;
+          width: 580px;
+        }
 
-      &.img8 {
-        left: 158px;
-        bottom: 20px;
-      }
+        &.img4 {
+          left: 360px;
+          right: 418px;
+          width: 412px;
+        }
 
-      &.img9 {
-        right: 300px;
-        bottom: 70px;
-      }
+        &.img5 {
+          right: 132px;
+          top: 170px;
+          width: 206px;
+        }
 
-      &.img10 {
-        left: 0;
-        top: 60px;
-      }
+        &.img6 {
+          width: 449px;
+          right: 169px;
+          top: 273px;
+        }
 
-      &.img11 {
-        left: 224px;
-        bottom: -50px;
-      }
+        &.img7 {
+          left: 136px;
+          top: 300px;
+          width: 582px;
+        }
 
-      &.img12 {
-        left: 45px;
-        top: 105px;
-      }
+        &.img8 {
+          left: 158px;
+          bottom: 20px;
+          width: 149px;
+        }
 
-      &.img13 {
-        left: 302px;
-        top: 78px;
-      }
+        &.img9 {
+          right: 112px;
+          top: 432px;
+          width: 395px;
+        }
 
-      &.img14 {
-        right: 282px;
-        bottom: -10px;
-      }
+        &.img10 {
+          left: 12px;
+          top: 40px;
+          width: 206px;
+        }
 
-      &.img15 {
-        left: 375px;
-        top: 265px;
-      }
+        &.img11 {
+          right: 280px;
+          top: 550px;
+          width: 608px;
+        }
 
-      &.img16 {
-        left: 0;
-        bottom: 50px;
-        z-index: 101;
+        &.img12 {
+          left: 45px;
+          top: 185px;
+          width: 418px;
+        }
+
+        &.img13 {
+          left: 302px;
+          top: 180px;
+          width: 206px;
+        }
+
+        &.img14 {
+          right: 72px;
+          top: 480px;
+          width: 260px;
+        }
+
+        &.img15 {
+          left: 520px;
+          top: 372px;
+          width: 314px;
+        }
+
+        &.img16 {
+          left: 0;
+          bottom: 0;
+          z-index: 101;
+          width: 104px;
+        }
+
       }
 
     }
+
+    .files {
+      position: absolute;
+      top: 0;
+      right: 0;
+
+      img {
+        width: 68px;
+      }
+    }
   }
 
-  .files {
-    position: absolute;
-    top: 0;
-    right: 230px;
-    width: 55px;
-  }
 }
 
 .slide8 {
   background: url("@/assets/bg/play_games.jpg") no-repeat;
   background-size: 100% 100%;
 
+  .videos {
+    width: 100%;
+    position: relative;
+  }
+
   .game-machine {
-    position: absolute;
-    width: 1297px;
-    right: 0;
+    position: relative;
+    width: 1728px;
     z-index: 99;
   }
 
   .click {
     position: absolute;
-    bottom: 15%;
+    bottom: 13%;
     left: 50%;
-    margin-left: -72px;
+    margin-left: -100px;
   }
 
   .btn-container {
     position: absolute;
-    width: 88px;
-    top: 280px;
-    right: 180px;
+    width: 120px;
+    top: 260px;
+    right: 240px;
     z-index: 99;
 
     img {
@@ -262,10 +354,10 @@
 
   .video {
     position: absolute;
-    width: 738px;
-    height: 325px;
-    right: 361px;
-    top: 220px;
+    width: 984px;
+    height: 440px;
+    right: 486px;
+    top: 165px;
     z-index: 98;
   }
 }
@@ -275,14 +367,14 @@
   z-index: 100;
 
   img.ear {
-    width: 62px;
+    width: 96px;
   }
 
   .btn {
     position: absolute;
-    width: 13px;
-    top: 31px;
-    left: 22px;
+    width: 20px;
+    top: 49px;
+    left: 35px;
   }
 }
 
@@ -291,10 +383,10 @@
   background-size: 100% 100%;
 
   .play {
-    top: 54%;
+    top: 50%;
     left: 50%;
-    margin-top: -50px;
-    margin-left: -30px;
+    margin-top: -63px;
+    margin-left: -48px;
   }
 
 }
@@ -320,6 +412,35 @@
 
   .album {
     margin: 0 auto;
+    width: 547px;
+
+    &-1 {
+      width: 501px;
+    }
+
+    &-2 {
+      width: 490px;
+    }
+
+    &-3 {
+      width: 497px;
+    }
+
+    &-4 {
+      width: 692px;
+    }
+
+    &-5 {
+      width: 525px;
+    }
+
+    &-6 {
+      width: 542px;
+    }
+
+    &-7 {
+      width: 509px;
+    }
   }
 
   .text {
@@ -327,44 +448,44 @@
   }
 
   .cd-play {
-    width: 290px;
-    margin-left: -154px;
+    width: 393px;
+    margin-left: -207px;
     z-index: -1
   }
 
   .record-play {
-    width: 320px;
-    margin-left: -165px;
+    width: 450px;
+    margin-left: -230px;
     z-index: -1;
   }
 
   .tape-play {
     position: absolute;
     z-index: 100;
-    width: 62px;
-    top: 122px;
-    left: 23%;
+    width: 88px;
+    top: 170px;
+    left: 22%;
 
     &:nth-child(2) {
       left: 66%;
     }
   }
 
-  .album5+.record-play {
-    margin-left: -285px;
-    margin-top: 10px;
+  .album-5+.record-play {
+    margin-left: -340px;
+    margin-top: 20px;
   }
 
   .play {
-    top: 45.5%;
+    top: 50%;
     left: 50%;
-    margin-top: -42px;
-    margin-left: -30px;
+    margin-top: -70px;
+    margin-left: -48px;
   }
 
   .progress {
     position: relative;
-    width: 468px;
+    width: 623px;
     height: 4px;
     margin: 0 auto;
     background: linear-gradient(to right, #00ff00, #0000ff);
@@ -395,7 +516,7 @@
     &.swiper-slide-prev,
     &.swiper-slide-next {
       .tape-play {
-        top: 174px;
+        top: 234px;
       }
     }
 
@@ -405,37 +526,68 @@
 .slide11 {
   &>div {
     width: 100%;
+    background: url("@/assets/bg/team.png") no-repeat;
+    background-size: 100% auto;
 
-    .content {
-      background: url("@/assets/bg/team.jpg") no-repeat;
-      background-size: 100% auto;
+    .title {
+      height: 36px;
+    }
 
-      .text-container {
-        .text {
-          position: absolute;
-          width: 100%;
+    .left {
+      height: 428px;
+    }
 
-          &.text0 {
-            top: 10px;
-            height: 66px;
-          }
+    .right {
+      height: 427px;
+    }
 
-          &.text1 {
-            top: 104px;
-            height: 55px;
-          }
+    .text-container {
+      position: relative;
 
-          &.text2 {
-            top: 187px;
-            height: 59px;
-          }
+      .text {
+        position: absolute;
+        width: 100%;
 
-          &.text3 {
-            top: 290px;
-            height: 39px;
-          }
-
+        &.text0 {
+          top: 0;
+          height: 88px;
         }
+
+        &.text1 {
+          top: 124px;
+          height: 73px;
+        }
+
+        &.text2 {
+          top: 239px;
+          height: 80px;
+        }
+
+        &.text3 {
+          top: 375px;
+          height: 53px;
+        }
+      }
+    }
+
+    .footer {
+      text-align: center;
+      background: #000;
+
+      .logo {
+        width: 230px;
+      }
+
+      .media {
+        margin-left: 57px;
+
+        img {
+          display: block;
+        }
+      }
+
+      img:not(.logo) {
+        height: 16px;
       }
     }
   }
@@ -462,21 +614,40 @@
 .team-popup {
   position: absolute;
   height: 100%;
-  top: 15px;
-  right: 70px;
+  top: 12px;
+  right: 90px;
+
+  img {
+    height: 90px;
+  }
+
 
   &.img1 {
-    top: 104px;
-    right: 90px;
+    top: 130px;
+    right: 120px;
   }
 
   &.img2 {
-    top: 187px;
-    right: 92px;
+    top: 246px;
+    right: 120px;
   }
 
   &.img3 {
-    top: 280px;
-    right: 110px;
+    top: 362px;
+    right: 144px;
+  }
+}
+
+.text-height {
+  &-1 {
+    height: 0.16rem
+  }
+
+  &-2 {
+    height: 0.1rem
+  }
+
+  &-3 {
+    height: 0.08rem
   }
 }

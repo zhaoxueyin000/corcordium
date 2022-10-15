@@ -1,223 +1,202 @@
 <template>
-    <swiper
-      direction="vertical"
-      :modules="modules"
-      :cssMode="true"
-      :mousewheel="true"
-      :loop="false"
-      :speed="600"
-      @swiper="onSwiper"
-      @slideChange="onSlideChange"
-    >
-      <!-- logo -->
-      <swiper-slide class="slide1 flex-start">
+  <swiper
+    direction="vertical"
+    :modules="modules"
+    :cssMode="true"
+    :mousewheel="true"
+    :loop="false"
+    :speed="600"
+    @swiper="onSwiper"
+    @slideChange="onSlideChange"
+  >
+    <!-- logo -->
+    <swiper-slide class="slide1 flex-start">
+      <div>
+        <video autoplay muted loop preload="auto" class="video">
+          <source src="@/assets/logo.mp4" type="video/mp4" />
+        </video>
+        <WhiteSpace gutter="40px" />
         <div>
-          <video autoplay muted loop preload="auto" class="video">
-            <source src="@/assets/logo.mp4" type="video/mp4" />
-          </video>
-          <WhiteSpace gutter="30" />
-          <Row justify="center">
-            <Col span="24">
-              <img src="@/assets/logo.png" width="180" />
-            </Col>
-            <Col span="24">
-              <img :src="logoText[lang]" height="12" />
-            </Col>
-          </Row>
+          <img src="@/assets/logo.png" width="180" />
         </div>
-      </swiper-slide>
+        <WhiteSpace gutter="0.05rem" />
+        <div>
+          <img :src="logoText[lang]" height="14" />
+        </div>
+      </div>
+    </swiper-slide>
 
-      <!-- tel -->
-      <swiper-slide class="slide2">
-        <div class="container1">
-          <Row>
-            <Col span="4" offset="3" class="text-center">
-              <img :src="telTexts[lang].title" :height="lang==='en' ? 39 : 30" />
-              <div class="tels">
-                <div class="grid">
-                  <Grid :border="false" padding="3px 17px">
-                    <GridItem
-                      v-for="(item, index) in tels"
-                      :key="item.img"
-                      class="cursor-pointer"
-                      @click="dial(index)"
-                    >
-                      <img :src="item.active" v-if="activeIndexs.indexOf(index) !== -1" height="41" />
-                      <img :src="item.img" v-else height="41" />
-                    </GridItem>
-                  </Grid>
-                </div>
+    <!-- tel -->
+    <swiper-slide class="slide2">
+      <div class="container1">
+        <Row justify="space-between">
+          <div>
+            <img :src="telTexts[lang].title" :style="{height: lang==='en' ? '0.29rem' : '0.19rem'}" />
+            <div class="tels">
+              <div class="grid">
+                <Grid :border="false" padding="3px 12px">
+                  <GridItem
+                    v-for="(item, index) in tels"
+                    :key="item.img"
+                    class="cursor-pointer"
+                    @click="dial(index)"
+                  >
+                    <img :src="item.active" v-if="activeIndexs.indexOf(index) !== -1" />
+                    <img :src="item.img" v-else />
+                  </GridItem>
+                </Grid>
               </div>
+            </div>
 
-              <WhiteSpace gutter="10" />
+            <WhiteSpace gutter="0.13rem" />
+            <div>
               <img
                 :src="goActive ? require('@/assets/tel/gogo.png') : require('@/assets/tel/go.png')"
-                width="142"
-                class="cursor-pointer"
-                style="float:right"
+                class="cursor-pointer go"
                 @click="slideTo"
               />
-              <img
-                src="@/assets/tel/logo.png"
-                width="160"
-                class="cursor-pointer"
-                style="margin-top:10px"
-              />
-            </Col>
-            <Col span="4" offset="1">
-              <WhiteSpace gutter="55" />
-              <img :src="telTexts[lang].screen" width="124" />
-              <div class="clear cursor-pointer" @click="activeIndexs = []" />
-              <div class="view">
-                <img :src="tels[item].show" height="24" v-for="item in activeIndexs" :key="item" />
-              </div>
-            </Col>
-            <Col span="9" offset="1">
-              <img :src="telTexts[lang].text" height="462" />
-            </Col>
-          </Row>
-        </div>
-      </swiper-slide>
-
-      <!-- heart -->
-      <swiper-slide class="slide3">
-        <div class="container">
-          <img :src="heartTexts[lang].heart" class="img-fill" />
-          <img
-            src="@/assets/heart.png"
-            width="104"
-            class="heart cursor-pointer"
-            :class="!popupVisible && 'heart-beat'"
-            @click="changeHeartVisible(true)"
-          />
-        </div>
-        <img src="@/assets/page/page_icon1.png" width="101" class="page-anchor" />
-      </swiper-slide>
-
-      <!-- brain -->
-      <swiper-slide class="slide4 flex-start">
-        <div>
-          <img src="@/assets/brain.gif" class="img-fill" />
-          <div class="brain">
-            <img :src="brainTexts[lang]" class="container" />
+            </div>
+            <div>
+              <img src="@/assets/tel/logo.png" class="cursor-pointer logo" />
+            </div>
           </div>
-          <div class="line" />
-        </div>
-        <img src="@/assets/page/page_icon2.png" width="101" class="page-anchor" />
-      </swiper-slide>
 
-      <!-- pyramid -->
-      <swiper-slide class="slide5">
-        <div class="container">
-          <img :src="pyramidTexts[lang]" style="width: 100%;" />
-          <img src="@/assets/brain_light.png" width="167" class="brain-light flush" />
-          <img src="@/assets/brain.png" width="351" class="brain" />
-        </div>
-        <img src="@/assets/page/page_icon3.png" width="101" class="page-anchor" />
-      </swiper-slide>
+          <div style="position: relative">
+            <WhiteSpace gutter="0.37rem" />
+            <img :src="telTexts[lang].screen" class="screen" />
+            <div class="clear cursor-pointer" @click="activeIndexs = []" />
+            <div class="view">
+              <img
+                :src="tels[item].show"
+                style="height: 0.16rem"
+                v-for="item in activeIndexs"
+                :key="item"
+              />
+            </div>
+          </div>
 
-      <!-- mp4 -->
-      <swiper-slide class="slide6 flex-start">
-        <div>
-          <WhiteSpace gutter="80" />
-          <img src="@/assets/cn/gaming_music.png" height="20" v-if="lang==='cn'" />
-          <img src="@/assets/jp/gaming_music.png" height="20" v-else-if="lang==='jp'" />
-          <img src="@/assets/en/gaming_music.png" height="14" v-else />
-          <WhiteSpace gutter="60" />
-          <!-- <video autoplay muted loop preload="auto" class="video">
+          <div>
+            <img :src="telTexts[lang].text" class="right-text" />
+          </div>
+        </Row>
+      </div>
+    </swiper-slide>
+
+    <!-- heart -->
+    <swiper-slide class="slide3">
+      <div class="container1">
+        <img :src="heartTexts[lang].heart" class="img-fill" />
+        <img
+          src="@/assets/heart.png"
+          width="104"
+          class="heart cursor-pointer"
+          :class="!popupVisible && 'heart-beat'"
+          @click="changeHeartVisible(true)"
+        />
+      </div>
+      <img src="@/assets/page/page_icon1.png" width="101" class="page-anchor" />
+    </swiper-slide>
+
+    <!-- brain -->
+    <swiper-slide class="slide4 flex-start">
+      <div style="width: 100%">
+        <img src="@/assets/brain.gif" class="img-fill" />
+        <img :src="brainTexts[lang]" class="img-fill brain" />
+        <div class="line" />
+      </div>
+      <img src="@/assets/page/page_icon2.png" width="101" class="page-anchor" />
+    </swiper-slide>
+
+    <!-- pyramid -->
+    <swiper-slide class="slide5">
+      <div class="container1">
+        <img :src="pyramidTexts[lang]" class="img-fill" />
+        <img src="@/assets/brain_light.png" class="brain-light flush" />
+        <img src="@/assets/brain.png" class="brain" />
+      </div>
+      <img src="@/assets/page/page_icon3.png" width="101" class="page-anchor" />
+    </swiper-slide>
+
+    <!-- mp4 -->
+    <swiper-slide class="slide6 flex-start">
+      <div>
+        <WhiteSpace gutter="0.57rem" />
+        <img src="@/assets/cn/gaming_music.png" height="20" v-if="lang==='cn'" />
+        <img src="@/assets/jp/gaming_music.png" height="20" v-else-if="lang==='jp'" />
+        <img src="@/assets/en/gaming_music.png" height="14" v-else />
+        <WhiteSpace gutter="60" />
+        <!-- <video autoplay muted loop preload="auto" class="video">
         <source src="@/assets/logo.mp4" type="video/mp4" />
-          </video>-->
-        </div>
-        <img src="@/assets/page/page_icon4.png" width="101" class="page-anchor" />
-      </swiper-slide>
+        </video>-->
+      </div>
+      <img src="@/assets/page/page_icon4.png" width="101" class="page-anchor" />
+    </swiper-slide>
 
-      <!-- games -->
-      <swiper-slide class="slide7 flex-start cursor-custom-arrow">
-        <div style="width: 100%;">
-          <WhiteSpace gutter="60" />
-          <img src="@/assets/cn/games_text.png" width="515" v-if="lang==='cn'" />
-          <img src="@/assets/jp/games_text.png" width="515" v-else-if="lang==='jp'" />
-          <img src="@/assets/en/games_text.png" width="660" v-else />
-          <WhiteSpace gutter="80" />
-          <audio
-            :src="musicUrl"
-            :loop="false"
-            hidden
-            :autoplay="autoPlay"
-            v-if="swiperIndex === 6"
-          />
-          <Row style="height: 390px">
-            <Col span="4" class="text-right">
+    <!-- games -->
+    <swiper-slide class="slide7 flex-start cursor-custom-arrow">
+      <div class="container2">
+        <WhiteSpace gutter="0.43rem" />
+        <img src="@/assets/cn/games_text.png" style="width: 3.5rem" v-if="lang==='cn'" />
+        <img src="@/assets/jp/games_text.png" style="width: 3.5rem" v-else-if="lang==='jp'" />
+        <img src="@/assets/en/games_text.png" style="width: 5.1rem" v-else />
+        <WhiteSpace gutter="0.51rem" />
+        <audio :src="musicUrl" :loop="false" hidden :autoplay="autoPlay" v-if="swiperIndex === 6" />
+
+        <Row class="game" justify="space-between">
+          <Col span="5">
+            <div class="text-right left">
               <WhiteSpace gutter="40" />
-              <div
-                v-for="(item, index) in musicNames[lang]"
-                :key="item.img"
-                style="line-height: 1.4"
-              >
+              <div v-for="(item, index) in musicNames[lang]" :key="item.img">
                 <img
                   :src="this.count === index + 1 ? item.active : item.img"
-                  :height="item.height"
                   v-show="fileIndexs.indexOf(index) !== -1"
                   class="cursor-custom-arrow"
+                  :class="lang + '-arrow ' + lang + '-arrow-' + index"
                   @click="setMusicPlay(index)"
                 />
               </div>
-            </Col>
-            <Col span="19" offset="1">
-              <div class="games">
-                <div v-for="(item, index) in gameMusics" :key="item.img">
-                  <img
-                    :src="item.img"
-                    :width="item.width"
-                    class="cursor-custom-finger"
-                    :class="'img'+ (index + 1)"
-                    :style="{'z-index': this.count === index + 1 ? '100' : '99'}"
-                    v-if="fileIndexs.indexOf(index) !== -1"
-                    @click="setMusicPlay(index)"
-                  />
-                  <img
-                    src="@/assets/file/modal.png"
-                    width="82"
-                    class="cursor-custom-finger img16"
-                    v-if="fileIndexs.indexOf(14) !== -1"
-                  />
-                </div>
+            </div>
+          </Col>
+          <Col span="19">
+            <div class="games">
+              <div v-for="(item, index) in gameMusics" :key="item.img">
+                <img
+                  :src="item.img"
+                  :width="item.width"
+                  class="cursor-custom-finger"
+                  :class="'img'+ (index + 1)"
+                  :style="{'z-index': this.count === index + 1 ? '100' : '99'}"
+                  v-if="fileIndexs.indexOf(index) !== -1"
+                  @click="setMusicPlay(index)"
+                />
+                <img
+                  src="@/assets/file/modal.png"
+                  class="cursor-custom-finger img16"
+                  v-if="fileIndexs.indexOf(14) !== -1"
+                />
               </div>
-              <div class="files cursor-custom-finger">
-                <div v-for="item in files" :key="item">
-                  <img :src="item" width="55" class @click="openFile" />
-                </div>
+            </div>
+            <div class="files cursor-custom-finger">
+              <div v-for="item in files" :key="item">
+                <img :src="item" @click="openFile" />
               </div>
-              {{count}}
-            </Col>
-          </Row>
-        </div>
-        <img src="@/assets/page/page_icon5.png" width="101" class="page-anchor" />
-      </swiper-slide>
+            </div>
+          </Col>
+        </Row>
+      </div>
+      <img src="@/assets/page/page_icon5.png" width="101" class="page-anchor" />
+    </swiper-slide>
 
-      <!-- play games -->
-      <swiper-slide class="slide8 flex-start">
-        <div>
-          <WhiteSpace gutter="80" />
-          <img src="@/assets/cn/games.png" height="20" v-if="lang === 'cn'" />
-          <img src="@/assets/jp/games.png" height="20" v-else-if="lang === 'jp'" />
-          <img src="@/assets/en/games.png" height="14" v-else />
+    <!-- play games -->
+    <swiper-slide class="slide8 flex-start">
+      <div style="width: 100%">
+        <WhiteSpace gutter="0.53rem" />
+        <img src="@/assets/cn/games.png" class="text-height-1" v-if="lang === 'cn'" />
+        <img src="@/assets/jp/games.png" class="text-height-1" v-else-if="lang === 'jp'" />
+        <img src="@/assets/en/games.png" class="text-height-2" v-else />
 
-          <video autoplay muted loop preload="auto" class="video">
-            <source :src="videos[videoIndex]" type="video/mp4" />
-          </video>
+        <div class="text-right videos" style="">
           <img src="@/assets/game_machine.png" class="game-machine" />
-
-          <img src="@/assets/cn/click.png" height="20" class="click" v-if="lang === 'cn'" />
-          <img
-            src="@/assets/jp/click.png"
-            height="20"
-            class="click"
-            style="margin-left: -118px;"
-            v-else-if="lang === 'jp'"
-          />
-          <img src="@/assets/en/click.png" width="143" class="click" v-else />
-
           <div class="btn-container">
             <img
               :src="item"
@@ -227,271 +206,261 @@
               @click="videoIndex = index"
             />
           </div>
+          <video autoplay muted loop preload="auto" class="video">
+            <source :src="videos[videoIndex]" type="video/mp4" />
+          </video>
         </div>
-        <img src="@/assets/page/page_icon6.png" width="101" class="page-anchor" />
-      </swiper-slide>
 
-      <!-- poster -->
-      <swiper-slide class="slide9">
-        <div style="position:relative">
-          <WhiteSpace gutter="40" />
+        <img src="@/assets/cn/click.png" style="width: 0.84rem" class="click" v-if="lang === 'cn'" />
+        <img
+          src="@/assets/jp/click.png"
+          class="click"
+          style="margin-left: -0.77rem; width: 1.54rem"
+          v-else-if="lang === 'jp'"
+        />
+        <img src="@/assets/en/click.png" style="width: 1.05rem" class="click" v-else />
+      </div>
+      <img src="@/assets/page/page_icon6.png" width="101" class="page-anchor" />
+    </swiper-slide>
 
-          <img src="@/assets/cn/poster_text1.png" height="20" v-if="lang === 'cn'" />
-          <img src="@/assets/jp/poster_text1.png" height="20" v-else-if="lang === 'jp'" />
-          <img src="@/assets/en/poster_text1.png" height="14" v-else />
+    <!-- poster -->
+    <swiper-slide class="slide9">
+      <div style="position:relative">
+        <img src="@/assets/cn/poster_text1.png" class="text-height-1" v-if="lang === 'cn'" />
+        <img src="@/assets/jp/poster_text1.png" class="text-height-1" v-else-if="lang === 'jp'" />
+        <img src="@/assets/en/poster_text1.png" class="text-height-2" v-else />
 
-          <WhiteSpace gutter="40" />
-          <swiper
-            class="nested-swiper poster-swiper"
-            :modules="modules1"
-            :effect="'fade'"
-            :speed="400"
-            :navigation="true"
-            :grabCursor="true"
-            :centeredSlides="true"
-            :slidesPerView="'auto'"
-            :loop="true"
-            @slideChange="onPosterSlideChange"
-          >
-            <swiper-slide v-for="(item, index) in posters[lang]" :key="item.img">
-              <div>
-                <img :src="item.img" class="poster" />
-                <WhiteSpace gutter="15" />
-                <!-- 文字说明 -->
-                <img
-                  :src="item.text"
-                  v-show="posterIndex === index"
-                  v-if="item.text"
-                  :style="{width: lang === 'en' ? '98%' : '70%'}"
-                />
+        <WhiteSpace gutter="0.29rem" />
+        <swiper
+          class="nested-swiper poster-swiper"
+          :modules="modules1"
+          :effect="'fade'"
+          :speed="400"
+          :navigation="true"
+          :grabCursor="true"
+          :centeredSlides="true"
+          :slidesPerView="'auto'"
+          :loop="true"
+          @slideChange="onPosterSlideChange"
+        >
+          <swiper-slide v-for="(item, index) in posters[lang]" :key="item.img">
+            <div>
+              <img :src="item.img" class="poster" />
+              <WhiteSpace gutter="0.12rem" />
+              <!-- 文字说明 -->
+              <img
+                :src="item.text"
+                v-show="posterIndex === index"
+                v-if="item.text"
+                :style="{width: lang === 'en' ? '95%' : '60%'}"
+              />
+              <Transition
+                name="ear"
+                mode="out-in"
+                enter-active-class="animate__animated animate__fadeIn"
+                leave-active-class="animate__animated animate__fadeOut"
+              >
+                <div class="play cursor-pointer" @click="postChange" v-show="posterIndex === index">
+                  <img src="@/assets/poster/ear.png" class="ear" />
+                  <img src="@/assets/poster/pause.png" class="btn" v-if="posterPlay" />
+                  <img src="@/assets/poster/play.png" class="btn" v-else />
+                </div>
+              </Transition>
+            </div>
+          </swiper-slide>
+        </swiper>
+        <audio
+          :src="posterMusics[posterIndex]"
+          :loop="false"
+          autoplay
+          hidden
+          v-if="swiperIndex === 8"
+          ref="audio1"
+          id="audio1"
+        />
+
+        <WhiteSpace gutter="0.27rem" />
+
+        <img src="@/assets/cn/poster_text2.png" class="text-height-2" v-if="lang === 'cn'" />
+        <img src="@/assets/jp/poster_text2.png" class="text-height-2" v-else-if="lang === 'jp'" />
+        <img src="@/assets/en/poster_text2.png" class="text-height-3" v-else />
+      </div>
+      <img src="@/assets/page/page_icon7.png" width="101" class="page-anchor" />
+    </swiper-slide>
+
+    <!-- record -->
+    <swiper-slide class="slide10">
+      <div>
+        <WhiteSpace gutter="0.64rem" />
+
+        <img src="@/assets/cn/pop_music_text1.png" class="text-height-1" v-if="lang === 'cn'" />
+        <img src="@/assets/jp/pop_music_text1.png" class="text-height-1" v-else-if="lang === 'jp'" />
+        <img src="@/assets/en/pop_music_text1.png" class="text-height-2" v-else />
+
+        <WhiteSpace gutter="0.58rem" />
+        <swiper
+          class="nested-swiper album-swiper"
+          :effect="'coverflow'"
+          :grabCursor="true"
+          :navigation="true"
+          :centeredSlides="true"
+          :slidesPerView="'3'"
+          :coverflowEffect="{
+          rotate: 0,
+          stretch: 0,
+          scale: 0.5,
+          depth: -180,
+          modifier: 1,
+          slideShadows: false,
+        }"
+          :modules="modules1"
+          :loop="true"
+          @slideChange="onAlbumSlideChange"
+        >
+          <swiper-slide v-for="(item, index) in albums" :key="item.img" :class="item.type">
+            <img :src="item.img" class="album" :class="'album-' + index" />
+            <template v-if="item.type === 'tape'">
+              <img
+                src="@/assets/album/tape_left.png"
+                class="tape-play"
+                :class="albumIndex === index && recordPlay && 'rotate'"
+              />
+              <img
+                src="@/assets/album/tape_right.png"
+                class="tape-play"
+                :class="albumIndex === index && recordPlay  && 'rotate'"
+              />
+            </template>
+            <img
+              src="@/assets/album/cd.png"
+              class="cd-play"
+              :class="albumIndex === index && recordPlay  && 'rotate'"
+              v-else-if="item.type === 'cd'"
+            />
+            <img
+              :src="item.right"
+              class="record-play"
+              :class="albumIndex === index && recordPlay  && 'rotate'"
+              v-else-if="item.type === 'record'"
+            />
+
+            <Transition
+              name="ear"
+              mode="out-in"
+              enter-active-class="animate__animated animate__fadeIn"
+              leave-active-class="animate__animated animate__fadeout"
+            >
+              <div class="play cursor-pointer" @click="recordChange" v-show="albumIndex === index">
+                <img src="@/assets/album/ear.png" class="ear" />
+                <img src="@/assets/album/pause.png" class="btn" v-if="recordPlay" />
+                <img src="@/assets/album/play.png" class="btn" v-else />
+              </div>
+            </Transition>
+          </swiper-slide>
+        </swiper>
+
+        <WhiteSpace gutter="0.12rem" />
+        <!-- 文字说明 -->
+        <img :src="albumsTexts[lang][albumIndex]" :width="lang==='cn' ? 410 : 600" />
+        <WhiteSpace />
+
+        <audio
+          :src="albumMusics[albumIndex]"
+          :loop="false"
+          autoplay
+          hidden
+          v-if="swiperIndex === 9"
+          id="audio2"
+          ref="audio2"
+          @timeupdate="changeProgress"
+        />
+        <div class="progress" v-show="swiperIndex === 9">
+          <div class="circle" :style="{left: progress + '%'}" />
+          <div class="progress-bar" :style="{width: (100 - progress) + '%',left: progress + '%'}" />
+        </div>
+        <WhiteSpace gutter="0.12rem" />
+
+        <img src="@/assets/cn/pop_music_text2.png" class="text-height-2" v-if="lang==='cn'" />
+        <img src="@/assets/jp/pop_music_text2.png" class="text-height-2" v-else-if="lang==='jp'" />
+        <img src="@/assets/en/pop_music_text2.png" class="text-height-3" v-else />
+      </div>
+      <img src="@/assets/page/page_icon8.png" width="101" class="page-anchor" />
+    </swiper-slide>
+
+    <!-- team -->
+    <swiper-slide class="slide1 slide11 flex-start">
+      <div>
+        <div class="container3">
+          <WhiteSpace gutter="0.52rem" />
+          <img :src="teamTexts[lang].team" class="title" />
+          <WhiteSpace gutter="0.4rem" />
+          <Row justify="space-between">
+            <img :src="teamTexts[lang].left" class="left" />
+
+            <div class="text-right text-container">
+              <img :src="teamTexts[lang].right" class="right" />
+
+              <template v-for="(item, index) in teamPopTexts[lang]" :key="item">
+                <div class="text" :class="'text' + index" @mouseover="teamTextIndex = index + 1" />
+                <!-- team popup -->
                 <Transition
-                  name="ear"
+                  name="team"
                   mode="out-in"
                   enter-active-class="animate__animated animate__fadeIn"
                   leave-active-class="animate__animated animate__fadeOut"
                 >
                   <div
-                    class="play cursor-pointer"
-                    @click="postChange"
-                    v-show="posterIndex === index"
+                    class="team-popup"
+                    :class="'img' + index"
+                    v-if="teamTextIndex === index + 1"
+                    @mouseleave="teamTextIndex = -1"
                   >
-                    <img src="@/assets/album/ear.png" class="ear" />
-                    <img src="@/assets/album/pause.png" class="btn" v-if="posterPlay" />
-                    <img src="@/assets/album/play.png" class="btn" v-else />
+                    <img :src="item" />
                   </div>
                 </Transition>
-              </div>
-            </swiper-slide>
-          </swiper>
-          <audio
-            :src="posterMusics[posterIndex]"
-            :loop="false"
-            autoplay
-            hidden
-            v-if="swiperIndex === 8"
-            ref="audio1"
-            id="audio1"
-          />
-
-          <WhiteSpace gutter="30" />
-
-          <img src="@/assets/cn/poster_text2.png" height="14" v-if="lang === 'cn'" />
-          <img src="@/assets/jp/poster_text2.png" height="14" v-else-if="lang === 'jp'" />
-          <img src="@/assets/en/poster_text2.png" height="12" v-else />
-        </div>
-        <img src="@/assets/page/page_icon7.png" width="101" class="page-anchor" />
-      </swiper-slide>
-
-      <!-- record -->
-      <swiper-slide class="slide10">
-        <div>
-          <WhiteSpace gutter="80" />
-
-          <img src="@/assets/cn/pop_music_text1.png" height="20" v-if="lang === 'cn'" />
-          <img src="@/assets/jp/pop_music_text1.png" height="20" v-else-if="lang === 'jp'" />
-          <img src="@/assets/en/pop_music_text1.png" height="14" v-else />
-
-          <WhiteSpace gutter="80" />
-          <swiper
-            class="nested-swiper album-swiper"
-            :effect="'coverflow'"
-            :grabCursor="true"
-            :navigation="true"
-            :centeredSlides="true"
-            :slidesPerView="'3'"
-            :coverflowEffect="{
-          rotate: 0,
-          stretch: 0,
-          scale: 0.5,
-          depth: -200,
-          modifier: 1,
-          slideShadows: false,
-        }"
-            :modules="modules1"
-            :loop="true"
-            @slideChange="onAlbumSlideChange"
-          >
-            <swiper-slide v-for="(item, index) in albums" :key="item.img" :class="item.type">
-              <img :src="item.img" :width="item.width" class="album" :class="'album' + index" />
-              <template v-if="item.type === 'tape'">
-                <img
-                  src="@/assets/album/tape_left.png"
-                  class="tape-play"
-                  :class="albumIndex === index && recordPlay && 'rotate'"
-                />
-                <img
-                  src="@/assets/album/tape_right.png"
-                  class="tape-play"
-                  :class="albumIndex === index && recordPlay  && 'rotate'"
-                />
               </template>
-              <img
-                src="@/assets/album/cd.png"
-                class="cd-play"
-                :class="albumIndex === index && recordPlay  && 'rotate'"
-                v-else-if="item.type === 'cd'"
-              />
-              <img
-                :src="item.right"
-                class="record-play"
-                :class="albumIndex === index && recordPlay  && 'rotate'"
-                v-else-if="item.type === 'record'"
-              />
-
-              <Transition
-                name="ear"
-                mode="out-in"
-                enter-active-class="animate__animated animate__fadeIn"
-              >
-                <div
-                  class="play cursor-pointer"
-                  @click="recordChange"
-                  v-show="albumIndex === index"
-                >
-                  <img src="@/assets/album/ear.png" width="62" class="ear" />
-                  <img src="@/assets/album/pause.png" width="13" class="btn" v-if="recordPlay" />
-                  <img src="@/assets/album/play.png" width="13" class="btn" v-else />
-                </div>
-              </Transition>
-            </swiper-slide>
-          </swiper>
-
-          <WhiteSpace gutter="30" />
-          <!-- 文字说明 -->
-          <img :src="albumsTexts[lang][albumIndex]" :width="lang==='cn' ? 410 : 600" />
-          <WhiteSpace gutter="20" />
-
-          <audio
-            :src="albumMusics[albumIndex]"
-            :loop="false"
-            autoplay
-            hidden
-            v-if="swiperIndex === 9"
-            id="audio2"
-            ref="audio2"
-            @timeupdate="changeProgress"
-          />
-          <div class="progress" v-show="swiperIndex === 9">
-            <div class="circle" :style="{left: progress + '%'}" />
-            <div
-              class="progress-bar"
-              :style="{width: (100 - progress) + '%',left: progress + '%'}"
-            />
-          </div>
-          <WhiteSpace gutter="15" />
-
-          <img src="@/assets/cn/pop_music_text2.png" height="14" v-if="lang==='cn'" />
-          <img src="@/assets/jp/pop_music_text2.png" height="14" v-else-if="lang==='jp'" />
-          <img src="@/assets/en/pop_music_text2.png" height="12" v-else />
-        </div>
-        <img src="@/assets/page/page_icon8.png" width="101" class="page-anchor" />
-      </swiper-slide>
-
-      <!-- team -->
-      <swiper-slide class="slide1 slide11 flex-start">
-        <div>
-          <div class="content">
-            <WhiteSpace gutter="60" />
-            <div class="container" style="width: 945px">
-              <img :src="teamTexts[lang].team" height="25" />
-              <WhiteSpace gutter="50" />
-              <Row>
-                <Col span="10">
-                  <img :src="teamTexts[lang].left" height="321" />
-                </Col>
-
-                <Col span="9" offset="4" class="text-right">
-                  <WhiteSpace gutter="10" />
-                  <div class="text-container">
-                    <img :src="teamTexts[lang].right" height="320" />
-
-                    <template v-for="(item, index) in teamPopTexts[lang]" :key="item">
-                      <div
-                        class="text"
-                        :class="'text' + index"
-                        @mouseover="teamTextIndex = index + 1"
-                      />
-
-                      <!-- team popup -->
-                      <Transition
-                        name="team"
-                        mode="out-in"
-                        enter-active-class="animate__animated animate__fadeIn"
-                        leave-active-class="animate__animated animate__fadeOut"
-                      >
-                        <div
-                          class="team-popup"
-                          :class="'img' + index"
-                          v-if="teamTextIndex === index + 1"
-                          @mouseleave="teamTextIndex = -1"
-                        >
-                          <img :src="item" height="67" />
-                        </div>
-                      </Transition>
-                    </template>
-                  </div>
-                </Col>
-              </Row>
-              <WhiteSpace gutter="120" />
             </div>
-          </div>
+          </Row>
+          <WhiteSpace gutter="0.75rem" />
+        </div>
 
-          <WhiteSpace gutter="30" />
-          <Row class="container">
-            <Col span="6" offset="3">
-              <img src="@/assets/logo.png" width="180" />
-            </Col>
-            <Col span="4" offset="1" class="text-left">
-              <img :src="teamTexts[lang].wechat" height="12" />
-              <img src="@/assets/en/icp.png" height="12" />
-            </Col>
-            <Col span="4" offset="1">
-              <a href="mailto: corcordium@tom.com" target="_blank">
-                <img :src="teamTexts[lang].email" height="12" />
+        <div class="footer">
+          <WhiteSpace gutter="0.26rem" />
+          <Row justify="center">
+            <img src="@/assets/logo.png" class="logo" />
+            <div class="media">
+              <img :src="teamTexts[lang].wechat" />
+              <WhiteSpace gutter="0.07rem" />
+              <img src="@/assets/en/icp.png" />
+            </div>
+            <div class="media">
+              <a href="mailto: corcordium@tom.com" target="_blank" class="cursor-pointer">
+                <img :src="teamTexts[lang].email" />
               </a>
-            </Col>
+            </div>
           </Row>
         </div>
-        <img src="@/assets/page/page_icon9.png" width="101" class="page-anchor" />
-      </swiper-slide>
-    </swiper>
-
-    <!-- heart popup -->
-    <Transition
-      name="heart"
-      mode="out-in"
-      enter-active-class="animate__animated animate__fadeIn"
-      leave-active-class="animate__animated animate__fadeOut"
-    >
-      <div
-        class="heart-popup"
-        v-if="popupVisible"
-        @click="changeHeartVisible(false)"
-        style="user-select: none;"
-      >
-        <img :src="heartTexts[lang].img" :width="heartTexts[lang].width" />
       </div>
-    </Transition>
+      <img src="@/assets/page/page_icon9.png" width="101" class="page-anchor" />
+    </swiper-slide>
+  </swiper>
+
+  <!-- heart popup -->
+  <Transition
+    name="heart"
+    mode="out-in"
+    enter-active-class="animate__animated animate__fadeIn"
+    leave-active-class="animate__animated animate__fadeOut"
+  >
+    <div
+      class="heart-popup"
+      v-if="popupVisible"
+      @click="changeHeartVisible(false)"
+      style="user-select: none;"
+    >
+      <img :src="heartTexts[lang].img" :style="{width: heartTexts[lang].width}" />
+    </div>
+  </Transition>
 </template>
 
 <script>
@@ -618,17 +587,17 @@ export default {
         en: {
           heart: require("@/assets/en/heart.png"),
           img: require("@/assets/en/heart_text.png"),
-          width: 867
+          width: "4.6rem"
         },
         cn: {
           heart: require("@/assets/cn/heart.png"),
           img: require("@/assets/cn/heart_text.png"),
-          width: 500
+          width: "4.1rem"
         },
         jp: {
           heart: require("@/assets/jp/heart.png"),
           img: require("@/assets/jp/heart_text.png"),
-          width: 500
+          width: "4.1rem"
         }
       },
       brainTexts: {
@@ -650,232 +619,187 @@ export default {
         en: [
           {
             img: require("@/assets/en/play_games/1.png"),
-            active: require("@/assets/en/play_games/1B.png"),
-            height: 11
+            active: require("@/assets/en/play_games/1B.png")
           },
           {
             img: require("@/assets/en/play_games/2.png"),
-            active: require("@/assets/en/play_games/2B.png"),
-            height: 11
+            active: require("@/assets/en/play_games/2B.png")
           },
           {
             img: require("@/assets/en/play_games/3.png"),
-            active: require("@/assets/en/play_games/3B.png"),
-            height: 11
+            active: require("@/assets/en/play_games/3B.png")
           },
           {
             img: require("@/assets/en/play_games/4.png"),
-            active: require("@/assets/en/play_games/4B.png"),
-            height: 13
+            active: require("@/assets/en/play_games/4B.png")
           },
           {
             img: require("@/assets/en/play_games/5.png"),
-            active: require("@/assets/en/play_games/5B.png"),
-            height: 11
+            active: require("@/assets/en/play_games/5B.png")
           },
           {
             img: require("@/assets/en/play_games/6.png"),
-            active: require("@/assets/en/play_games/6B.png"),
-            height: 11
+            active: require("@/assets/en/play_games/6B.png")
           },
           {
             img: require("@/assets/en/play_games/7.png"),
-            active: require("@/assets/en/play_games/7B.png"),
-            height: 13
+            active: require("@/assets/en/play_games/7B.png")
           },
           {
             img: require("@/assets/en/play_games/8.png"),
-            active: require("@/assets/en/play_games/8B.png"),
-            height: 13
+            active: require("@/assets/en/play_games/8B.png")
           },
           {
             img: require("@/assets/en/play_games/9.png"),
-            active: require("@/assets/en/play_games/9B.png"),
-            height: 11
+            active: require("@/assets/en/play_games/9B.png")
           },
           {
             img: require("@/assets/en/play_games/10.png"),
-            active: require("@/assets/en/play_games/10B.png"),
-            height: 13
+            active: require("@/assets/en/play_games/10B.png")
           },
           {
             img: require("@/assets/en/play_games/11.png"),
-            active: require("@/assets/en/play_games/11B.png"),
-            height: 13
+            active: require("@/assets/en/play_games/11B.png")
           },
           {
             img: require("@/assets/en/play_games/12.png"),
-            active: require("@/assets/en/play_games/12B.png"),
-            height: 12
+            active: require("@/assets/en/play_games/12B.png")
           },
           {
             img: require("@/assets/en/play_games/13.png"),
-            active: require("@/assets/en/play_games/13B.png"),
-            height: 11
+            active: require("@/assets/en/play_games/13B.png")
           },
           {
             img: require("@/assets/en/play_games/14.png"),
-            active: require("@/assets/en/play_games/14B.png"),
-            height: 11
+            active: require("@/assets/en/play_games/14B.png")
           },
           {
             img: require("@/assets/en/play_games/15.png"),
-            active: require("@/assets/en/play_games/15B.png"),
-            height: 11
+            active: require("@/assets/en/play_games/15B.png")
           }
         ],
         cn: [
           {
             img: require("@/assets/cn/play_games/1.png"),
-            active: require("@/assets/cn/play_games/11_.png"),
-            height: 13
+            active: require("@/assets/cn/play_games/11_.png")
           },
           {
             img: require("@/assets/cn/play_games/2.png"),
-            active: require("@/assets/cn/play_games/22.png"),
-            height: 13
+            active: require("@/assets/cn/play_games/22.png")
           },
           {
             img: require("@/assets/cn/play_games/3.png"),
-            active: require("@/assets/cn/play_games/33.png"),
-            height: 13
+            active: require("@/assets/cn/play_games/33.png")
           },
           {
             img: require("@/assets/cn/play_games/4.png"),
-            active: require("@/assets/cn/play_games/44.png"),
-            height: 13
+            active: require("@/assets/cn/play_games/44.png")
           },
           {
             img: require("@/assets/cn/play_games/5.png"),
-            active: require("@/assets/cn/play_games/55.png"),
-            height: 13
+            active: require("@/assets/cn/play_games/55.png")
           },
           {
             img: require("@/assets/cn/play_games/6.png"),
-            active: require("@/assets/cn/play_games/66.png"),
-            height: 13
+            active: require("@/assets/cn/play_games/66.png")
           },
           {
             img: require("@/assets/cn/play_games/7.png"),
-            active: require("@/assets/cn/play_games/77.png"),
-            height: 13
+            active: require("@/assets/cn/play_games/77.png")
           },
           {
             img: require("@/assets/cn/play_games/8.png"),
-            active: require("@/assets/cn/play_games/88.png"),
-            height: 13
+            active: require("@/assets/cn/play_games/88.png")
           },
           {
             img: require("@/assets/cn/play_games/9.png"),
-            active: require("@/assets/cn/play_games/99.png"),
-            height: 13
+            active: require("@/assets/cn/play_games/99.png")
           },
           {
             img: require("@/assets/cn/play_games/10.png"),
-            active: require("@/assets/cn/play_games/1010.png"),
-            height: 13
+            active: require("@/assets/cn/play_games/1010.png")
           },
           {
             img: require("@/assets/cn/play_games/11.png"),
-            active: require("@/assets/cn/play_games/1111.png"),
-            height: 13
+            active: require("@/assets/cn/play_games/1111.png")
           },
           {
             img: require("@/assets/cn/play_games/12.png"),
-            active: require("@/assets/cn/play_games/1212.png"),
-            height: 13
+            active: require("@/assets/cn/play_games/1212.png")
           },
           {
             img: require("@/assets/cn/play_games/13.png"),
-            active: require("@/assets/cn/play_games/1313.png"),
-            height: 13
+            active: require("@/assets/cn/play_games/1313.png")
           },
           {
             img: require("@/assets/cn/play_games/14.png"),
-            active: require("@/assets/cn/play_games/1414.png"),
-            height: 13
+            active: require("@/assets/cn/play_games/1414.png")
           },
           {
             img: require("@/assets/cn/play_games/15.png"),
-            active: require("@/assets/cn/play_games/1515.png"),
-            height: 13
+            active: require("@/assets/cn/play_games/1515.png")
           }
         ],
         jp: [
           {
             img: require("@/assets/jp/play_games/1.png"),
-            active: require("@/assets/jp/play_games/1A.png"),
-            height: 13
+            active: require("@/assets/jp/play_games/1A.png")
           },
           {
             img: require("@/assets/jp/play_games/2.png"),
-            active: require("@/assets/jp/play_games/2A.png"),
-            height: 13
+            active: require("@/assets/jp/play_games/2A.png")
           },
           {
             img: require("@/assets/jp/play_games/3.png"),
-            active: require("@/assets/jp/play_games/3A.png"),
-            height: 13
+            active: require("@/assets/jp/play_games/3A.png")
           },
           {
             img: require("@/assets/jp/play_games/4.png"),
-            active: require("@/assets/jp/play_games/4A.png"),
-            height: 13
+            active: require("@/assets/jp/play_games/4A.png")
           },
           {
             img: require("@/assets/jp/play_games/5.png"),
-            active: require("@/assets/jp/play_games/5A.png"),
-            height: 13
+            active: require("@/assets/jp/play_games/5A.png")
           },
           {
             img: require("@/assets/jp/play_games/6.png"),
-            active: require("@/assets/jp/play_games/6A.png"),
-            height: 13
+            active: require("@/assets/jp/play_games/6A.png")
           },
           {
             img: require("@/assets/jp/play_games/7.png"),
-            active: require("@/assets/jp/play_games/7A.png"),
-            height: 13
+            active: require("@/assets/jp/play_games/7A.png")
           },
           {
             img: require("@/assets/jp/play_games/8.png"),
-            active: require("@/assets/jp/play_games/8A.png"),
-            height: 13
+            active: require("@/assets/jp/play_games/8A.png")
           },
           {
             img: require("@/assets/jp/play_games/9.png"),
-            active: require("@/assets/jp/play_games/9A.png"),
-            height: 13
+            active: require("@/assets/jp/play_games/9A.png")
           },
           {
             img: require("@/assets/jp/play_games/10.png"),
-            active: require("@/assets/jp/play_games/10A.png"),
-            height: 13
+            active: require("@/assets/jp/play_games/10A.png")
           },
           {
             img: require("@/assets/jp/play_games/11.png"),
-            active: require("@/assets/jp/play_games/11A.png"),
-            height: 13
+            active: require("@/assets/jp/play_games/11A.png")
           },
           {
             img: require("@/assets/jp/play_games/12.png"),
-            active: require("@/assets/jp/play_games/12A.png"),
-            height: 13
+            active: require("@/assets/jp/play_games/12A.png")
           },
           {
             img: require("@/assets/jp/play_games/13.png"),
-            active: require("@/assets/jp/play_games/13A.png"),
-            height: 13
+            active: require("@/assets/jp/play_games/13A.png")
           },
           {
             img: require("@/assets/jp/play_games/14.png"),
-            active: require("@/assets/jp/play_games/14A.png"),
-            height: 13
+            active: require("@/assets/jp/play_games/14A.png")
           },
           {
             img: require("@/assets/jp/play_games/15.png"),
-            active: require("@/assets/jp/play_games/15A.png"),
-            height: 13
+            active: require("@/assets/jp/play_games/15A.png")
           }
         ]
       },
@@ -929,7 +853,7 @@ export default {
         {
           img: require("@/assets/file/10.png"),
           music: require("@/assets/file/10.png"),
-          width: 154.5
+          width: 206
         },
         {
           img: require("@/assets/file/11.png"),
@@ -1112,44 +1036,36 @@ export default {
         {
           img: require("@/assets/album/1.png"),
           right: require("@/assets/album/cd.png"),
-          width: 396,
           type: "cd"
         },
         {
           img: require("@/assets/album/2.png"),
           right: require("@/assets/album/22.png"),
-          width: 366,
           type: "record"
         },
         {
-          img: require("@/assets/album/3.png"),
-          width: 356
+          img: require("@/assets/album/3.png")
         },
         {
           img: require("@/assets/album/4.png"),
           right: require("@/assets/album/44.png"),
-          width: 356,
           type: "record"
         },
         {
           img: require("@/assets/album/5.png"),
-          width: 501,
           type: "tape"
         },
         {
           img: require("@/assets/album/6.png"),
           right: require("@/assets/album/record.png"),
-          width: 360,
           type: "record"
         },
         {
-          img: require("@/assets/album/7.png"),
-          width: 399
+          img: require("@/assets/album/7.png")
         },
         {
           img: require("@/assets/album/8.png"),
           right: require("@/assets/album/88.png"),
-          width: 370,
           type: "record"
         }
       ],
@@ -1248,7 +1164,7 @@ export default {
         const index = Number(this.activeIndexs.join("")) + 2;
         controlledSwiper.slideTo(index);
         // 切换至指定slide清空屏幕数字
-        this.$nextTick(function(params) {
+        this.$nextTick(function() {
           this.activeIndexs = [];
         });
       }

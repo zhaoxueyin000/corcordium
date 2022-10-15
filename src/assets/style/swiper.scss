@@ -33,18 +33,18 @@
   width: 100%;
 
   .swiper-button-prev {
-    left: 16%;
+    left: 11%;
 
     &:after {
-      transform: scale(0.8);
+      transform: scale(0.7);
     }
   }
 
   .swiper-button-next {
-    right: 16%;
+    right: 11%;
 
     &:after {
-      transform: scale(0.8);
+      transform: scale(0.7);
     }
   }
 
@@ -64,7 +64,7 @@
   }
 
   .swiper-slide {
-    width: 50%;
+    width: 66%;
 
     img {
       width: 100%;
@@ -72,9 +72,9 @@
 
     &.swiper-slide-prev,
     &.swiper-slide-next {
-      opacity: 0.6;
+      opacity: 0.5;
       transform-style: preserve-3d;
-      transform: translate3d(0px, 0px, 180px) rotateX(0deg) rotateY(0deg) scale(0.5)
+      transform: translate3d(0px, 30px, -60px) rotateX(0deg) rotateY(0deg) scale(0.6)
     }
   }
 
@@ -97,16 +97,19 @@
 
 .album-swiper {
   height: auto;
-  // overflow: visible !important;
 
   .swiper-slide {
-    height: 356px;
+    height: 490px;
   }
 
-  .swiper-button-prev,
-  .swiper-button-next {
+  .swiper-button-prev {
+    left: 18%;
     top: 57%;
+  }
 
+  .swiper-button-next {
+    right: 18%;
+    top: 57%;
   }
 
   .swiper-button-prev:after {

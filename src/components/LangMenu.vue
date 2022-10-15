@@ -6,7 +6,7 @@
       class="lang-menu-item cursor-pointer"
       @click="sendLang(item.lang)"
     >
-      <img :src="item.img" :alt="item.lang" :width="item.width" />
+      <img :src="item.img" :alt="item.lang" />
     </div>
   </div>
 </template>
@@ -21,17 +21,17 @@ export default {
         {
           img: require("@/assets/page/menu_cn.png"),
           lang: "cn",
-          width: 44
+          width: 60
         },
         {
           img: require("@/assets/page/menu_en.png"),
           lang: "en",
-          width: 50
+          width: 72
         },
         {
           img: require("@/assets/page/menu_jp.png"),
           lang: "jp",
-          width: 50
+          width: 72
         }
       ]
     };
@@ -47,13 +47,19 @@ export default {
 <style lang="scss" scoped>
 .lang-menu {
   position: absolute;
-  top: 30%;
-  left: 10px;
+  top: 28%;
+  left: 12px;
   z-index: 99;
 
   .lang-menu-item {
+    img {
+      width: 72px;
+    }
+    &:first-child img{
+      width: 60px;
+    }
     &:not(:last-child) {
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
   }
 }

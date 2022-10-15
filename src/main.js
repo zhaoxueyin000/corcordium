@@ -2,6 +2,8 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 import ViewUIPlus from 'view-ui-plus'
+
+import './utils/flexible'
 // import i18n from './locales'
 
 import 'view-ui-plus/dist/styles/viewuiplus.css'

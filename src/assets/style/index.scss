@@ -36,13 +36,6 @@ html {
   text-align: center;
 }
 
-.page {
-  position: relative;
-  margin: 0 auto;
-  max-width: 1440px;
-  height: calc(100vh);
-}
-
 .container {
   position: relative;
   width: 900px;
@@ -50,7 +43,18 @@ html {
 }
 
 .container1 {
+  position: relative;
   width: 1200px;
+  margin: 0 auto;
+}
+
+.container2 {
+  width: 1494px;
+  margin: 0 auto;
+}
+
+.container3 {
+  width: 1246px;
   margin: 0 auto;
 }
 

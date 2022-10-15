@@ -1,9 +1,7 @@
 <template>
-<div :class="!isMobile ? 'page' : ''">
   <MobileContent :lang="lang" v-if="isMobile" />
   <PCContent :lang="lang" v-else />
   <LangMenu @func="setLang" />
-  </div>
 </template>
 
 <script>
