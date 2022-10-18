@@ -1,6 +1,62 @@
 {
-  "index": {
-    "hello": "Hello",
-    "world": "World"
+  "logo": {
+    "music": "Music Is The Art Of Thinking With Sounds."
+  },
+  "heart": {
+    "studio": "We are a studio  that captures  emotions",
+    "music": "Right here, right now, this heart is determined to make the most vigorous andunrestrained music in China.",
+    "popup1": "In the era where art struggles and sinks, ",
+    "popup2": "where ego and perception shrink,",
+    "popup3": "and where information grows but desolated——",
+    "popup4": "The melody that deep in our souls will be a spark of fire in the dark night, ",
+    "popup5": "forcing true freedom hatches from the materialistic “shell of information”. ",
+    "popup6": "When we are abandoned into a world of indifference, ",
+    "popup7": "hostility, and stubbornness,",
+    "popup8": "music will be our first and last destination.",
+    "popup9": "Even if all will be buried in the dust, ",
+    "popup10": "we will be the last woods burning on the campfire. "
+  },
+  "brain": {
+    "text1": "Communicate in the pace young people communicates.",
+    "text2": "Keep the will of traditional composition,",
+    "text3": "Activate the radar of the latest trendy music.",
+    "text4": "With the support of science and technology, emerge the music with consideration that actually survives in the world of young people."
+  },
+  "sport": "E-SPORT GAMING MUSIC",
+  "games": {
+    "play": "PLAY GAMES",
+    "text1": "Click on the folder to listen to the music",
+    "text2": "Please respect the original works.<br/>The files are only for low-quality free trial.<br/>For more music, please contact us and enter the music library."
+  },
+  "gaming": {
+    "music": "E-SPORT GAMING MUSIC",
+    "game": "Game<br/>0",
+    "click": "CLICK THE GAME<br/>TO SWITCH SONGS"
+  },
+  "switch": "SWIPE LEFT AND RIGHT<br/>TO SWITCH SONGS",
+  "poster": {
+    "music": "MOVIE AND VIDEO MUSIC",
+    "edps": "Fusion of electronic sound effects and traditional symphony, <br/>in an attempt to create a sense of the vastness of the universe. <br/>With the rich interlude performance, <br/>the inner world of the main character in the play is pointed out when he sacrifices himself,<br/>leading to the important climax of the bridge."
+  },
+  "album": {
+    "music": "POP MUSIC",
+    "text1": "The music style is more hardcore than Ruth rock,<br/>with electronic sound waves added to the melody,<br/>making it more comfortable to listen to Suitable for:<br/>hot field of large-scale activities,<br/>automobile jingle,<br/>event theme song"
+  },
+  "team": {
+    "team": "TEAM",
+    "trend": "TREND MUSIC<br/>PRODUCTION TEAM",
+    "producer": "< NEW MUSIC PRODUCER >",
+    "composers": "< BALANCED GROWING COMPOSERS >",
+    "members": "The core members of the music production team<br/>will not be disclosed to the public according to own will.<br/>Music will be only standard of measurement.",
+    "plan": "CROSSOVER PLANNING TEAM",
+    "analysis": "MARKET ANALYSIS TEAM",
+    "design": "DIVERSE LINKAGE VISUAL<br/>DESIGN TEAM",
+    "art": "WORD ART TEAM",
+    "plan1": "Annual Strategy Analysis<br/>Event Marketing",
+    "analysis1": "Follow The Latest Music Trends In Real Time Technical Analysis of Experimental Music",
+    "design1": "Artistic Visual Design<br/>Album Art Design",
+    "art1": "Comprehensive Lyrics<br/>Content Creation",
+    "email": "E-mail",
+    "wechat": "WeChat"
   }
 }

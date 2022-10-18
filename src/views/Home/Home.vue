@@ -1,7 +1,7 @@
 <template>
-  <MobileContent :lang="lang" v-if="isMobile" />
+  <MobileContent :lang="lang" :font="font" v-if="isMobile" />
   <PCContent :lang="lang" v-else />
-  <LangMenu @func="setLang" />
+  <LangMenu @func="setLang" :isMobile="isMobile" />
 </template>
 
 <script>
@@ -20,19 +20,28 @@ export default {
   data() {
     return {
       lang: "en",
-      isMobile: false // 区分pc/h5
+      isMobile: false, // 区分pc/h5
+      font: 'gerbil',
+      fonts: {
+        en: 'gerbil',
+        cn: 'genWanMinJP',
+        jp: 'genWanMinJP'
+      }
     };
   },
   created() {
     this.isMobile = new uaParser().getDevice().type === "mobile";
   },
+  mounted() {},
   methods: {
     setLang(lang) {
       // 预设语言与当前语言一致不做切换
       console.log(lang);
       if (this.lang !== lang) {
         this.lang = lang;
-        // this.$i18n.locale = lang
+        this.$i18n.locale = lang
+        console.log(this.fonts[lang])
+        this.font = this.fonts[lang]
       }
     }
   }

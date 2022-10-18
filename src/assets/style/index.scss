@@ -1,6 +1,5 @@
 @import 'swiper';
 @import 'animate';
-// @import 'fonts';
 
 body,
 html {
@@ -36,28 +35,6 @@ html {
   text-align: center;
 }
 
-.container {
-  position: relative;
-  width: 900px;
-  margin: 0 auto;
-}
-
-.container1 {
-  position: relative;
-  width: 1200px;
-  margin: 0 auto;
-}
-
-.container2 {
-  width: 1494px;
-  margin: 0 auto;
-}
-
-.container3 {
-  width: 1246px;
-  margin: 0 auto;
-}
-
 .img-fill {
   width: 100%;
 }
@@ -86,6 +63,14 @@ html {
   color: #ffff00;
 }
 
+.wathet {
+  color: #00ffff;
+}
+
+.blush {
+  color: #e55a24
+}
+
 .bg {
   &-green {
     background: #00ff00;
@@ -93,5 +78,19 @@ html {
 
   &-blue {
     background: #0000ff;
+  }
+}
+
+.v-font {
+  &-15 {
+    font-size: 15px;
+  }
+
+  &-16 {
+    font-size: 16px;
+  }
+
+  &-17 {
+    font-size: 17px;
   }
 }

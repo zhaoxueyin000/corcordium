@@ -1,9 +1,10 @@
 <template>
-  <div class="lang-menu">
+  <div :class="(isMobile ? 'mobile' : 'pc') + '-lang-menu'">
     <div
       v-for="item in menus"
       :key="item.lang"
-      class="lang-menu-item cursor-pointer"
+      class="cursor-pointer"
+      :class="(isMobile ? 'mobile' : 'pc') + '-lang-menu-item'"
       @click="sendLang(item.lang)"
     >
       <img :src="item.img" :alt="item.lang" />
@@ -14,7 +15,7 @@
 <script>
 export default {
   name: "LangMenu",
-  props: {},
+  props: ["isMobile"],
   data() {
     return {
       menus: [
@@ -45,17 +46,35 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.lang-menu {
+.pc-lang-menu {
   position: absolute;
   top: 28%;
   left: 12px;
   z-index: 99;
 
-  .lang-menu-item {
+  .pc-lang-menu-item {
     img {
       width: 72px;
     }
-    &:first-child img{
+    &:first-child img {
+      width: 60px;
+    }
+    &:not(:last-child) {
+      margin-bottom: 8px;
+    }
+  }
+}
+.mobile-lang-menu {
+  position: absolute;
+  top: 45px;
+  left: 20px;
+  z-index: 99;
+
+  .mobile-lang-menu-item {
+    img {
+      width: 72px;
+    }
+    &:first-child img {
       width: 60px;
     }
     &:not(:last-child) {

@@ -10,8 +10,15 @@ module.exports = defineConfig({
           plugins: [
             require('postcss-pxtorem')({
               rootValue: 192,
-              minPixelValue: 2,
-              propList: ['*']
+              exclude: 'MobileContent',
+              propList: ['*'],
+              selectorBlackList: ['.mobile-', '.v-font-']
+            }),
+            require('postcss-pxtorem')({
+              rootValue: 75,
+              exclude: 'PCContent', // 排除pc
+              propList: ['*'],
+              selectorBlackList: ['.pc-', '.v-font-']
             })
           ]
         }

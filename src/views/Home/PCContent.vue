@@ -87,10 +87,8 @@
       <div class="container1">
         <img :src="heartTexts[lang].heart" class="img-fill" />
         <img
-          src="@/assets/heart.png"
-          width="104"
+          src="@/assets/heart.gif"
           class="heart cursor-pointer"
-          :class="!popupVisible && 'heart-beat'"
           @click="changeHeartVisible(true)"
         />
       </div>
@@ -118,18 +116,17 @@
     </swiper-slide>
 
     <!-- mp4 -->
-    <swiper-slide class="slide6 flex-start">
+    <swiper-slide class="slide6">
       <div>
-        <WhiteSpace gutter="0.57rem" />
-        <img src="@/assets/cn/gaming_music.png" height="20" v-if="lang==='cn'" />
-        <img src="@/assets/jp/gaming_music.png" height="20" v-else-if="lang==='jp'" />
-        <img src="@/assets/en/gaming_music.png" height="14" v-else />
-        <WhiteSpace gutter="60" />
-        <!-- <video autoplay muted loop preload="auto" class="video">
-        <source src="@/assets/logo.mp4" type="video/mp4" />
-        </video>-->
+        <video autoplay muted loop preload="auto" class="video">
+          <source src="@/assets/data_animation.mp4" type="video/mp4" />
+        </video>
+        <div class="title text-center">
+          <img src="@/assets/cn/gaming_music.png" height="20" v-if="lang==='cn'" />
+          <img src="@/assets/jp/gaming_music.png" height="20" v-else-if="lang==='jp'" />
+          <img src="@/assets/en/gaming_music.png" height="14" v-else />
+        </div>
       </div>
-      <img src="@/assets/page/page_icon4.png" width="101" class="page-anchor" />
     </swiper-slide>
 
     <!-- games -->
@@ -195,7 +192,7 @@
         <img src="@/assets/jp/games.png" class="text-height-1" v-else-if="lang === 'jp'" />
         <img src="@/assets/en/games.png" class="text-height-2" v-else />
 
-        <div class="text-right videos" style="">
+        <div class="text-right videos" style>
           <img src="@/assets/game_machine.png" class="game-machine" />
           <div class="btn-container">
             <img
@@ -234,7 +231,6 @@
         <swiper
           class="nested-swiper poster-swiper"
           :modules="modules1"
-          :effect="'fade'"
           :speed="400"
           :navigation="true"
           :grabCursor="true"
@@ -258,7 +254,6 @@
                 name="ear"
                 mode="out-in"
                 enter-active-class="animate__animated animate__fadeIn"
-                leave-active-class="animate__animated animate__fadeOut"
               >
                 <div class="play cursor-pointer" @click="postChange" v-show="posterIndex === index">
                   <img src="@/assets/poster/ear.png" class="ear" />
@@ -348,7 +343,6 @@
               name="ear"
               mode="out-in"
               enter-active-class="animate__animated animate__fadeIn"
-              leave-active-class="animate__animated animate__fadeout"
             >
               <div class="play cursor-pointer" @click="recordChange" v-show="albumIndex === index">
                 <img src="@/assets/album/ear.png" class="ear" />
@@ -1269,5 +1263,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/style/content.scss";
+@import "@/assets/style/PCContent.scss";
 </style>
