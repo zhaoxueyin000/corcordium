@@ -2,6 +2,7 @@
   "logo": {
     "music": "Music Is The Art Of Thinking With Sounds."
   },
+  "tel": "DIAL TO JUMP TO<br/>THE CORRESPONDING PAGE",
   "heart": {
     "studio": "We are a studio  that captures  emotions",
     "music": "Right here, right now, this heart is determined to make the most vigorous andunrestrained music in China.",
@@ -25,11 +26,26 @@
   "sport": "E-SPORT GAMING MUSIC",
   "games": {
     "play": "PLAY GAMES",
-    "text1": "Click on the folder to listen to the music",
-    "text2": "Please respect the original works.<br/>The files are only for low-quality free trial.<br/>For more music, please contact us and enter the music library."
+    "text1": "CLICK ON THE FOLDER TO LISTEN TO THE MUSIC",
+    "text2": "Please respect the original works.<br/>The files are only for low-quality free trial.<br/>For more music, please contact us and enter the music library.",
+    "battle": "Battle",
+    "blooded": "Red-blooded",
+    "future": "Sci-fi future",
+    "cyberpunk": "Cyberpunk",
+    "warfare": "Warfare",
+    "grand": "Grand orchestra",
+    "dynamic": "Dynamic",
+    "speed": "Speed",
+    "intense": "Intense",
+    "suspense": "Suspense",
+    "psychedelic": "Psychedelic",
+    "retro": "Retro video game-machine",
+    "leisure": "Leisure",
+    "cure": "Cure",
+    "relax": "Relax",
+    "slide": "SLIDE TO SWITCH SONGS"
   },
   "gaming": {
-    "music": "E-SPORT GAMING MUSIC",
     "game": "Game<br/>0",
     "click": "CLICK THE GAME<br/>TO SWITCH SONGS"
   },

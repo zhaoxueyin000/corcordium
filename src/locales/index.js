@@ -18,6 +18,7 @@ const i18n = createI18n({
   locale: 'en',
   legacy: false,
   globalInjection: true,
+  warnHtmlMessage: false,
   messages: loadLocaleMessages()
 })
 

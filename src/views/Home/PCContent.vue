@@ -135,7 +135,7 @@
         <WhiteSpace gutter="0.43rem" />
         <img src="@/assets/cn/games_text.png" style="width: 3.5rem" v-if="lang==='cn'" />
         <img src="@/assets/jp/games_text.png" style="width: 3.5rem" v-else-if="lang==='jp'" />
-        <img src="@/assets/en/games_text.png" style="width: 5.1rem" v-else />
+        <img src="@/assets/en/games_text.png" style="width: 4.4rem" v-else />
         <WhiteSpace gutter="0.51rem" />
         <audio :src="musicUrl" :loop="false" hidden :autoplay="autoPlay" v-if="swiperIndex === 6" />
 
@@ -159,7 +159,6 @@
               <div v-for="(item, index) in gameMusics" :key="item.img">
                 <img
                   :src="item.img"
-                  :width="item.width"
                   class="cursor-custom-finger"
                   :class="'img'+ (index + 1)"
                   :style="{'z-index': this.count === index + 1 ? '100' : '99'}"
@@ -801,78 +800,63 @@ export default {
         {
           img: require("@/assets/file/1.png"),
           music:
-            "https://bjetxgzv.cdn.bspapp.com/VKCEYUGU-hello-uniapp/2cc220e0-c27a-11ea-9dfb-6da8e309e0d8.mp3",
-          width: 434
+            "https://bjetxgzv.cdn.bspapp.com/VKCEYUGU-hello-uniapp/2cc220e0-c27a-11ea-9dfb-6da8e309e0d8.mp3"
         },
         {
           img: require("@/assets/file/2.png"),
-          music: "http://go.163.com/2018/0209/mengniu/audio/bgm.mp3",
-          width: 538
+          music: "http://go.163.com/2018/0209/mengniu/audio/bgm.mp3"
         },
         {
           img: require("@/assets/file/3.png"),
-          music: require("@/assets/file/3.png"),
-          width: 350
+          music: require("@/assets/file/3.png")
         },
         {
           img: require("@/assets/file/4.png"),
-          music: require("@/assets/file/4.png"),
-          width: 309
+          music: require("@/assets/file/4.png")
         },
         {
           img: require("@/assets/file/5.png"),
-          music: require("@/assets/file/5.png"),
-          width: 155
+          music: require("@/assets/file/5.png")
         },
         {
           img: require("@/assets/file/6.png"),
-          music: require("@/assets/file/6.png"),
-          width: 336.75
+          music: require("@/assets/file/6.png")
         },
         {
           img: require("@/assets/file/7.png"),
-          music: require("@/assets/file/7.png"),
-          width: 444
+          music: require("@/assets/file/7.png")
         },
         {
           img: require("@/assets/file/8.png"),
-          music: require("@/assets/file/8.png"),
-          width: 111.75
+          music: require("@/assets/file/8.png")
         },
         {
           img: require("@/assets/file/9.png"),
-          music: require("@/assets/file/9.png"),
-          width: 296.25
+          music: require("@/assets/file/9.png")
         },
         {
           img: require("@/assets/file/10.png"),
-          music: require("@/assets/file/10.png"),
-          width: 206
+          music: require("@/assets/file/10.png")
         },
         {
           img: require("@/assets/file/11.png"),
-          music: require("@/assets/file/11.png"),
-          width: 456
+          music: require("@/assets/file/11.png")
         },
         {
           img: require("@/assets/file/12.png"),
-          music: require("@/assets/file/12.png"),
-          width: 313.5
+          music: require("@/assets/file/12.png")
         },
         {
           img: require("@/assets/file/13.png"),
-          music: require("@/assets/file/13.png"),
-          width: 154.5
+          music: require("@/assets/file/13.png")
         },
         {
           img: require("@/assets/file/14.png"),
-          music: require("@/assets/file/14.png"),
-          width: 195
+          music: require("@/assets/file/14.png")
         },
         {
           img: require("@/assets/file/15.png"),
-          music: require("@/assets/file/15.png"),
-          width: 235.5
+          music: require("@/assets/file/15.png")
         }
       ],
       gamingBtns: {
@@ -927,7 +911,6 @@ export default {
             img: require("@/assets/cn/poster/wsqs.jpg"),
             text: require("@/assets/en/poster_text3.png")
           },
-
           {
             img: require("@/assets/en/poster/hx.jpg"),
             text: require("@/assets/en/poster_text3.png")
@@ -966,7 +949,6 @@ export default {
             img: require("@/assets/cn/poster/wsqs.jpg"),
             text: require("@/assets/cn/poster_text3.png")
           },
-
           {
             img: require("@/assets/cn/poster/hx.jpg"),
             text: require("@/assets/cn/poster_text3.png")
@@ -1005,7 +987,6 @@ export default {
             img: require("@/assets/cn/poster/wsqs.jpg"),
             text: require("@/assets/cn/poster_text3.png")
           },
-
           {
             img: require("@/assets/cn/poster/hx.jpg"),
             text: require("@/assets/cn/poster_text3.png")
@@ -1024,6 +1005,7 @@ export default {
         "http://go.163.com/2018/0209/mengniu/audio/bgm.mp3",
         require("@/assets/music/demo.mp3"),
         "http://go.163.com/2018/0209/mengniu/audio/bgm.mp3",
+        require("@/assets/music/demo.mp3"),
         require("@/assets/music/demo.mp3")
       ],
       albums: [
