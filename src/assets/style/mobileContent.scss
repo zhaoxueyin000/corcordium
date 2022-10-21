@@ -2,16 +2,30 @@
 
 .mobileContent {
 
-  &.genWanMinJP {
+  &.gerbil {
 
-    //TODO
-    // .switch {
-    //   transform: scale(1);
-    // }
+    .scale {
+      &-6 {
+        transform: scale(0.6);
+      }
+
+      &-65 {
+        transform: scale(0.65);
+      }
+
+      &-7 {
+        transform: scale(0.7);
+      }
+
+      &-8 {
+        transform: scale(0.8);
+      }
+
+      &-9 {
+        transform: scale(0.9);
+      }
+    }
   }
-
-
-
 
   .width100 {
     width: 100%;
@@ -19,15 +33,6 @@
 
   .video {
     width: 100%;
-  }
-
-  .logo {
-    width: 230px;
-    margin-top: 40px;
-  }
-
-  .switch {
-    transform: scale(0.8);
   }
 
   .page-anchor {
@@ -50,10 +55,10 @@
     background-size: 100% auto;
     background-position: bottom;
 
-    .text {
-      transform: scale(0.7);
+    .logo {
+      width: 230px;
+      margin-top: 40px;
     }
-
   }
 
   .swipe2 {
@@ -78,9 +83,9 @@
 
     .view {
       position: absolute;
-      height: 32px;
-      left: 240px;
-      margin-top: -34px;
+      height: 30px;
+      left: 238px;
+      margin-top: -32px;
     }
 
     .clear {
@@ -94,13 +99,13 @@
     .tel {
       position: absolute;
       bottom: 68px;
-      right: 95px;
+      right: 98px;
 
       .offset {
         text-shadow: 3px 3px 0px rgb(0, 0, 255);
-        transform: scale(0.8) rotate(5deg);
+        transform: rotate(4deg);
         margin-right: -44%;
-        margin-bottom: 12px;
+        margin-bottom: 10px;
       }
 
       img {
@@ -171,17 +176,12 @@
       height: 100%;
       background: rgba(0, 0, 255, 0.6);
       z-index: 1000;
-      top: 0;
+      top: 3px;
       left: 0;
       text-align: center;
 
       div {
         width: 100%;
-        line-height: 1.4;
-
-        &.en p {
-          transform: scale(0.9);
-        }
       }
     }
   }
@@ -201,27 +201,47 @@
 
       .text {
         position: absolute;
-        padding: 0 34px;
-        top: 720px;
+        padding: 0 40px;
+        top: 740px;
 
-        p {
-          width: 60%;
-          margin-top: 12px;
-          line-height: 1.5;
+        &.en {
 
-          &:not(:first-child) {
-            transform: scale(0.7); // TODO
-            margin-left: -9%;
+          p {
+            &:not(:first-child) {
+              width: 60%;
+              margin-top: 12px;
+              margin-left: -12%;
+            }
+
+            &:first-child {
+              margin-bottom: 100px;
+            }
+
+            &:last-child {
+              width: 160%;
+              margin-left: -32%;
+            }
           }
+        }
 
-          &:first-child {
-            width: 45%;
-            margin-bottom: 100px;
+        &.cn,
+        &.jp {
+          p {
+            line-height: 1.3;
+
+            &:not(:first-child) {
+              margin-top: 56px;
+            }
+
+            &:first-child {
+              margin-bottom: 140px;
+            }
           }
+        }
 
-          &:last-child {
-            width: 145%;
-            margin-left: -22%;
+        &.jp {
+          p:first-child {
+            margin-bottom: 108px;
           }
         }
       }
@@ -255,16 +275,26 @@
 
   .swipe6 {
     overflow: hidden;
-    background: url("@/assets/h5/bg/12.png") no-repeat;
-    background-size: 100% 100%;
+
+    .game-center {
+      width: 100%;
+    }
 
     p {
       position: absolute;
-      top: 86px;
+      top: 75px;
+      width: 100%;
+
+      &.v-font-19 {
+        top: 0.95rem;
+      }
     }
 
-    canvas {
-      margin-top: 260px;
+    .line {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
     }
   }
 
@@ -273,22 +303,19 @@
     background-size: 100% auto;
     background-position: bottom;
 
-    .text {
+    .title {
       width: 100%;
       height: 235px;
-      padding-top: 67px;
+      padding: 60px 34px 0;
       background: #0000ff url("@/assets/h5/bg/7.png") no-repeat;
       background-position: bottom;
 
-      .text2 {
-        transform: scale(0.8);
-        margin-top: 10px;
-      }
+      img {
+        width: 100%;
 
-      .text3 {
-        transform: scale(0.7);
-        width: 130%;
-        margin-left: -15%;
+        &.en {
+          width: 96%;
+        }
       }
     }
 
@@ -442,6 +469,10 @@
           }
         }
 
+        &.v-font-15:after {
+          top: 7px;
+        }
+
       }
     }
   }
@@ -452,7 +483,7 @@
 
     .games {
       position: relative;
-      margin: 42px 0;
+      margin: 35px 0 42px;
 
       .machine {
         width: 663px;
@@ -460,17 +491,17 @@
 
       .btns {
         position: absolute;
-        top: 103px;
-        right: 180px;
-        transform: scale(0.9);
+        top: 113px;
+        right: 195px;
 
         span {
           display: inline-flex;
           align-items: center;
           justify-content: center;
-          width: 134px;
-          height: 142px;
-          margin-left: 18px;
+          width: 119px;
+          height: 128px;
+          margin-left: 22px;
+          line-height: 1.2;
           background: url("@/assets/h5/bg/btn.png") no-repeat;
           background-size: cover;
         }
@@ -493,7 +524,6 @@
     }
 
     .click {
-      transform: scale(0.9); // TODO
       text-decoration: underline;
       text-decoration-color: #0000ff;
     }
@@ -503,8 +533,12 @@
     background: url("@/assets/h5/bg/9.jpg") no-repeat;
     background-size: 100% 100%;
 
+    .v-font-17 {
+      margin-top: 20px;
+    }
+
     .mobile-poster-swiper {
-      height: 1045px;
+      height: 1040px;
       margin-top: 40px;
 
       .swiper-slide {
@@ -514,12 +548,24 @@
         }
 
         .text {
-          transform: scale(0.6);
+          position: absolute;
+          bottom: 0;
+          line-height: 1.2;
           width: 170%;
           margin-left: -35%;
         }
+
+        .cn,
+        .jp {
+          bottom: 3%;
+        }
       }
     }
+
+    .scale-8.en {
+      margin-top: -10px;
+    }
+
   }
 
   .play {
@@ -534,8 +580,8 @@
     .btn {
       position: absolute;
       width: 22px;
-      left: 39px;
-      top: 49px;
+      left: 35px;
+      top: 50px;
     }
   }
 
@@ -543,24 +589,32 @@
     background: url("@/assets/h5/bg/10.jpg") no-repeat;
     background-size: 100% 100%;
 
+    .title {
+      margin-bottom: 258px;
+
+      &.en {
+        margin-top: 25px;
+      }
+    }
+
     .mobile-album-swiper {
-      height: 675px;
-      margin-top: 200px;
+      height: 630px;
 
       .swiper-slide {
-        img {
-          display: inline-flex;
+        >div {
+          height: 100%;
         }
 
         img.album {
-          margin: 0 auto;
 
           &.album-1 {
             width: 441px;
+            margin-top: 20px;
           }
 
           &.album-2 {
             width: 415px;
+            margin-top: 20px;
           }
 
           &.album-3 {
@@ -569,6 +623,7 @@
 
           &.album-4 {
             width: 408px;
+            margin-top: 20px;
 
             &+.record-play {
               width: 365px;
@@ -577,12 +632,13 @@
           }
 
           &.album-5 {
-            width: 560px;
+            width: 566px;
+            margin-top: 48px;
           }
-
 
           &.album-6 {
             width: 414px;
+            margin-top: 9px;
 
             &+.record-play {
               width: 385px;
@@ -592,10 +648,12 @@
 
           &.album-7 {
             width: 456px;
+            margin-top: 9px;
           }
 
           &.album-8 {
             width: 413px;
+            margin-top: 10px;
 
             &+.record-play {
               width: 377px;
@@ -631,15 +689,27 @@
           }
         }
 
-        .text {
-          transform: scale(0.8);
-          width: 180%;
-          margin-left: -40%;
+        .white {
+          position: absolute;
+          bottom: 4%;
+          left: 0;
+          width: 100%;
+          line-height: 1.3;
+
+          &.en {
+            bottom: 0;
+            width: 120%;
+            margin-left: -10%;
+          }
+
+          &.v-font-12 {
+            transform: scale(0.9);
+          }
         }
 
         .play {
-          top: 25%;
-          left: 42%;
+          top: 23%;
+          left: 43%;
         }
       }
     }
@@ -648,7 +718,7 @@
       position: relative;
       width: 623px;
       height: 5px;
-      margin: 0 auto 45px;
+      margin: 40px auto;
       background: linear-gradient(to right, #00ff00, #0000ff);
       border-radius: 4px;
 
@@ -674,39 +744,53 @@
   }
 
   .swipe11 {
+    overflow: hidden;
+
     .width100:first-child {
-      padding-top: 82px;
-      background: url("@/assets/h5/bg/11.jpg") no-repeat;
+      padding-top: 70px;
+      background: url("@/assets/h5/bg/11.png") no-repeat;
       background-size: 100% auto;
 
       .team1 {
-        margin: 60px 0 50px 58px;
-        padding-top: 50px;
+        margin: 60px 0 70px 58px;
+        padding-top: 45px;
         background: url("@/assets/h5/bg/team1.png") no-repeat;
         background-size: 162px;
 
         p {
-          margin: 0 0 30px -30px;
+          margin: 0 0 20px -40px;
+
+          &:first-child {
+            margin-bottom: 25px;
+          }
         }
 
         .members {
-          transform: scale(0.6);
           width: 160%;
-          margin-left: -30%;
-          margin-top: -20px;
+          margin-left: -33%;
+          margin-top: -10px;
+          line-height: 1.2;
+        }
 
-          &:before {
-            position: absolute;
-            content: '*';
-            color: #00ff00;
-            left: 15%;
-            top: 0;
-          }
+        .v-font-15 {
+          margin-top: 10px;
+          margin-bottom: 20px !important;
+        }
+
+        .scale-65.cn {
+          transform: scale(0.9);
+          margin-top: 30px;
+          margin-bottom: 10px;
+        }
+
+        .scale-65.jp {
+          transform: scale(0.9);
+          margin-top: 22px;
         }
       }
 
       .team2 {
-        padding-bottom: 20px;
+        padding-bottom: 35px;
 
         >div {
           position: relative;
@@ -722,14 +806,14 @@
             height: 78px;
             background: url("@/assets/h5/bg/team2.png") no-repeat;
             background-size: auto 100%;
-            background-position: 85%;
+            background-position: 88%;
           }
 
           &.text2 {
             height: 60px;
             background: url("@/assets/h5/bg/team3.png") no-repeat;
             background-size: auto 100%;
-            background-position: 80%;
+            background-position: 82%;
           }
 
           &.text3 {
@@ -737,42 +821,54 @@
             color: #ff00ff;
             background: url("@/assets/h5/bg/team4.png") no-repeat;
             background-size: auto 100%;
-            background-position: 80%;
+            background-position: 82%;
           }
 
           &.text4 {
             height: 44px;
-            margin-bottom: 40px;
             color: #ff00ff;
             background: url("@/assets/h5/bg/team5.png") no-repeat;
             background-size: auto 100%;
-            background-position: 76%;
+            background-position: 78%;
           }
         }
 
         .team-popup {
           position: absolute;
-          height: 70px;
+          height: 72px;
           top: 0;
-          right: 26%;
+          right: 22%;
+          // padding: 0 34px;
+          width: 410px;
           background: rgba(0, 0, 255, 0.8);
 
           p {
-            transform: scale(0.7);
+            line-height: 1.3;
           }
 
           &.popup-2 {
-            right: 28%;
-            width: 65%;
+            right: 26%;
+            width: 87%;
+            padding: 0;
+            width: 495px;
+
+            p {
+              // margin-right: -15%;
+            }
           }
 
           &.popup-3 {
-            right: 30%;
+            right: 26%;
+            top: -3px;
+            // padding: 0 30px;
+            width: 347px;
           }
 
           &.popup-4 {
-            right: 35%;
+            right: 32%;
             top: -5px;
+            // padding: 0 22px;
+            width: 342px;
           }
         }
       }
@@ -780,21 +876,11 @@
     }
 
     .media {
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      padding-top: 70px;
+      position: absolute;
+      bottom: 112px;
 
-      .logo {
-        margin-top: 0;
-      }
-
-      p {
-        text-align: left;
-
-        &:last-child {
-          margin-top: 40px;
-        }
+      img {
+        width: 591px;
       }
     }
   }

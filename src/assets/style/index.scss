@@ -55,6 +55,10 @@ html {
   color: #0000ff;
 }
 
+.light-blue {
+  color: #105bfb;
+}
+
 .pink {
   color: #ff00ff;
 }
@@ -83,6 +87,18 @@ html {
 }
 
 .v-font {
+  &-12 {
+    font-size: 12px;
+  }
+
+  &-13 {
+    font-size: 13px;
+  }
+
+  &-14 {
+    font-size: 14px;
+  }
+
   &-15 {
     font-size: 15px;
   }
@@ -93,5 +109,13 @@ html {
 
   &-17 {
     font-size: 17px;
+  }
+
+  &-19 {
+    font-size: 19px;
+  }
+
+  &-20 {
+    font-size: 20px;
   }
 }

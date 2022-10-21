@@ -67,10 +67,12 @@ export default {
 .mobile-lang-menu {
   position: absolute;
   top: 45px;
-  left: 20px;
+  right: 18px;
   z-index: 99;
 
   .mobile-lang-menu-item {
+    text-align: right;
+
     img {
       width: 72px;
     }

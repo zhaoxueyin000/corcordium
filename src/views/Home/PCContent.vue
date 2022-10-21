@@ -30,7 +30,7 @@
     <swiper-slide class="slide2">
       <div class="container1">
         <Row justify="space-between">
-          <div>
+          <div class="tel-container">
             <img :src="telTexts[lang].title" :style="{height: lang==='en' ? '0.29rem' : '0.19rem'}" />
             <div class="tels">
               <div class="grid">
@@ -61,10 +61,7 @@
             </div>
           </div>
 
-          <div style="position: relative">
-            <WhiteSpace gutter="0.37rem" />
-            <img :src="telTexts[lang].screen" class="screen" />
-            <div class="clear cursor-pointer" @click="activeIndexs = []" />
+          <div class="tel">
             <div class="view">
               <img
                 :src="tels[item].show"
@@ -73,6 +70,11 @@
                 :key="item"
               />
             </div>
+            <img
+              :src="telTexts[lang].clear"
+              class="clear cursor-pointer"
+              @click="activeIndexs = []"
+            />
           </div>
 
           <div>
@@ -80,6 +82,7 @@
           </div>
         </Row>
       </div>
+      <img src="@/assets/h5/bg/7.png" class="line" />
     </swiper-slide>
 
     <!-- heart -->
@@ -98,9 +101,9 @@
     <!-- brain -->
     <swiper-slide class="slide4 flex-start">
       <div style="width: 100%">
+        <div class="line" />
         <img src="@/assets/brain.gif" class="img-fill" />
         <img :src="brainTexts[lang]" class="img-fill brain" />
-        <div class="line" />
       </div>
       <img src="@/assets/page/page_icon2.png" width="101" class="page-anchor" />
     </swiper-slide>
@@ -146,7 +149,6 @@
               <div v-for="(item, index) in musicNames[lang]" :key="item.img">
                 <img
                   :src="this.count === index + 1 ? item.active : item.img"
-                  v-show="fileIndexs.indexOf(index) !== -1"
                   class="cursor-custom-arrow"
                   :class="lang + '-arrow ' + lang + '-arrow-' + index"
                   @click="setMusicPlay(index)"
@@ -511,16 +513,19 @@ export default {
         en: {
           title: require("@/assets/en/tel_text1.png"),
           screen: require("@/assets/en/screen.png"),
+          clear: require("@/assets/en/clear.png"),
           text: require("@/assets/en/tel_text2.png")
         },
         cn: {
           title: require("@/assets/cn/tel_text1.png"),
           screen: require("@/assets/cn/screen.png"),
+          clear: require("@/assets/cn/clear.png"),
           text: require("@/assets/cn/tel_text2.png")
         },
         jp: {
           title: require("@/assets/jp/tel_text1.png"),
           screen: require("@/assets/jp/screen.png"),
+          clear: require("@/assets/jp/clear.png"),
           text: require("@/assets/jp/tel_text2.png")
         }
       },
@@ -884,31 +889,31 @@ export default {
       posters: {
         en: [
           {
-            img: require("@/assets/cn/poster/edps.jpg"),
+            img: require("@/assets/en/poster/edps.jpg"),
             text: require("@/assets/en/poster_text3.png")
           },
           {
-            img: require("@/assets/cn/poster/wj.jpg"),
+            img: require("@/assets/en/poster/wj.jpg"),
             text: require("@/assets/en/poster_text3.png")
           },
           {
-            img: require("@/assets/cn/poster/zw.jpg"),
+            img: require("@/assets/en/poster/zw.jpg"),
             text: require("@/assets/en/poster_text3.png")
           },
           {
-            img: require("@/assets/cn/poster/llg.jpg"),
+            img: require("@/assets/en/poster/llg.jpg"),
             text: require("@/assets/en/poster_text3.png")
           },
           {
-            img: require("@/assets/cn/poster/fkzjh.jpg"),
+            img: require("@/assets/en/poster/fkzjh.jpg"),
             text: require("@/assets/en/poster_text3.png")
           },
           {
-            img: require("@/assets/cn/poster/jt.jpg"),
+            img: require("@/assets/en/poster/jt.jpg"),
             text: require("@/assets/en/poster_text3.png")
           },
           {
-            img: require("@/assets/cn/poster/wsqs.jpg"),
+            img: require("@/assets/en/poster/wsqs.jpg"),
             text: require("@/assets/en/poster_text3.png")
           },
           {
@@ -916,7 +921,7 @@ export default {
             text: require("@/assets/en/poster_text3.png")
           },
           {
-            img: require("@/assets/cn/poster/xld.jpg"),
+            img: require("@/assets/en/poster/xld.jpg"),
             text: require("@/assets/en/poster_text3.png")
           }
         ],
@@ -960,39 +965,39 @@ export default {
         ],
         jp: [
           {
-            img: require("@/assets/cn/poster/edps.jpg"),
+            img: require("@/assets/jp/poster/edps.jpg"),
             text: require("@/assets/cn/poster_text3.png")
           },
           {
-            img: require("@/assets/cn/poster/wj.jpg"),
+            img: require("@/assets/jp/poster/wj.jpg"),
             text: require("@/assets/cn/poster_text3.png")
           },
           {
-            img: require("@/assets/cn/poster/zw.jpg"),
+            img: require("@/assets/jp/poster/zw.jpg"),
             text: require("@/assets/cn/poster_text3.png")
           },
           {
-            img: require("@/assets/cn/poster/llg.jpg"),
+            img: require("@/assets/jp/poster/llg.jpg"),
             text: require("@/assets/cn/poster_text3.png")
           },
           {
-            img: require("@/assets/cn/poster/fkzjh.jpg"),
+            img: require("@/assets/jp/poster/fkzjh.jpg"),
             text: require("@/assets/cn/poster_text3.png")
           },
           {
-            img: require("@/assets/cn/poster/jt.jpg"),
+            img: require("@/assets/jp/poster/jt.jpg"),
             text: require("@/assets/cn/poster_text3.png")
           },
           {
-            img: require("@/assets/cn/poster/wsqs.jpg"),
+            img: require("@/assets/jp/poster/wsqs.jpg"),
             text: require("@/assets/cn/poster_text3.png")
           },
           {
-            img: require("@/assets/cn/poster/hx.jpg"),
+            img: require("@/assets/jp/poster/hx.jpg"),
             text: require("@/assets/cn/poster_text3.png")
           },
           {
-            img: require("@/assets/cn/poster/xld.jpg"),
+            img: require("@/assets/jp/poster/xld.jpg"),
             text: require("@/assets/cn/poster_text3.png")
           }
         ]

@@ -1,7 +1,7 @@
 <template>
   <swiper
     class="mobileContent"
-    :class="font"
+    :class="font + ' ' + lang"
     direction="vertical"
     :modules="modules"
     :cssMode="true"
@@ -17,7 +17,7 @@
           <source src="@/assets/h5/logo.mp4" type="video/mp4" />
         </video>
         <img src="@/assets/logo.png" class="logo" />
-        <p class="text">{{ $t('logo.music') }}</p>
+        <p class="scale-7">{{ $t('logo.music') }}</p>
       </div>
     </swiper-slide>
 
@@ -31,7 +31,9 @@
         </div>
 
         <div class="tel">
-          <p class="green offset" v-html="$t('tel')"></p>
+          <div class="offset">
+            <p class="green scale-7" :class="lang==='cn' && 'v-font-12'" v-html="$t('tel')"></p>
+          </div>
           <img src="@/assets/h5/tel.png" />
           <div class="nums red">
             <span v-for="i in 10" :key="i" @click="dial(i)" />
@@ -65,17 +67,17 @@
           @click="changeHeartVisible(false)"
           style="user-select: none;"
         >
-          <div :class="lang">
-            <p>{{ $t('heart.popup1') }}</p>
-            <p>{{ $t('heart.popup2') }}</p>
-            <p>{{ $t('heart.popup3') }}</p>
-            <p>{{ $t('heart.popup4') }}</p>
-            <p>{{ $t('heart.popup5') }}</p>
-            <p>{{ $t('heart.popup6') }}</p>
-            <p v-html="$t('heart.popup7')"></p>
-            <p>{{ $t('heart.popup8') }}</p>
-            <p>{{ $t('heart.popup9') }}</p>
-            <p>{{ $t('heart.popup10') }}</p>
+          <div>
+            <p class="scale-9">{{ $t('heart.popup1') }}</p>
+            <p class="scale-9">{{ $t('heart.popup2') }}</p>
+            <p class="scale-9">{{ $t('heart.popup3') }}</p>
+            <p class="scale-9">{{ $t('heart.popup4') }}</p>
+            <p class="scale-9">{{ $t('heart.popup5') }}</p>
+            <p class="scale-9">{{ $t('heart.popup6') }}</p>
+            <p class="scale-9" v-html="$t('heart.popup7')"></p>
+            <p class="scale-9">{{ $t('heart.popup8') }}</p>
+            <p class="scale-9">{{ $t('heart.popup9') }}</p>
+            <p class="scale-9">{{ $t('heart.popup10') }}</p>
           </div>
         </div>
       </Transition>
@@ -84,11 +86,11 @@
     <swiper-slide class="swipe4 flex-start">
       <img src="@/assets/h5/character.gif" class="character" />
       <div class="container green text-left">
-        <div class="text">
-          <p v-html="$t('brain.text1')"></p>
-          <p>{{ $t('brain.text2') }}</p>
-          <p>{{ $t('brain.text3') }}</p>
-          <p>{{ $t('brain.text4') }}</p>
+        <div class="text" :class="lang">
+          <p :class="lang !== 'en' && 'v-font-14'" v-html="$t('brain.text1')"></p>
+          <p class="scale-6">{{ $t('brain.text2') }}</p>
+          <p class="scale-6">{{ $t('brain.text3') }}</p>
+          <p class="scale-6">{{ $t('brain.text4') }}</p>
         </div>
       </div>
       <img src="@/assets/page/page_icon2.png" class="page-anchor" />
@@ -102,21 +104,25 @@
     </swiper-slide>
 
     <swiper-slide class="swipe6 flex-start">
-      <p class="red v-font-16">{{ $t('sport') }}</p>
-      <VueMatrixRaindrop :canvasWidth="canvasWidth" :fontSize="16" v-if="swiperIndex === 5"></VueMatrixRaindrop>
+      <div class="width100">
+        <img src="@/assets/h5/game_center.png" class="game-center" />
+        <p class="red" :class="lang==='en'? 'v-font-17' : 'v-font-19'">{{ $t('sport') }}</p>
+        <VueMatrixRaindrop
+          :canvasWidth="canvasWidth"
+          :canvasHeight="600"
+          :speed="5"
+          :fontSize="14"
+          v-if="swiperIndex === 5"
+        ></VueMatrixRaindrop>
+        <img src="@/assets/h5/bg/7.png" class="line" />
+      </div>
       <img src="@/assets/page/page_icon4.png" class="page-anchor" />
     </swiper-slide>
 
     <swiper-slide class="swipe7 flex-start">
       <div class="width100">
-        <div class="text green">
-          <p
-            class="v-font-15"
-            :class="lang==='en' && 'pressStart2P'"
-            style="font-weight: 800"
-          >{{ $t('games.play') }}</p>
-          <p class="text2">{{ $t('games.text1') }}</p>
-          <p class="text3" v-html="$t('games.text2')"></p>
+        <div class="title">
+          <img :src="titles[lang]" :class="lang" />
         </div>
 
         <div class="files">
@@ -146,10 +152,11 @@
             v-for="(item, index) in gameMusics"
             :key="item.text"
             @click="setMusicPlay(index)"
+            :class="lang!=='en'&&' v-font-15'"
           >{{$t('games.'+ item.text)}}</swiper-slide>
         </swiper>
 
-        <p class="wathet switch slide">{{ $t('games.slide') }}</p>
+        <p class="wathet scale-8 slide" :class="lang!=='en'&&' v-font-14'">{{ $t('games.slide') }}</p>
 
         <audio :src="musicUrl" :loop="false" hidden :autoplay="autoPlay" v-if="swiperIndex === 6" />
       </div>
@@ -158,14 +165,15 @@
 
     <swiper-slide class="swipe8">
       <div class="width100">
-        <p class="wathet v-font-16">{{ $t('sport') }}</p>
+        <p class="wathet" :class="lang==='en'? 'v-font-17' : 'v-font-20'">{{ $t('sport') }}</p>
         <div class="games text-right">
           <img src="@/assets/h5/bg/machine.png" class="machine" />
           <div class="btns text-center">
             <span
               v-for="i in 3"
               :key="i"
-              class="gerbil blush shake-opacity"
+              class="blush shake-opacity"
+              :class="lang !== 'en' && 'v-font-14'"
               @click="videoIndex = (i-1)"
               v-html="$t('gaming.game') + i"
             ></span>
@@ -175,14 +183,18 @@
           </video>
           <img src="@/assets/h5/btn1.png" class="btn1" />
         </div>
-        <p class="green click" v-html="$t('gaming.click')"></p>
+        <p
+          class="green click scale-9"
+          :class="lang !== 'en' && 'v-font-14'"
+          v-html="$t('gaming.click')"
+        ></p>
       </div>
       <img src="@/assets/page/page_icon6.png" class="page-anchor page-anchor-1" />
     </swiper-slide>
 
     <swiper-slide class="swipe9">
       <div class="width100">
-        <p class="wathet v-font-16">{{ $t('poster.music') }}</p>
+        <p class="wathet" :class="lang==='en'? 'v-font-17' : 'v-font-20'">{{ $t('poster.music') }}</p>
         <swiper
           :modules="modules1"
           :navigation="true"
@@ -190,6 +202,7 @@
           :centeredSlides="true"
           :slidesPerView="'auto'"
           :loop="true"
+          :speed="800"
           class="mobile-poster-swiper"
           @slideChange="onPosterSlideChange"
         >
@@ -197,7 +210,8 @@
             <div>
               <img :src="item[lang]" class="poster" />
               <p
-                class="blue text"
+                class="light-blue text scale-6"
+                :class="lang"
                 v-html="$t('poster.' + item.text)"
                 v-show="posterIndex === index"
               ></p>
@@ -217,7 +231,11 @@
           </swiper-slide>
         </swiper>
 
-        <p class="wathet switch" v-html="$t('switch')"></p>
+        <p
+          class="wathet"
+          :class="(lang === 'en' ? 'scale-8' : 'v-font-14') + ' ' + lang"
+          v-html="$t('switch')"
+        ></p>
         <audio
           :src="posterMusics[posterIndex]"
           :loop="false"
@@ -233,7 +251,11 @@
 
     <swiper-slide class="swipe10">
       <div class="width100">
-        <p class="green v-font-16">{{ $t('album.music') }}</p>
+        <p
+          class="green title"
+          :class="(lang==='en'? 'v-font-17' : 'v-font-20') + ' ' +lang"
+          style="height: 30px;"
+        >{{ $t('album.music') }}</p>
         <swiper
           :grabCursor="true"
           :loop="true"
@@ -269,7 +291,11 @@
                 v-else-if="item.type === 'record'"
               />
 
-              <p class="white text" v-html="$t('album.' + item.text)"></p>
+              <p
+                class="white"
+                :class="(lang==='en'?'scale-8':'v-font-12')+' '+lang"
+                v-html="$t('album.' + item.text)"
+              ></p>
 
               <Transition
                 name="ear"
@@ -290,7 +316,7 @@
           <div class="circle" :style="{left: progress + '%'}" />
           <div class="progress-bar" :style="{width: (100 - progress) + '%',left: progress + '%'}" />
         </div>
-        <p class="green switch" v-html="$t('switch')"></p>
+        <p class="green scale-8" :class="lang !== 'en' && 'v-font-14'" v-html="$t('switch')"></p>
 
         <audio
           :src="albumMusics[albumIndex]"
@@ -309,13 +335,33 @@
     <swiper-slide class="swipe1 swipe11 flex-start">
       <div style="width: 100%">
         <div class="width100">
-          <p class="wathet v-font-16">{{ $t('team.team') }}</p>
+          <p
+            class="wathet"
+            :class="lang==='en'? 'v-font-17' : 'v-font-20'"
+            style="line-height: 30px"
+          >{{ $t('team.team') }}</p>
           <div class="team1">
-            <p class="wathet switch" v-html="$t('team.trend')"></p>
-            <p class="green switch" v-html="$t('team.producer')"></p>
-            <p class="green switch" v-html="$t('team.composers')"></p>
-            <p class="blue members" v-html="$t('team.members')"></p>
+            <p
+              class="wathet"
+              :class="lang==='en'? 'scale-9' : 'v-font-15'"
+              v-html="$t('team.trend')"
+            ></p>
+            <p class="green" :class="lang==='en' ? 'scale-8' : 'v-font-13'">
+              <span class="wathet">&lt;&nbsp;</span>
+              <span v-html="$t('team.producer')"></span>
+              <span class="wathet">&nbsp;></span>
+            </p>
+            <p class="green" :class="lang==='en' ? 'scale-8' : 'v-font-13'">
+              <span class="wathet">&lt;&nbsp;</span>
+              <span v-html="$t('team.composers')"></span>
+              <span class="wathet">&nbsp;></span>
+            </p>
+            <p class="blue members scale-65" :class="lang">
+              <span class="green">*</span>
+              <span v-html="$t('team.members')"></span>
+            </p>
           </div>
+
           <div class="team2">
             <div
               v-for="(item, index) in teams"
@@ -323,7 +369,11 @@
               class="yellow"
               :class="'text' + (index+1)"
             >
-              <p class="switch" v-html="$t('team.' + item)" @mouseover="teamIndex = index + 1"></p>
+              <p
+                :class="lang==='en' ? 'scale-9' : 'v-font-13'"
+                v-html="$t('team.' + item)"
+                @mouseover="teamIndex = index + 1"
+              ></p>
 
               <Transition
                 name="team"
@@ -337,27 +387,15 @@
                   v-if="teamIndex === index + 1"
                   @mouseleave="teamIndex = -1"
                 >
-                  <p class="white" v-html="$t('team.' + item + '1')"></p>
+                  <p class="white scale-8" v-html="$t('team.' + item + '1')"></p>
                 </div>
               </Transition>
             </div>
           </div>
         </div>
         <div class="width100 media">
-          <div>
-            <img src="@/assets/logo.png" class="logo" />
-          </div>
-          <div>
-            <p class="wathet switch gerbil">
-              {{ $t("team.email") }}:
-              <span class="green">corcordium@tom.com</span>
-            </p>
-            <p class="wathet switch gerbil">
-              {{ $t("team.wechat") }}:
-              <span class="green">COR2DIUM</span>
-            </p>
-            <p class="wathet switch genWanMinJP">沪ICP备案号: 2022028490</p>
-          </div>
+          <img src="@/assets/h5/cn/media.png" v-if="lang==='en'" />
+          <img src="@/assets/h5/en/media.png" v-else />
         </div>
       </div>
       <img src="@/assets/page/page_icon9.png" class="page-anchor page-anchor-2" />
@@ -459,6 +497,11 @@ export default {
         jp: {
           pyramid: require("@/assets/h5/jp/pyramid.png")
         }
+      },
+      titles: {
+        en: require("@/assets/h5/en/title.png"),
+        cn: require("@/assets/h5/cn/title.png"),
+        jp: require("@/assets/h5/jp/title.png")
       },
       files: [
         require("@/assets/file/file1.png"),
@@ -679,7 +722,13 @@ export default {
   methods: {
     onSlideChange(swiper) {
       this.swiperIndex = swiper.realIndex;
-       if (this.swiperIndex !== 9 && this.timer) {
+      if (swiper.realIndex === 8) {
+        this.posterPlay = true;
+      }
+      if (swiper.realIndex === 9) {
+        this.recordPlay = true;
+      }
+      if (this.swiperIndex !== 9 && this.timer) {
         this.recordPlay = false;
         this.progress = 0;
         clearInterval(this.timer);
@@ -737,13 +786,13 @@ export default {
       }
       this.posterPlay = !this.posterPlay;
     },
-     onAlbumSlideChange(swiper) {
+    onAlbumSlideChange(swiper) {
       if (swiper.previousIndex !== swiper.realIndex) {
         this.progress = 0;
       }
       this.recordPlay = true;
       this.albumIndex = swiper.realIndex;
-      console.log(this.albumIndex)
+      console.log(this.albumIndex);
     },
     recordChange() {
       const audio2 = document.getElementById("audio2");
@@ -757,7 +806,6 @@ export default {
     changeProgress() {
       setTimeout(() => {
         const audio2 = this.$refs.audio2;
-        console.log(audio2)
         if (audio2 && this.timer === 0) {
           this.timer = setInterval(() => {
             const numbers = audio2.currentTime / audio2.duration;
@@ -772,7 +820,7 @@ export default {
           }, 30);
         }
       }, 30);
-    },
+    }
   }
 };
 </script>

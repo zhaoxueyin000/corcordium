@@ -26,8 +26,19 @@
 }
 
 .slide2 {
-  background: url("@/assets/bg/tel.png") no-repeat;
+  background: url("@/assets/bg/phone.jpg") no-repeat;
   background-size: 100% 100%;
+
+  .line {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+  }
+
+  .tel-container {
+    width: 303px;
+  }
 
   .tels {
     position: relative;
@@ -75,35 +86,33 @@
     width: 215px;
   }
 
-  .screen {
-    width: 171px;
-    margin-left: -130px;
-  }
+  .tel {
+    position: relative;
+    width: 172px;
+    margin-left: -10.5%;
 
-  .clear {
-    position: absolute;
-    top: 206px;
-    right: 55px;
-    width: 96px;
-    height: 38px;
-  }
+    .clear {
+      position: absolute;
+      top: 204px;
+      left: 17%;
+      width: 96px;
+    }
 
-  .view {
-    position: absolute;
-    top: 112px;
-    right: 42px;
+    .view {
+      position: absolute;
+      top: 112px;
+      right: 42px;
 
-    img {
-      margin-left: 2px;
-
-      &:last-child {
-        margin-bottom: -1px;
+      img {
+        margin-left: 2px;
       }
     }
   }
 
+
   .right-text {
     width: 466px;
+    height: 617px;
   }
 }
 
@@ -132,6 +141,7 @@
   }
 
   .line {
+    position: absolute;
     left: 0;
     bottom: 0;
     width: 100%;
@@ -267,7 +277,7 @@
         &.img7 {
           right: 359px;
           top: 268px;
-          width:446px;
+          width: 446px;
         }
 
         &.img8 {
@@ -299,7 +309,7 @@
           top: 120px;
           width: 206px;
         }
-        
+
         &.img13 {
           left: 60px;
           top: 180px;
