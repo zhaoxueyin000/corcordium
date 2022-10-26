@@ -1,3 +1,5 @@
+@import 'fonts';
+
 .container1 {
   position: relative;
   width: 1200px;
@@ -5,8 +7,8 @@
 }
 
 .container2 {
-  width: 1678px;
-  margin: 0 auto;
+  width: 100%;
+
 }
 
 .container3 {
@@ -28,6 +30,16 @@
 .slide2 {
   background: url("@/assets/bg/phone.jpg") no-repeat;
   background-size: 100% 100%;
+
+  .title {
+    height: 36px;
+    margin-top: 19px;
+
+    &.en {
+      height: 55px;
+      margin-top: 0;
+    }
+  }
 
   .line {
     position: absolute;
@@ -111,8 +123,16 @@
 
 
   .right-text {
-    width: 466px;
-    height: 617px;
+    position: relative;
+    width: 473px;
+    height: 618px;
+
+    img {
+      position: absolute;
+      left: 0;
+      height: 100%;
+
+    }
   }
 }
 
@@ -186,165 +206,281 @@
 }
 
 .slide7 {
-  background: url("@/assets/bg/games.png") no-repeat;
-  background-size: 100% 100%;
+  background: url("@/assets/bg/games.jpg") no-repeat;
+  background-size: 100% auto;
+  background-position: bottom;
+
+  .title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 284px;
+    padding-top: 25px;
+    background: #0000ff url("@/assets/bg/line.png") no-repeat;
+    background-size: 100% 3px;
+    background-position: bottom;
+  }
 
   .game {
     position: relative;
+    padding: 28px 307px 0 121px;
 
-    .left {
-      width: 285px;
-      // margin-left: -150px;
-      margin-top: 70px;
-      line-height: 1.6;
+    .names {
+      right: 0;
+      width: 317px;
+      margin-top: 127px;
 
-      .en-arrow {
-        height: 13px;
+      .name {
+        position: relative;
+        font-weight: bold;
+        padding-right: 18px;
+        color: #0000ff;
+        margin-right: 5%;
 
-        &-3,
-        &-7,
-        &-10 {
-          height: 16px;
+        &.scale-9 {
+          transform: scale(0.9);
+          margin-right: 0;
+          margin-bottom: 4px;
+
+          &:after {
+            width: 10px;
+            height: 10px;
+          }
         }
 
-        &-5 {
-          height: 14px;
+        &:after {
+          content: "";
+          position: absolute;
+          right: 0;
+          top: 45%;
+          margin-top: -5px;
+          width: 9px;
+          height: 9px;
+          background: #0000ff;
+          border-radius: 50%;
         }
 
-        &-6,
-        &-9,
-        &-11 {
-          height: 15px;
-        }
+        &.active {
+          color: #00ff00;
 
-        &-8,
-        &-12,
-        &-13,
-        &-14 {
-          height: 12px;
+          &:after {
+            background: #00ff00;
+          }
         }
-      }
-
-      .jp-arrow,
-      .cn-arrow {
-        height: 17px;
       }
     }
 
-    .games {
-      position: relative;
-      height: 600px;
+    .ivu-col-span-18 {
+      padding-left: 40px;
 
-      img {
+      .games {
+        position: relative;
+        height: 600px;
+
+        .modal {
+          position: absolute;
+
+          img:first-child {
+            width: 100%;
+          }
+
+          .btn {
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+          }
+
+          &.modal1 {
+            left: 58px;
+            top: 255px;
+            width: 578px;
+
+            .btn {
+              width: 33px;
+              margin-left: -16px;
+              top: 153px;
+            }
+          }
+
+          &.modal2 { //
+            left: 230px;
+            top: 60px;
+            width: 718px;
+
+            .btn {
+              width: 46px;
+              top: 190px;
+              margin-left: -23px;
+            }
+          }
+
+          &.modal3 { //
+            right: 0;
+            top: 242px;
+            width: 580px;
+
+            .btn {
+              width: 35px;
+              top: 160px;
+              margin-left: -17px;
+            }
+          }
+
+          &.modal4 {
+            left: 356px;
+            top: 21px;
+            width: 412px;
+
+            .btn {
+              width: 28px;
+              top: 139px;
+              margin-left: -14px;
+            }
+          }
+
+          &.modal5 {
+            right: 132px;
+            top: 175px;
+            width: 206px;
+
+            .btn {
+              width: 38px;
+              bottom: 16px;
+              margin-left: -19px;
+            }
+          }
+
+          &.modal6 {
+            left: 133px;
+            top: 303px;
+            width: 592px;
+          }
+
+          &.modal7 {
+            right: 173px;
+            top: 270px;
+            width: 445px;
+
+            .btn {
+              width: 34px;
+              top: 132px;
+              margin-left: -17px;
+            }
+          }
+
+          &.modal8 {
+            //
+            left: 218px;
+            top: 450px;
+            width: 149px;
+
+            .btn {
+              width: 20px;
+              top: 70px;
+              margin-left: -10px;
+            }
+          }
+
+          &.modal9 {
+            right: 112px;
+            top: 432px;
+            width: 395px;
+          }
+
+          &.modal10 {
+            //
+            left: 0;
+            top: 143px;
+            width: 206px;
+
+            .btn {
+              width: 19px;
+              top: 112px;
+              margin-left: -9px;
+            }
+          }
+
+          &.modal11 {
+            left: 297px;
+            top: 573px;
+            width: 608px;
+
+            .btn {
+              width: 15px;
+              left: 32px;
+              top: 78px;
+              margin-left: -7px;
+            }
+          }
+
+          &.modal12 {
+            left: 373px;
+            top: 120px;
+            width: 230px;
+
+            .btn {
+              width: 43px;
+              bottom: 16px;
+              // left: 50%;
+              margin-left: -21px;
+            }
+          }
+
+          &.modal13 {
+            left: 44px;
+            top: 188px;
+            width: 418px;
+
+            .btn {
+              width: 10px;
+              left: 22px;
+              top: 54px;
+              margin-left: -5px;
+            }
+          }
+
+          &.modal14 {
+            right: 72px;
+            top: 480px;
+            width: 260px;
+
+            .btn {
+              width: 32px;
+              margin-left: -16px;
+              top: 78px;
+            }
+          }
+
+          &.modal15 {
+            left: 515px;
+            top: 377px;
+            width: 314px;
+
+            .btn {
+              width: 23px;
+              margin-left: -11px;
+              top: 89px;
+            }
+          }
+
+          &.modal16 {
+            left: 16px;
+            top: 472px;
+            z-index: 101;
+            width: 104px;
+          }
+        }
+      }
+
+      .files {
         position: absolute;
+        top: 0;
+        right: 0;
 
-        &.img1 {
-          left: 58px;
-          top: 255px;
-          width: 578px;
+        img {
+          width: 68px;
+          margin-bottom: 22px;
         }
-
-        &.img2 {
-          left: 230px;
-          top: 60px;
-          width: 718px;
-        }
-
-        &.img3 {
-          right: 185px;
-          top: 238px;
-          width: 580px;
-        }
-
-        &.img4 {
-          left: 355px;
-          top: 18px;
-          width: 412px;
-        }
-
-        &.img5 {
-          right: 317px;
-          top: 170px;
-          width: 206px;
-        }
-
-        &.img6 {
-          left: 169px;
-          top: 273px;
-          width: 592px;
-        }
-
-        &.img7 {
-          right: 359px;
-          top: 268px;
-          width: 446px;
-        }
-
-        &.img8 {
-          left: 220px;
-          top: 446px;
-          width: 149px;
-        }
-
-        &.img9 {
-          right: 294px;
-          top: 432px;
-          width: 395px;
-        }
-
-        &.img10 {
-          left: 0;
-          top: 40px;
-          width: 206px;
-        }
-
-        &.img11 {
-          left: 297px;
-          top: 550px;
-          width: 608px;
-        }
-
-        &.img12 {
-          left: 380px;
-          top: 120px;
-          width: 206px;
-        }
-
-        &.img13 {
-          left: 60px;
-          top: 180px;
-          width: 418px;
-        }
-
-        &.img14 {
-          right: 257px;
-          top: 480px;
-          width: 260px;
-        }
-
-        &.img15 {
-          left: 520px;
-          top: 372px;
-          width: 314px;
-        }
-
-        &.img16 {
-          left: 16px;
-          top: 470px;
-          z-index: 101;
-          width: 104px;
-        }
-      }
-    }
-
-    .files {
-      position: absolute;
-      top: 0;
-      right: 186px;
-
-      img {
-        width: 68px;
-        margin-bottom: 15px;
       }
     }
   }
@@ -370,7 +506,6 @@
     position: absolute;
     bottom: 13%;
     left: 50%;
-    margin-left: -100px;
   }
 
   .btn-container {
@@ -415,6 +550,15 @@
 .slide9 {
   background: url("@/assets/bg/poster.png") no-repeat;
   background-size: 100% 100%;
+
+  .text {
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 62%;
+    margin: 0 auto;
+  }
 
   .play {
     top: 50%;
@@ -481,6 +625,14 @@
     width: 600px;
   }
 
+  .white {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 905px;
+    margin: 0 auto;
+  }
+
   .cd-play {
     width: 393px;
     margin-left: -207px;
@@ -511,6 +663,7 @@
   }
 
   .play {
+    // TODO
     top: 50%;
     left: 50%;
     margin-top: -70px;
@@ -552,6 +705,10 @@
       .tape-play {
         top: 234px;
       }
+
+      .album-5+.record-play {
+        margin-top: 50px;
+      }
     }
 
   }
@@ -569,6 +726,10 @@
 
     .left {
       height: 428px;
+
+      &.cn {
+        height: 403px;
+      }
     }
 
     .right {
@@ -678,10 +839,14 @@
   }
 
   &-2 {
-    height: 0.1rem
+    height: 0.1rem;
   }
 
   &-3 {
     height: 0.08rem
   }
+}
+
+.title.text-height-2 {
+  margin-top: 0.06rem;
 }

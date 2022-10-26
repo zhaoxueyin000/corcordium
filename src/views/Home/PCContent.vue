@@ -9,7 +9,6 @@
     @swiper="onSwiper"
     @slideChange="onSlideChange"
   >
-    <!-- logo -->
     <swiper-slide class="slide1 flex-start">
       <div>
         <video autoplay muted loop preload="auto" class="video">
@@ -26,12 +25,11 @@
       </div>
     </swiper-slide>
 
-    <!-- tel -->
     <swiper-slide class="slide2">
       <div class="container1">
         <Row justify="space-between">
           <div class="tel-container">
-            <img :src="telTexts[lang].title" :style="{height: lang==='en' ? '0.29rem' : '0.19rem'}" />
+            <img :src="telTexts[lang].title" class="title" :class="lang" />
             <div class="tels">
               <div class="grid">
                 <Grid :border="false" padding="3px 12px">
@@ -77,15 +75,14 @@
             />
           </div>
 
-          <div>
-            <img :src="telTexts[lang].text" class="right-text" />
+          <div class="right-text">
+            <img :src="telTexts[lang].text" />
           </div>
         </Row>
       </div>
       <img src="@/assets/h5/bg/7.png" class="line" />
     </swiper-slide>
 
-    <!-- heart -->
     <swiper-slide class="slide3">
       <div class="container1">
         <img :src="heartTexts[lang].heart" class="img-fill" />
@@ -98,7 +95,6 @@
       <img src="@/assets/page/page_icon1.png" width="101" class="page-anchor" />
     </swiper-slide>
 
-    <!-- brain -->
     <swiper-slide class="slide4 flex-start">
       <div style="width: 100%">
         <div class="line" />
@@ -108,7 +104,6 @@
       <img src="@/assets/page/page_icon2.png" width="101" class="page-anchor" />
     </swiper-slide>
 
-    <!-- pyramid -->
     <swiper-slide class="slide5">
       <div class="container1">
         <img :src="pyramidTexts[lang]" class="img-fill" />
@@ -118,7 +113,6 @@
       <img src="@/assets/page/page_icon3.png" width="101" class="page-anchor" />
     </swiper-slide>
 
-    <!-- mp4 -->
     <swiper-slide class="slide6">
       <div>
         <video autoplay muted loop preload="auto" class="video">
@@ -132,49 +126,48 @@
       </div>
     </swiper-slide>
 
-    <!-- games -->
     <swiper-slide class="slide7 flex-start cursor-custom-arrow">
       <div class="container2">
-        <WhiteSpace gutter="0.43rem" />
-        <img src="@/assets/cn/games_text.png" style="width: 3.5rem" v-if="lang==='cn'" />
-        <img src="@/assets/jp/games_text.png" style="width: 3.5rem" v-else-if="lang==='jp'" />
-        <img src="@/assets/en/games_text.png" style="width: 4.4rem" v-else />
-        <WhiteSpace gutter="0.51rem" />
+        <div class="title">
+          <img src="@/assets/cn/games_text.png" style="width: 2.11rem" v-if="lang==='cn'" />
+          <img src="@/assets/jp/games_text.png" style="width: 3.64rem" v-else-if="lang==='jp'" />
+          <img src="@/assets/en/games_text.png" style="width: 4.92rem" v-else />
+        </div>
         <audio :src="musicUrl" :loop="false" hidden :autoplay="autoPlay" v-if="swiperIndex === 6" />
 
-        <Row class="game" justify="space-between">
-          <Col span="5">
-            <div class="text-right left">
-              <WhiteSpace gutter="40" />
-              <div v-for="(item, index) in musicNames[lang]" :key="item.img">
-                <img
-                  :src="this.count === index + 1 ? item.active : item.img"
-                  class="cursor-custom-arrow"
-                  :class="lang + '-arrow ' + lang + '-arrow-' + index"
-                  @click="setMusicPlay(index)"
-                />
-              </div>
+        <Row class="game">
+          <Col>
+            <div class="text-right names" :class="font + ' ' + lang">
+              <div
+                v-for="(item, index) in gameMusics"
+                :key="item.img"
+                class="cursor-custom-arrow name"
+                :class="(lang==='en'?'scale-9':'v-font-14')+' '+(this.count===index+1?'active':'')"
+                @click="setMusicPlay(index)"
+              >{{$t('games.'+ item.text)}}</div>
             </div>
           </Col>
-          <Col span="19">
+
+          <Col span="18">
             <div class="games">
-              <div v-for="(item, index) in gameMusics" :key="item.img">
-                <img
-                  :src="item.img"
-                  class="cursor-custom-finger"
-                  :class="'img'+ (index + 1)"
-                  :style="{'z-index': this.count === index + 1 ? '100' : '99'}"
-                  v-if="fileIndexs.indexOf(index) !== -1"
-                  @click="setMusicPlay(index)"
-                />
-                <img
-                  src="@/assets/file/modal.png"
-                  class="cursor-custom-finger img16"
-                  v-if="fileIndexs.indexOf(14) !== -1"
-                />
+              <div
+                v-for="(item, index) in gameMusics"
+                :key="item.img"
+                class="cursor-custom-finger modal"
+                :class="'modal'+ (index + 1)"
+                :style="{'z-index': this.count === index + 1 ? '100' : '99'}"
+              >
+                <div v-if="fileIndexs.indexOf(index) !== -1">
+                  <img :src="item.img" @click="setMusicPlay(index)" />
+                  <img :src="item.pause" class="btn" v-if="this.count===index+1" />
+                  <img :src="item.play" class="btn" v-else />
+                </div>
+              </div>
+              <div class="cursor-custom-finger modal modal16" v-if="fileIndexs.indexOf(14) !== -1">
+                <img src="@/assets/file/modal.png" />
               </div>
             </div>
-            <div class="files cursor-custom-finger">
+            <div class="cursor-custom-finger files">
               <div v-for="item in files" :key="item">
                 <img :src="item" @click="openFile" />
               </div>
@@ -185,13 +178,12 @@
       <img src="@/assets/page/page_icon5.png" width="101" class="page-anchor" />
     </swiper-slide>
 
-    <!-- play games -->
     <swiper-slide class="slide8 flex-start">
       <div style="width: 100%">
         <WhiteSpace gutter="0.53rem" />
         <img src="@/assets/cn/games.png" class="text-height-1" v-if="lang === 'cn'" />
         <img src="@/assets/jp/games.png" class="text-height-1" v-else-if="lang === 'jp'" />
-        <img src="@/assets/en/games.png" class="text-height-2" v-else />
+        <img src="@/assets/en/games.png" class="text-height-2 title" v-else />
 
         <div class="text-right videos" style>
           <img src="@/assets/game_machine.png" class="game-machine" />
@@ -209,30 +201,39 @@
           </video>
         </div>
 
-        <img src="@/assets/cn/click.png" style="width: 0.84rem" class="click" v-if="lang === 'cn'" />
+        <img
+          src="@/assets/cn/click.png"
+          style="width: 0.84rem; margin-left: -0.42rem"
+          class="click"
+          v-if="lang === 'cn'"
+        />
         <img
           src="@/assets/jp/click.png"
           class="click"
           style="margin-left: -0.77rem; width: 1.54rem"
           v-else-if="lang === 'jp'"
         />
-        <img src="@/assets/en/click.png" style="width: 1.05rem" class="click" v-else />
+        <img
+          src="@/assets/en/click.png"
+          style="width: 1.05rem; margin-left: -0.52rem"
+          class="click"
+          v-else
+        />
       </div>
       <img src="@/assets/page/page_icon6.png" width="101" class="page-anchor" />
     </swiper-slide>
 
-    <!-- poster -->
     <swiper-slide class="slide9">
       <div style="position:relative">
         <img src="@/assets/cn/poster_text1.png" class="text-height-1" v-if="lang === 'cn'" />
         <img src="@/assets/jp/poster_text1.png" class="text-height-1" v-else-if="lang === 'jp'" />
-        <img src="@/assets/en/poster_text1.png" class="text-height-2" v-else />
+        <img src="@/assets/en/poster_text1.png" class="text-height-2 title" v-else />
 
         <WhiteSpace gutter="0.29rem" />
         <swiper
           class="nested-swiper poster-swiper"
           :modules="modules1"
-          :speed="400"
+          :speed="800"
           :navigation="true"
           :grabCursor="true"
           :centeredSlides="true"
@@ -240,20 +241,14 @@
           :loop="true"
           @slideChange="onPosterSlideChange"
         >
-          <swiper-slide v-for="(item, index) in posters[lang]" :key="item.img">
+          <swiper-slide v-for="(item, index) in posters" :key="item.text">
             <div>
-              <img :src="item.img" class="poster" />
-              <WhiteSpace gutter="0.12rem" />
-              <!-- 文字说明 -->
-              <img
-                :src="item.text"
-                v-show="posterIndex === index"
-                v-if="item.text"
-                :style="{width: lang === 'en' ? '95%' : '60%'}"
-              />
+              <img :src="item[lang]" class="poster" />
+
               <Transition
                 name="ear"
                 mode="out-in"
+                :duration="{ enter: 2000, leave: 500 }"
                 enter-active-class="animate__animated animate__fadeIn"
               >
                 <div class="play cursor-pointer" @click="postChange" v-show="posterIndex === index">
@@ -265,6 +260,7 @@
             </div>
           </swiper-slide>
         </swiper>
+
         <audio
           :src="posterMusics[posterIndex]"
           :loop="false"
@@ -275,8 +271,17 @@
           id="audio1"
         />
 
-        <WhiteSpace gutter="0.27rem" />
-
+        <WhiteSpace />
+        <!-- 文字说明 -->
+        <div class="text">
+          <p
+            class="blue"
+            :class="font+' '+(lang==='en'?'text-left': 'text-center')"
+            v-html="$t('poster.' + posters[posterIndex].text)"
+          ></p>
+        </div>
+        <WhiteSpace />
+        <WhiteSpace />
         <img src="@/assets/cn/poster_text2.png" class="text-height-2" v-if="lang === 'cn'" />
         <img src="@/assets/jp/poster_text2.png" class="text-height-2" v-else-if="lang === 'jp'" />
         <img src="@/assets/en/poster_text2.png" class="text-height-3" v-else />
@@ -284,14 +289,12 @@
       <img src="@/assets/page/page_icon7.png" width="101" class="page-anchor" />
     </swiper-slide>
 
-    <!-- record -->
     <swiper-slide class="slide10">
       <div>
         <WhiteSpace gutter="0.64rem" />
-
         <img src="@/assets/cn/pop_music_text1.png" class="text-height-1" v-if="lang === 'cn'" />
         <img src="@/assets/jp/pop_music_text1.png" class="text-height-1" v-else-if="lang === 'jp'" />
-        <img src="@/assets/en/pop_music_text1.png" class="text-height-2" v-else />
+        <img src="@/assets/en/pop_music_text1.png" class="text-height-2 title" v-else />
 
         <WhiteSpace gutter="0.58rem" />
         <swiper
@@ -299,16 +302,17 @@
           :effect="'coverflow'"
           :grabCursor="true"
           :navigation="true"
+          :speed="500"
           :centeredSlides="true"
           :slidesPerView="'3'"
           :coverflowEffect="{
-          rotate: 0,
-          stretch: 0,
-          scale: 0.5,
-          depth: -180,
-          modifier: 1,
-          slideShadows: false,
-        }"
+            rotate: 0,
+            stretch: 0,
+            scale: 0.5,
+            depth: -180,
+            modifier: 1,
+            slideShadows: false,
+          }"
           :modules="modules1"
           :loop="true"
           @slideChange="onAlbumSlideChange"
@@ -354,9 +358,15 @@
           </swiper-slide>
         </swiper>
 
-        <WhiteSpace gutter="0.12rem" />
         <!-- 文字说明 -->
-        <img :src="albumsTexts[lang][albumIndex]" :width="lang==='cn' ? 410 : 600" />
+        <WhiteSpace />
+        <p
+          class="white text-left"
+          :class="font"
+          v-html="$t('album.' + albums[albumIndex].pc)"
+          style="height: 72px"
+        ></p>
+        <WhiteSpace />
         <WhiteSpace />
 
         <audio
@@ -382,7 +392,6 @@
       <img src="@/assets/page/page_icon8.png" width="101" class="page-anchor" />
     </swiper-slide>
 
-    <!-- team -->
     <swiper-slide class="slide1 slide11 flex-start">
       <div>
         <div class="container3">
@@ -390,7 +399,7 @@
           <img :src="teamTexts[lang].team" class="title" />
           <WhiteSpace gutter="0.4rem" />
           <Row justify="space-between">
-            <img :src="teamTexts[lang].left" class="left" />
+            <img :src="teamTexts[lang].left" class="left" :class="lang" />
 
             <div class="text-right text-container">
               <img :src="teamTexts[lang].right" class="right" />
@@ -462,6 +471,7 @@
 import WhiteSpace from "@/components/WhiteSpace";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import { Mousewheel, Navigation, EffectCoverflow } from "swiper";
+import { files, videos, posterMusics, albums, albumMusics } from "@/utils/enum";
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -478,7 +488,7 @@ export default {
     Swiper,
     SwiperSlide
   },
-  props: ["lang"],
+  props: ["lang", "font"],
   setup() {
     return {
       onSwiper,
@@ -608,260 +618,109 @@ export default {
         cn: require("@/assets/cn/brain_text.png"),
         jp: require("@/assets/jp/brain_text.png")
       },
-      files: [
-        require("@/assets/file/file1.png"),
-        require("@/assets/file/file2.png"),
-        require("@/assets/file/file3.png")
-      ],
-      musicNames: {
-        en: [
-          {
-            img: require("@/assets/en/play_games/1.png"),
-            active: require("@/assets/en/play_games/1B.png")
-          },
-          {
-            img: require("@/assets/en/play_games/2.png"),
-            active: require("@/assets/en/play_games/2B.png")
-          },
-          {
-            img: require("@/assets/en/play_games/3.png"),
-            active: require("@/assets/en/play_games/3B.png")
-          },
-          {
-            img: require("@/assets/en/play_games/4.png"),
-            active: require("@/assets/en/play_games/4B.png")
-          },
-          {
-            img: require("@/assets/en/play_games/5.png"),
-            active: require("@/assets/en/play_games/5B.png")
-          },
-          {
-            img: require("@/assets/en/play_games/6.png"),
-            active: require("@/assets/en/play_games/6B.png")
-          },
-          {
-            img: require("@/assets/en/play_games/7.png"),
-            active: require("@/assets/en/play_games/7B.png")
-          },
-          {
-            img: require("@/assets/en/play_games/8.png"),
-            active: require("@/assets/en/play_games/8B.png")
-          },
-          {
-            img: require("@/assets/en/play_games/9.png"),
-            active: require("@/assets/en/play_games/9B.png")
-          },
-          {
-            img: require("@/assets/en/play_games/10.png"),
-            active: require("@/assets/en/play_games/10B.png")
-          },
-          {
-            img: require("@/assets/en/play_games/11.png"),
-            active: require("@/assets/en/play_games/11B.png")
-          },
-          {
-            img: require("@/assets/en/play_games/12.png"),
-            active: require("@/assets/en/play_games/12B.png")
-          },
-          {
-            img: require("@/assets/en/play_games/13.png"),
-            active: require("@/assets/en/play_games/13B.png")
-          },
-          {
-            img: require("@/assets/en/play_games/14.png"),
-            active: require("@/assets/en/play_games/14B.png")
-          },
-          {
-            img: require("@/assets/en/play_games/15.png"),
-            active: require("@/assets/en/play_games/15B.png")
-          }
-        ],
-        cn: [
-          {
-            img: require("@/assets/cn/play_games/1.png"),
-            active: require("@/assets/cn/play_games/11_.png")
-          },
-          {
-            img: require("@/assets/cn/play_games/2.png"),
-            active: require("@/assets/cn/play_games/22.png")
-          },
-          {
-            img: require("@/assets/cn/play_games/3.png"),
-            active: require("@/assets/cn/play_games/33.png")
-          },
-          {
-            img: require("@/assets/cn/play_games/4.png"),
-            active: require("@/assets/cn/play_games/44.png")
-          },
-          {
-            img: require("@/assets/cn/play_games/5.png"),
-            active: require("@/assets/cn/play_games/55.png")
-          },
-          {
-            img: require("@/assets/cn/play_games/6.png"),
-            active: require("@/assets/cn/play_games/66.png")
-          },
-          {
-            img: require("@/assets/cn/play_games/7.png"),
-            active: require("@/assets/cn/play_games/77.png")
-          },
-          {
-            img: require("@/assets/cn/play_games/8.png"),
-            active: require("@/assets/cn/play_games/88.png")
-          },
-          {
-            img: require("@/assets/cn/play_games/9.png"),
-            active: require("@/assets/cn/play_games/99.png")
-          },
-          {
-            img: require("@/assets/cn/play_games/10.png"),
-            active: require("@/assets/cn/play_games/1010.png")
-          },
-          {
-            img: require("@/assets/cn/play_games/11.png"),
-            active: require("@/assets/cn/play_games/1111.png")
-          },
-          {
-            img: require("@/assets/cn/play_games/12.png"),
-            active: require("@/assets/cn/play_games/1212.png")
-          },
-          {
-            img: require("@/assets/cn/play_games/13.png"),
-            active: require("@/assets/cn/play_games/1313.png")
-          },
-          {
-            img: require("@/assets/cn/play_games/14.png"),
-            active: require("@/assets/cn/play_games/1414.png")
-          },
-          {
-            img: require("@/assets/cn/play_games/15.png"),
-            active: require("@/assets/cn/play_games/1515.png")
-          }
-        ],
-        jp: [
-          {
-            img: require("@/assets/jp/play_games/1.png"),
-            active: require("@/assets/jp/play_games/1A.png")
-          },
-          {
-            img: require("@/assets/jp/play_games/2.png"),
-            active: require("@/assets/jp/play_games/2A.png")
-          },
-          {
-            img: require("@/assets/jp/play_games/3.png"),
-            active: require("@/assets/jp/play_games/3A.png")
-          },
-          {
-            img: require("@/assets/jp/play_games/4.png"),
-            active: require("@/assets/jp/play_games/4A.png")
-          },
-          {
-            img: require("@/assets/jp/play_games/5.png"),
-            active: require("@/assets/jp/play_games/5A.png")
-          },
-          {
-            img: require("@/assets/jp/play_games/6.png"),
-            active: require("@/assets/jp/play_games/6A.png")
-          },
-          {
-            img: require("@/assets/jp/play_games/7.png"),
-            active: require("@/assets/jp/play_games/7A.png")
-          },
-          {
-            img: require("@/assets/jp/play_games/8.png"),
-            active: require("@/assets/jp/play_games/8A.png")
-          },
-          {
-            img: require("@/assets/jp/play_games/9.png"),
-            active: require("@/assets/jp/play_games/9A.png")
-          },
-          {
-            img: require("@/assets/jp/play_games/10.png"),
-            active: require("@/assets/jp/play_games/10A.png")
-          },
-          {
-            img: require("@/assets/jp/play_games/11.png"),
-            active: require("@/assets/jp/play_games/11A.png")
-          },
-          {
-            img: require("@/assets/jp/play_games/12.png"),
-            active: require("@/assets/jp/play_games/12A.png")
-          },
-          {
-            img: require("@/assets/jp/play_games/13.png"),
-            active: require("@/assets/jp/play_games/13A.png")
-          },
-          {
-            img: require("@/assets/jp/play_games/14.png"),
-            active: require("@/assets/jp/play_games/14A.png")
-          },
-          {
-            img: require("@/assets/jp/play_games/15.png"),
-            active: require("@/assets/jp/play_games/15A.png")
-          }
-        ]
-      },
+      files: files,
       gameMusics: [
         {
-          img: require("@/assets/file/1.png"),
+          img: require("@/assets/file/1/1.png"),
+          play: require("@/assets/file/1/play.png"),
+          pause: require("@/assets/file/1/pause.png"),
+          text: "battle",
           music:
             "https://bjetxgzv.cdn.bspapp.com/VKCEYUGU-hello-uniapp/2cc220e0-c27a-11ea-9dfb-6da8e309e0d8.mp3"
         },
         {
-          img: require("@/assets/file/2.png"),
+          img: require("@/assets/file/2/2.png"),
+          play: require("@/assets/file/2/play.png"),
+          pause: require("@/assets/file/2/pause.png"),
+          text: "blooded",
           music: "http://go.163.com/2018/0209/mengniu/audio/bgm.mp3"
         },
         {
-          img: require("@/assets/file/3.png"),
-          music: require("@/assets/file/3.png")
+          img: require("@/assets/file/3/3.png"),
+          play: require("@/assets/file/3/play.png"),
+          pause: require("@/assets/file/3/pause.png"),
+          text: "future",
+          music: ""
         },
         {
-          img: require("@/assets/file/4.png"),
-          music: require("@/assets/file/4.png")
+          img: require("@/assets/file/4/4.png"),
+          play: require("@/assets/file/4/play.png"),
+          pause: require("@/assets/file/4/pause.png"),
+          text: "cyberpunk",
+          music: ""
         },
         {
-          img: require("@/assets/file/5.png"),
-          music: require("@/assets/file/5.png")
+          img: require("@/assets/file/5/5.png"),
+          play: require("@/assets/file/5/play.png"),
+          pause: require("@/assets/file/5/pause.png"),
+          text: "warfare",
+          music: ""
         },
         {
-          img: require("@/assets/file/6.png"),
-          music: require("@/assets/file/6.png")
+          img: require("@/assets/file/6/6.png"),
+          text: "grand",
+          music: ""
         },
         {
-          img: require("@/assets/file/7.png"),
-          music: require("@/assets/file/7.png")
+          img: require("@/assets/file/7/7.png"),
+          play: require("@/assets/file/7/play.png"),
+          pause: require("@/assets/file/7/pause.png"),
+          text: "dynamic",
+          music: ""
         },
         {
-          img: require("@/assets/file/8.png"),
-          music: require("@/assets/file/8.png")
+          img: require("@/assets/file/8/8.png"),
+          play: require("@/assets/file/8/play.png"),
+          pause: require("@/assets/file/8/pause.png"),
+          text: "speed",
+          music: ""
         },
         {
-          img: require("@/assets/file/9.png"),
-          music: require("@/assets/file/9.png")
+          img: require("@/assets/file/9/9.png"),
+          text: "intense",
+          music: ""
         },
         {
-          img: require("@/assets/file/10.png"),
-          music: require("@/assets/file/10.png")
+          img: require("@/assets/file/10/10.png"),
+          play: require("@/assets/file/10/play.png"),
+          pause: require("@/assets/file/10/pause.png"),
+          text: "suspense",
+          music: ""
         },
         {
-          img: require("@/assets/file/11.png"),
-          music: require("@/assets/file/11.png")
+          img: require("@/assets/file/11/11.png"),
+          play: require("@/assets/file/11/play.png"),
+          pause: require("@/assets/file/11/pause.png"),
+          text: "psychedelic",
+          music: ""
         },
         {
-          img: require("@/assets/file/12.png"),
-          music: require("@/assets/file/12.png")
+          img: require("@/assets/file/12/12.png"),
+          play: require("@/assets/file/12/play.png"),
+          pause: require("@/assets/file/12/pause.png"),
+          text: "retro",
+          music: ""
         },
         {
-          img: require("@/assets/file/13.png"),
-          music: require("@/assets/file/13.png")
+          img: require("@/assets/file/13/13.png"),
+          play: require("@/assets/file/13/play.png"),
+          pause: require("@/assets/file/13/pause.png"),
+          text: "leisure",
+          music: ""
         },
         {
-          img: require("@/assets/file/14.png"),
-          music: require("@/assets/file/14.png")
+          img: require("@/assets/file/14/14.png"),
+          play: require("@/assets/file/14/play.png"),
+          pause: require("@/assets/file/14/pause.png"),
+          text: "cure",
+          music: ""
         },
         {
-          img: require("@/assets/file/15.png"),
-          music: require("@/assets/file/15.png")
+          img: require("@/assets/file/15/15.png"),
+          play: require("@/assets/file/15/play.png"),
+          pause: require("@/assets/file/15/pause.png"),
+          text: "relax",
+          music: ""
         }
       ],
       gamingBtns: {
@@ -881,175 +740,65 @@ export default {
           require("@/assets/jp/game3.png")
         ]
       },
-      videos: [
-        require("@/assets/logo.mp4"),
-        require("@/assets/logo.mp4"),
-        require("@/assets/logo.mp4")
-      ],
-      posters: {
-        en: [
-          {
-            img: require("@/assets/en/poster/edps.jpg"),
-            text: require("@/assets/en/poster_text3.png")
-          },
-          {
-            img: require("@/assets/en/poster/wj.jpg"),
-            text: require("@/assets/en/poster_text3.png")
-          },
-          {
-            img: require("@/assets/en/poster/zw.jpg"),
-            text: require("@/assets/en/poster_text3.png")
-          },
-          {
-            img: require("@/assets/en/poster/llg.jpg"),
-            text: require("@/assets/en/poster_text3.png")
-          },
-          {
-            img: require("@/assets/en/poster/fkzjh.jpg"),
-            text: require("@/assets/en/poster_text3.png")
-          },
-          {
-            img: require("@/assets/en/poster/jt.jpg"),
-            text: require("@/assets/en/poster_text3.png")
-          },
-          {
-            img: require("@/assets/en/poster/wsqs.jpg"),
-            text: require("@/assets/en/poster_text3.png")
-          },
-          {
-            img: require("@/assets/en/poster/hx.jpg"),
-            text: require("@/assets/en/poster_text3.png")
-          },
-          {
-            img: require("@/assets/en/poster/xld.jpg"),
-            text: require("@/assets/en/poster_text3.png")
-          }
-        ],
-        cn: [
-          {
-            img: require("@/assets/cn/poster/edps.jpg"),
-            text: require("@/assets/cn/poster_text3.png")
-          },
-          {
-            img: require("@/assets/cn/poster/wj.jpg"),
-            text: require("@/assets/cn/poster_text3.png")
-          },
-          {
-            img: require("@/assets/cn/poster/zw.jpg"),
-            text: require("@/assets/cn/poster_text3.png")
-          },
-          {
-            img: require("@/assets/cn/poster/llg.jpg"),
-            text: require("@/assets/cn/poster_text3.png")
-          },
-          {
-            img: require("@/assets/cn/poster/fkzjh.jpg"),
-            text: require("@/assets/cn/poster_text3.png")
-          },
-          {
-            img: require("@/assets/cn/poster/jt.jpg"),
-            text: require("@/assets/cn/poster_text3.png")
-          },
-          {
-            img: require("@/assets/cn/poster/wsqs.jpg"),
-            text: require("@/assets/cn/poster_text3.png")
-          },
-          {
-            img: require("@/assets/cn/poster/hx.jpg"),
-            text: require("@/assets/cn/poster_text3.png")
-          },
-          {
-            img: require("@/assets/cn/poster/xld.jpg"),
-            text: require("@/assets/cn/poster_text3.png")
-          }
-        ],
-        jp: [
-          {
-            img: require("@/assets/jp/poster/edps.jpg"),
-            text: require("@/assets/cn/poster_text3.png")
-          },
-          {
-            img: require("@/assets/jp/poster/wj.jpg"),
-            text: require("@/assets/cn/poster_text3.png")
-          },
-          {
-            img: require("@/assets/jp/poster/zw.jpg"),
-            text: require("@/assets/cn/poster_text3.png")
-          },
-          {
-            img: require("@/assets/jp/poster/llg.jpg"),
-            text: require("@/assets/cn/poster_text3.png")
-          },
-          {
-            img: require("@/assets/jp/poster/fkzjh.jpg"),
-            text: require("@/assets/cn/poster_text3.png")
-          },
-          {
-            img: require("@/assets/jp/poster/jt.jpg"),
-            text: require("@/assets/cn/poster_text3.png")
-          },
-          {
-            img: require("@/assets/jp/poster/wsqs.jpg"),
-            text: require("@/assets/cn/poster_text3.png")
-          },
-          {
-            img: require("@/assets/jp/poster/hx.jpg"),
-            text: require("@/assets/cn/poster_text3.png")
-          },
-          {
-            img: require("@/assets/jp/poster/xld.jpg"),
-            text: require("@/assets/cn/poster_text3.png")
-          }
-        ]
-      },
-      posterMusics: [
-        "http://go.163.com/2018/0209/mengniu/audio/bgm.mp3",
-        require("@/assets/music/demo.mp3"),
-        "http://go.163.com/2018/0209/mengniu/audio/bgm.mp3",
-        require("@/assets/music/demo.mp3"),
-        "http://go.163.com/2018/0209/mengniu/audio/bgm.mp3",
-        require("@/assets/music/demo.mp3"),
-        "http://go.163.com/2018/0209/mengniu/audio/bgm.mp3",
-        require("@/assets/music/demo.mp3"),
-        require("@/assets/music/demo.mp3")
-      ],
-      albums: [
+      videos: videos,
+      posters: [
         {
-          img: require("@/assets/album/1.png"),
-          right: require("@/assets/album/cd.png"),
-          type: "cd"
+          en: require("@/assets/en/poster/edps.jpg"),
+          cn: require("@/assets/cn/poster/edps.jpg"),
+          jp: require("@/assets/jp/poster/edps.jpg"),
+          text: "edps1"
         },
         {
-          img: require("@/assets/album/2.png"),
-          right: require("@/assets/album/22.png"),
-          type: "record"
+          en: require("@/assets/en/poster/wj.jpg"),
+          cn: require("@/assets/cn/poster/wj.jpg"),
+          jp: require("@/assets/jp/poster/wj.jpg"),
+          text: "edps1"
         },
         {
-          img: require("@/assets/album/3.png")
+          en: require("@/assets/en/poster/zw.jpg"),
+          cn: require("@/assets/cn/poster/zw.jpg"),
+          jp: require("@/assets/jp/poster/zw.jpg"),
+          text: "edps1"
         },
         {
-          img: require("@/assets/album/4.png"),
-          right: require("@/assets/album/44.png"),
-          type: "record"
+          en: require("@/assets/en/poster/llg.jpg"),
+          cn: require("@/assets/cn/poster/llg.jpg"),
+          jp: require("@/assets/jp/poster/llg.jpg"),
+          text: "edps1"
         },
         {
-          img: require("@/assets/album/5.png"),
-          type: "tape"
+          en: require("@/assets/en/poster/fkzjh.jpg"),
+          cn: require("@/assets/cn/poster/fkzjh.jpg"),
+          jp: require("@/assets/jp/poster/fkzjh.jpg"),
+          text: "edps1"
         },
         {
-          img: require("@/assets/album/6.png"),
-          right: require("@/assets/album/record.png"),
-          type: "record"
+          en: require("@/assets/en/poster/jt.jpg"),
+          cn: require("@/assets/cn/poster/jt.jpg"),
+          jp: require("@/assets/jp/poster/jt.jpg"),
+          text: "edps1"
         },
         {
-          img: require("@/assets/album/7.png")
+          en: require("@/assets/en/poster/wsqs.jpg"),
+          cn: require("@/assets/cn/poster/wsqs.jpg"),
+          jp: require("@/assets/jp/poster/wsqs.jpg"),
+          text: "edps1"
         },
         {
-          img: require("@/assets/album/8.png"),
-          right: require("@/assets/album/88.png"),
-          type: "record"
+          en: require("@/assets/en/poster/hx.jpg"),
+          cn: require("@/assets/cn/poster/hx.jpg"),
+          jp: require("@/assets/jp/poster/hx.jpg"),
+          text: "edps1"
+        },
+        {
+          en: require("@/assets/en/poster/xld.jpg"),
+          cn: require("@/assets/cn/poster/xld.jpg"),
+          jp: require("@/assets/jp/poster/xld.jpg"),
+          text: "edps1"
         }
       ],
+      posterMusics: posterMusics,
+      albums: albums,
       albumsTexts: {
         en: [
           require("@/assets/en/pop_music_text3.png"),
@@ -1082,16 +831,7 @@ export default {
           require("@/assets/jp/pop_music_text3.png")
         ]
       },
-      albumMusics: [
-        require("@/assets/music/demo.mp3"),
-        "http://go.163.com/2018/0209/mengniu/audio/bgm.mp3",
-        "https://blog.coolight.cool/wp-content/uploads/2022/05/%E5%A4%A7%E5%96%9C_%E6%B4%9B%E5%A4%A9%E4%BE%9D.m4a",
-        "http://go.163.com/2018/0209/mengniu/audio/bgm.mp3",
-        require("@/assets/music/demo.mp3"),
-        "http://go.163.com/2018/0209/mengniu/audio/bgm.mp3",
-        require("@/assets/music/demo.mp3"),
-        "http://go.163.com/2018/0209/mengniu/audio/bgm.mp3"
-      ],
+      albumMusics: albumMusics,
       teamTexts: {
         en: {
           team: require("@/assets/en/team.png"),

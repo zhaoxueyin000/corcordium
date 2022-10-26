@@ -69,9 +69,8 @@
     .guide {
       position: absolute;
       width: 615px;
-      height: 478px;
       top: 100px;
-      right: 24px;
+      left: 112px;
     }
 
     .screen {
@@ -106,6 +105,10 @@
         transform: rotate(4deg);
         margin-right: -44%;
         margin-bottom: 10px;
+
+        .en {
+          margin-bottom: -3px;
+        }
       }
 
       img {
@@ -148,6 +151,7 @@
 
     .text {
       margin-left: 38px;
+      line-height: 1.2;
 
       p {
         &:first-child {
@@ -157,6 +161,11 @@
         &:last-child {
           width: 370px;
           margin-top: 50px;
+        }
+
+        &.scale-9 {
+          margin-left: -3%;
+          margin-top: 40px;
         }
       }
     }
@@ -209,8 +218,8 @@
           p {
             &:not(:first-child) {
               width: 60%;
-              margin-top: 12px;
-              margin-left: -12%;
+              margin-top: 10px;
+              margin-left: -9%;
             }
 
             &:first-child {
@@ -218,8 +227,8 @@
             }
 
             &:last-child {
-              width: 160%;
-              margin-left: -32%;
+              width: 150%;
+              margin-left: -23%;
             }
           }
         }
@@ -481,9 +490,13 @@
     background: url("@/assets/h5/bg/8.jpg") no-repeat;
     background-size: 100% 100%;
 
+    .v-font-17 {
+      margin-top: 22px;
+    }
+
     .games {
       position: relative;
-      margin: 35px 0 42px;
+      margin: 30px 0 42px;
 
       .machine {
         width: 663px;
@@ -529,45 +542,6 @@
     }
   }
 
-  .swipe9 {
-    background: url("@/assets/h5/bg/9.jpg") no-repeat;
-    background-size: 100% 100%;
-
-    .v-font-17 {
-      margin-top: 20px;
-    }
-
-    .mobile-poster-swiper {
-      height: 1040px;
-      margin-top: 40px;
-
-      .swiper-slide {
-
-        img.poster {
-          width: 100%
-        }
-
-        .text {
-          position: absolute;
-          bottom: 0;
-          line-height: 1.2;
-          width: 170%;
-          margin-left: -35%;
-        }
-
-        .cn,
-        .jp {
-          bottom: 3%;
-        }
-      }
-    }
-
-    .scale-8.en {
-      margin-top: -10px;
-    }
-
-  }
-
   .play {
     position: absolute;
     top: 37%;
@@ -585,16 +559,59 @@
     }
   }
 
+  .swipe9 {
+    background: url("@/assets/h5/bg/9.jpg") no-repeat;
+    background-size: 100% 100%;
+
+    .v-font-17 {
+      margin-top: 15px;
+    }
+
+    .mobile-poster-swiper {
+      height: 1040px;
+      margin-top: 40px;
+
+      .swiper-slide {
+
+        img.poster {
+          width: 100%
+        }
+
+        .text {
+          position: absolute;
+          line-height: 1.2;
+
+          &.en {
+            bottom: 0;
+            width: 160%;
+            margin-left: -30%;
+
+          }
+        }
+
+        .cn,
+        .jp {
+          bottom: 3%;
+        }
+      }
+    }
+
+    .scale-8.en {
+      margin-top: -10px;
+    }
+  }
+
   .swipe10 {
+    padding-top: 96px;
     background: url("@/assets/h5/bg/10.jpg") no-repeat;
     background-size: 100% 100%;
 
-    .title {
-      margin-bottom: 258px;
+    .v-font-17 {
+      margin-top: 4.5px;
+    }
 
-      &.en {
-        margin-top: 25px;
-      }
+    .title {
+      margin-bottom: 254px;
     }
 
     .mobile-album-swiper {
@@ -751,6 +768,10 @@
       background: url("@/assets/h5/bg/11.png") no-repeat;
       background-size: 100% auto;
 
+      .v-font-17 {
+        margin-top: 4.5px;
+      }
+
       .team1 {
         margin: 60px 0 70px 58px;
         padding-top: 45px;
@@ -773,7 +794,7 @@
         }
 
         .v-font-15 {
-          margin-top: 10px;
+          margin-top: 8px;
           margin-bottom: 20px !important;
         }
 

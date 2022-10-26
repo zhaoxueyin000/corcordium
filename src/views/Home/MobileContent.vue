@@ -13,9 +13,7 @@
   >
     <swiper-slide class="swipe1 flex-start">
       <div>
-        <video autoplay muted loop preload="auto" class="video">
-          <source src="@/assets/h5/logo.mp4" type="video/mp4" />
-        </video>
+        <img src="@/assets/h5/logo.gif" class="video" />
         <img src="@/assets/logo.png" class="logo" />
         <p class="scale-7">{{ $t('logo.music') }}</p>
       </div>
@@ -32,7 +30,7 @@
 
         <div class="tel">
           <div class="offset">
-            <p class="green scale-7" :class="lang==='cn' && 'v-font-12'" v-html="$t('tel')"></p>
+            <p class="green" :class="(lang==='cn' ? 'v-font-12': 'scale-7') + ' ' + lang" v-html="$t('tel')"></p>
           </div>
           <img src="@/assets/h5/tel.png" />
           <div class="nums red">
@@ -47,8 +45,8 @@
       <div class="width100">
         <img src="@/assets/heart.gif" class="heart" @click="changeHeartVisible(true)" />
         <div class="text text-left">
-          <p class="white" v-html="$t('heart.studio')"></p>
-          <p v-html="$t('heart.music')"></p>
+          <p class="white" :class="lang!=='en' && 'v-font-14'" v-html="$t('heart.studio')"></p>
+          <p v-html="$t('heart.music')" :class="lang==='en' ? 'scale-9' : 'v-font-12'"></p>
         </div>
         <img :src="heartTexts[lang]" class="movie" />
       </div>
@@ -68,16 +66,16 @@
           style="user-select: none;"
         >
           <div>
-            <p class="scale-9">{{ $t('heart.popup1') }}</p>
-            <p class="scale-9">{{ $t('heart.popup2') }}</p>
-            <p class="scale-9">{{ $t('heart.popup3') }}</p>
-            <p class="scale-9">{{ $t('heart.popup4') }}</p>
-            <p class="scale-9">{{ $t('heart.popup5') }}</p>
-            <p class="scale-9">{{ $t('heart.popup6') }}</p>
-            <p class="scale-9" v-html="$t('heart.popup7')"></p>
-            <p class="scale-9">{{ $t('heart.popup8') }}</p>
-            <p class="scale-9">{{ $t('heart.popup9') }}</p>
-            <p class="scale-9">{{ $t('heart.popup10') }}</p>
+            <p :class="lang==='en' ? 'scale-9': 'v-font-13'">{{ $t('heart.popup1') }}</p>
+            <p :class="lang==='en' ? 'scale-9': 'v-font-13'">{{ $t('heart.popup2') }}</p>
+            <p :class="lang==='en' ? 'scale-9': 'v-font-13'">{{ $t('heart.popup3') }}</p>
+            <p :class="lang==='en' ? 'scale-9': 'v-font-13'">{{ $t('heart.popup4') }}</p>
+            <p :class="lang==='en' ? 'scale-9': 'v-font-13'">{{ $t('heart.popup5') }}</p>
+            <p :class="lang==='en' ? 'scale-9': 'v-font-13'">{{ $t('heart.popup6') }}</p>
+            <p :class="lang==='en' ? 'scale-9': 'v-font-13'" v-html="$t('heart.popup7')"></p>
+            <p :class="lang==='en' ? 'scale-9': 'v-font-13'">{{ $t('heart.popup8') }}</p>
+            <p :class="lang==='en' ? 'scale-9': 'v-font-13'">{{ $t('heart.popup9') }}</p>
+            <p :class="lang==='en' ? 'scale-9': 'v-font-13'">{{ $t('heart.popup10') }}</p>
           </div>
         </div>
       </Transition>
@@ -88,9 +86,9 @@
       <div class="container green text-left">
         <div class="text" :class="lang">
           <p :class="lang !== 'en' && 'v-font-14'" v-html="$t('brain.text1')"></p>
-          <p class="scale-6">{{ $t('brain.text2') }}</p>
-          <p class="scale-6">{{ $t('brain.text3') }}</p>
-          <p class="scale-6">{{ $t('brain.text4') }}</p>
+          <p class="scale-7">{{ $t('brain.text2') }}</p>
+          <p class="scale-7">{{ $t('brain.text3') }}</p>
+          <p class="scale-7">{{ $t('brain.text4') }}</p>
         </div>
       </div>
       <img src="@/assets/page/page_icon2.png" class="page-anchor" />
@@ -165,9 +163,10 @@
 
     <swiper-slide class="swipe8">
       <div class="width100">
-        <p class="wathet" :class="lang==='en'? 'v-font-17' : 'v-font-20'">{{ $t('sport') }}</p>
+        <p class="wathet" :class="lang==='en' ? 'v-font-17' : 'v-font-20'">{{ $t('sport') }}</p>
         <div class="games text-right">
           <img src="@/assets/h5/bg/machine.png" class="machine" />
+
           <div class="btns text-center">
             <span
               v-for="i in 3"
@@ -249,16 +248,16 @@
       <img src="@/assets/page/page_icon7.png" class="page-anchor page-anchor-1" />
     </swiper-slide>
 
-    <swiper-slide class="swipe10">
+    <swiper-slide class="swipe10 flex-start">
       <div class="width100">
         <p
           class="green title"
           :class="(lang==='en'? 'v-font-17' : 'v-font-20') + ' ' +lang"
-          style="height: 30px;"
         >{{ $t('album.music') }}</p>
         <swiper
           :grabCursor="true"
           :loop="true"
+          :speed="500"
           class="mobile-album-swiper"
           @slideChange="onAlbumSlideChange"
         >
@@ -335,11 +334,7 @@
     <swiper-slide class="swipe1 swipe11 flex-start">
       <div style="width: 100%">
         <div class="width100">
-          <p
-            class="wathet"
-            :class="lang==='en'? 'v-font-17' : 'v-font-20'"
-            style="line-height: 30px"
-          >{{ $t('team.team') }}</p>
+          <p class="wathet" :class="lang==='en'? 'v-font-17' : 'v-font-20'">{{ $t('team.team') }}</p>
           <div class="team1">
             <p
               class="wathet"
@@ -407,6 +402,7 @@
 import VueMatrixRaindrop from "vue-matrix-digit-rain";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import { Mousewheel, Navigation, EffectCoverflow } from "swiper";
+import { files, videos, posterMusics, albums, albumMusics } from "@/utils/enum";
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -503,11 +499,7 @@ export default {
         cn: require("@/assets/h5/cn/title.png"),
         jp: require("@/assets/h5/jp/title.png")
       },
-      files: [
-        require("@/assets/file/file1.png"),
-        require("@/assets/file/file2.png"),
-        require("@/assets/file/file3.png")
-      ],
+      files: files,
       gameMusics: [
         {
           img: require("@/assets/h5/files/1.png"),
@@ -586,11 +578,7 @@ export default {
           music: ""
         }
       ],
-      videos: [
-        require("@/assets/logo.mp4"),
-        require("@/assets/logo.mp4"),
-        require("@/assets/logo.mp4")
-      ],
+      videos: videos,
       posters: [
         {
           en: require("@/assets/h5/en/poster/edps.jpg"),
@@ -647,72 +635,9 @@ export default {
           text: "edps"
         }
       ],
-      posterMusics: [
-        "http://go.163.com/2018/0209/mengniu/audio/bgm.mp3",
-        require("@/assets/music/demo.mp3"),
-        "http://go.163.com/2018/0209/mengniu/audio/bgm.mp3",
-        require("@/assets/music/demo.mp3"),
-        "http://go.163.com/2018/0209/mengniu/audio/bgm.mp3",
-        require("@/assets/music/demo.mp3"),
-        "http://go.163.com/2018/0209/mengniu/audio/bgm.mp3",
-        require("@/assets/music/demo.mp3"),
-        require("@/assets/music/demo.mp3")
-      ],
-      albums: [
-        {
-          img: require("@/assets/album/1.png"),
-          text: "text1",
-          right: require("@/assets/album/cd.png"),
-          type: "cd"
-        },
-        {
-          img: require("@/assets/album/2.png"),
-          text: "text1",
-          right: require("@/assets/album/22.png"),
-          type: "record"
-        },
-        {
-          img: require("@/assets/album/3.png"),
-          text: "text1"
-        },
-        {
-          img: require("@/assets/album/4.png"),
-          text: "text1",
-          right: require("@/assets/album/44.png"),
-          type: "record"
-        },
-        {
-          img: require("@/assets/album/5.png"),
-          text: "text1",
-          type: "tape"
-        },
-        {
-          img: require("@/assets/album/6.png"),
-          text: "text1",
-          right: require("@/assets/album/record.png"),
-          type: "record"
-        },
-        {
-          img: require("@/assets/album/7.png"),
-          text: "text1"
-        },
-        {
-          img: require("@/assets/album/8.png"),
-          text: "text1",
-          right: require("@/assets/album/88.png"),
-          type: "record"
-        }
-      ],
-      albumMusics: [
-        require("@/assets/music/demo.mp3"),
-        "http://go.163.com/2018/0209/mengniu/audio/bgm.mp3",
-        "https://blog.coolight.cool/wp-content/uploads/2022/05/%E5%A4%A7%E5%96%9C_%E6%B4%9B%E5%A4%A9%E4%BE%9D.m4a",
-        "http://go.163.com/2018/0209/mengniu/audio/bgm.mp3",
-        require("@/assets/music/demo.mp3"),
-        "http://go.163.com/2018/0209/mengniu/audio/bgm.mp3",
-        require("@/assets/music/demo.mp3"),
-        "http://go.163.com/2018/0209/mengniu/audio/bgm.mp3"
-      ],
+      posterMusics: posterMusics,
+      albums: albums,
+      albumMusics: albumMusics,
       teams: ["plan", "analysis", "design", "art"]
     };
   },

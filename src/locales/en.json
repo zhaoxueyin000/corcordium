@@ -52,11 +52,13 @@
   "switch": "SWIPE LEFT AND RIGHT<br/>TO SWITCH SONGS",
   "poster": {
     "music": "MOVIE AND VIDEO MUSIC",
-    "edps": "Fusion of electronic sound effects and traditional symphony, <br/>in an attempt to create a sense of the vastness of the universe. <br/>With the rich interlude performance, <br/>the inner world of the main character in the play is pointed out when he sacrifices himself,<br/>leading to the important climax of the bridge."
+    "edps": "Fusion of electronic sound effects and traditional symphony, <br/>in an attempt to create a sense of the vastness of the universe. <br/>With the rich interlude performance, <br/>the inner world of the main character in the play is pointed out when he sacrifices himself,<br/>leading to the important climax of the bridge.",
+    "edps1": "Fusion of electronic sound effects and traditional symphony, in an attempt to create a sense of the vastness of the universe. With the rich interlude performance, the inner world of the main character in the play is pointed out when he sacrifices himself, leading to the important climax of the bridge."
   },
   "album": {
     "music": "POP MUSIC",
-    "text1": "The music style is more hardcore than Ruth rock,<br/>with electronic sound waves added to the melody,<br/>making it more comfortable to listen to Suitable for:<br/>hot field of large-scale activities,<br/>automobile jingle,<br/>event theme song"
+    "text1": "The music style is more hardcore than Ruth rock,<br/>with electronic sound waves added to the melody,<br/>making it more comfortable to listen to Suitable for:<br/>hot field of large-scale activities,<br/>automobile jingle,<br/>event theme song",
+    "text11": "The music style is more hardcore than Ruth rock, with electronic sound waves added to the melody, making it more comfortable to listen to Suitable for: hot field of large-scale activities, automobile jingle, event theme song"
   },
   "team": {
     "team": "TEAM",

@@ -1,6 +1,6 @@
 <template>
   <MobileContent :lang="lang" :font="font" v-if="isMobile" />
-  <PCContent :lang="lang" v-else />
+  <PCContent :lang="lang" :font="font" v-else />
   <LangMenu @func="setLang" :isMobile="isMobile" />
 </template>
 
@@ -36,11 +36,9 @@ export default {
   methods: {
     setLang(lang) {
       // 预设语言与当前语言一致不做切换
-      console.log(lang);
       if (this.lang !== lang) {
         this.lang = lang;
         this.$i18n.locale = lang
-        console.log(this.fonts[lang])
         this.font = this.fonts[lang]
       }
     }
