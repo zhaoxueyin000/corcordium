@@ -8,7 +8,6 @@
 
 .container2 {
   width: 100%;
-
 }
 
 .container3 {
@@ -76,11 +75,11 @@
         }
 
         &:nth-child(3n-1) {
-          top: 7px;
+          top: 8px;
         }
 
         &:nth-child(3n) {
-          top: 14px;
+          top: 15px;
         }
       }
     }
@@ -112,8 +111,8 @@
 
     .view {
       position: absolute;
-      top: 112px;
-      right: 42px;
+      top: 110px;
+      right: 35px;
 
       img {
         margin-left: 2px;
@@ -237,15 +236,8 @@
         color: #0000ff;
         margin-right: 5%;
 
-        &.scale-9 {
-          transform: scale(0.9);
-          margin-right: 0;
-          margin-bottom: 4px;
-
-          &:after {
-            width: 10px;
-            height: 10px;
-          }
+        &.v-font-12 {
+          line-height: 21px;
         }
 
         &:after {
@@ -302,7 +294,8 @@
             }
           }
 
-          &.modal2 { //
+          &.modal2 {
+            //
             left: 230px;
             top: 60px;
             width: 718px;
@@ -314,7 +307,8 @@
             }
           }
 
-          &.modal3 { //
+          &.modal3 {
+            //
             right: 0;
             top: 242px;
             width: 580px;
@@ -583,7 +577,12 @@
     &.record,
     &.cd {
       .album {
-        margin-left: 36px;
+        margin-left: 65px;
+      }
+
+      .album-5 {
+        margin-left: 92px;
+        margin-bottom: 50px;
       }
     }
   }
@@ -606,6 +605,7 @@
 
     &-4 {
       width: 692px;
+      margin-left: -10px;
     }
 
     &-5 {
@@ -650,7 +650,7 @@
     z-index: 100;
     width: 88px;
     top: 170px;
-    left: 22%;
+    left: 21%;
 
     &:nth-child(2) {
       left: 66%;
@@ -663,7 +663,6 @@
   }
 
   .play {
-    // TODO
     top: 50%;
     left: 50%;
     margin-top: -70px;
@@ -848,5 +847,9 @@
 }
 
 .title.text-height-2 {
+  margin-top: 0.04rem;
+}
+
+.title1.text-height-2 {
   margin-top: 0.06rem;
 }

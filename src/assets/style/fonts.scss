@@ -1,14 +1,4 @@
 @font-face {
-  font-family: "PressStart2P";
-  src: url("@/assets/fonts/PressStart2P.ttf");
-}
-
-@font-face {
-  font-family: "Ranyeski";
-  src: url("@/assets/fonts/Ranyeski.otf");
-}
-
-@font-face {
   font-family: "gerbil";
   src: url("@/assets/fonts/gerbil.otf");
 }
@@ -18,11 +8,30 @@
   src: url("@/assets/fonts/GenWanMinJPSB.ttc");
 }
 
-@font-face {
-  font-family: "dougenzaka";
-  src: url("@/assets/fonts/KH-Dot-Dougenzaka-16.ttf");
+// @font-face {
+//   font-family: "PressStart2P";
+//   src: url("@/assets/fonts/PressStart2P.ttf");
+// }
+
+// @font-face {
+//   font-family: "Ranyeski";
+//   src: url("@/assets/fonts/Ranyeski.otf");
+// }
+
+// @font-face {
+//   font-family: "dougenzaka";
+//   src: url("@/assets/fonts/KH-Dot-Dougenzaka-16.ttf");
+// }
+
+
+.gerbil {
+  font-family: "gerbil";
 }
 
+.genWanMinJP {
+  font-family: "GenWanMinJP";
+  font-size: 20px;
+}
 
 // .pressStart2P {
 //   font-family: "PressStart2P";
@@ -31,17 +40,6 @@
 // .ranyeski {
 //   font-family: "Ranyeski";
 // }
-
-.gerbil {
-  font-family: "gerbil";
-  // line-height: 1.2;
-}
-
-.genWanMinJP {
-  font-family: "GenWanMinJP";
-  // line-height: 1.4;
-  font-size: 20px;
-}
 
 // .dougenzaka {
 //   font-family: "dougenzaka";

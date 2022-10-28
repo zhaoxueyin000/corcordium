@@ -3,7 +3,7 @@
     <div
       v-for="item in menus"
       :key="item.lang"
-      class="cursor-pointer"
+      class="cursor-custom-finger"
       :class="(isMobile ? 'mobile' : 'pc') + '-lang-menu-item'"
       @click="sendLang(item.lang)"
     >

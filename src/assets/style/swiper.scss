@@ -25,6 +25,7 @@
 
   .swiper-button-prev {
     left: 11%;
+    cursor: url("@/assets/files/finger.png"), pointer;
 
     &:after {
       transform: scale(0.7);
@@ -33,6 +34,7 @@
 
   .swiper-button-next {
     right: 11%;
+    cursor: url("@/assets/files/finger.png"), pointer;
 
     &:after {
       transform: scale(0.7);
@@ -41,6 +43,8 @@
 
   .swiper-slide-prev,
   .swiper-slide-next {
+    
+
     img {
       transform: translate3d(0, 20%, 0);
     }

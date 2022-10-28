@@ -36,7 +36,7 @@
                   <GridItem
                     v-for="(item, index) in tels"
                     :key="item.img"
-                    class="cursor-pointer"
+                    class="cursor-custom-finger"
                     @click="dial(index)"
                   >
                     <img :src="item.active" v-if="activeIndexs.indexOf(index) !== -1" />
@@ -50,12 +50,12 @@
             <div>
               <img
                 :src="goActive ? require('@/assets/tel/gogo.png') : require('@/assets/tel/go.png')"
-                class="cursor-pointer go"
+                class="cursor-custom-finger go"
                 @click="slideTo"
               />
             </div>
             <div>
-              <img src="@/assets/tel/logo.png" class="cursor-pointer logo" />
+              <img src="@/assets/tel/logo.png" class="cursor-custom-finger logo" />
             </div>
           </div>
 
@@ -70,7 +70,7 @@
             </div>
             <img
               :src="telTexts[lang].clear"
-              class="clear cursor-pointer"
+              class="clear cursor-custom-finger"
               @click="activeIndexs = []"
             />
           </div>
@@ -88,7 +88,7 @@
         <img :src="heartTexts[lang].heart" class="img-fill" />
         <img
           src="@/assets/heart.gif"
-          class="heart cursor-pointer"
+          class="heart cursor-custom-finger"
           @click="changeHeartVisible(true)"
         />
       </div>
@@ -126,14 +126,14 @@
       </div>
     </swiper-slide>
 
-    <swiper-slide class="slide7 flex-start cursor-custom-arrow">
+    <swiper-slide class="slide7 flex-start">
       <div class="container2">
         <div class="title">
           <img src="@/assets/cn/games_text.png" style="width: 2.11rem" v-if="lang==='cn'" />
           <img src="@/assets/jp/games_text.png" style="width: 3.64rem" v-else-if="lang==='jp'" />
           <img src="@/assets/en/games_text.png" style="width: 4.92rem" v-else />
         </div>
-        <audio :src="musicUrl" :loop="false" hidden :autoplay="autoPlay" v-if="swiperIndex === 6" />
+        <audio :src="musicUrl" :loop="false" hidden autoplay id="audio3" v-if="swiperIndex === 6" />
 
         <Row class="game">
           <Col>
@@ -141,8 +141,8 @@
               <div
                 v-for="(item, index) in gameMusics"
                 :key="item.img"
-                class="cursor-custom-arrow name"
-                :class="(lang==='en'?'scale-9':'v-font-14')+' '+(this.count===index+1?'active':'')"
+                class="name"
+                :class="(lang==='en'?'v-font-12':'v-font-14')+' '+(this.count===index+1?'active':'')"
                 @click="setMusicPlay(index)"
               >{{$t('games.'+ item.text)}}</div>
             </div>
@@ -157,14 +157,22 @@
                 :class="'modal'+ (index + 1)"
                 :style="{'z-index': this.count === index + 1 ? '100' : '99'}"
               >
-                <div v-if="fileIndexs.indexOf(index) !== -1">
+                <div v-show="fileIndexs.indexOf(index) !== -1">
                   <img :src="item.img" @click="setMusicPlay(index)" />
-                  <img :src="item.pause" class="btn" v-if="this.count===index+1" />
-                  <img :src="item.play" class="btn" v-else />
+                  <img
+                    :src="item.pause"
+                    class="btn"
+                    v-if="this.count===index+1 && filePlay"
+                    @click.stop="fileChange()"
+                  />
+                  <img :src="item.play" class="btn" v-else @click.stop="fileChange()" />
                 </div>
               </div>
-              <div class="cursor-custom-finger modal modal16" v-if="fileIndexs.indexOf(14) !== -1">
-                <img src="@/assets/file/modal.png" />
+              <div
+                class="cursor-custom-finger modal modal16"
+                v-show="fileIndexs.indexOf(14) !== -1"
+              >
+                <img src="@/assets/files/modal.png" />
               </div>
             </div>
             <div class="cursor-custom-finger files">
@@ -183,7 +191,7 @@
         <WhiteSpace gutter="0.53rem" />
         <img src="@/assets/cn/games.png" class="text-height-1" v-if="lang === 'cn'" />
         <img src="@/assets/jp/games.png" class="text-height-1" v-else-if="lang === 'jp'" />
-        <img src="@/assets/en/games.png" class="text-height-2 title" v-else />
+        <img src="@/assets/en/games.png" class="text-height-2 title1" v-else />
 
         <div class="text-right videos" style>
           <img src="@/assets/game_machine.png" class="game-machine" />
@@ -192,7 +200,7 @@
               :src="item"
               v-for="(item, index) in gamingBtns[lang]"
               :key="item"
-              class="cursor-pointer glow shake-opacity"
+              class="cursor-custom-finger glow shake-opacity"
               @click="videoIndex = index"
             />
           </div>
@@ -241,17 +249,20 @@
           :loop="true"
           @slideChange="onPosterSlideChange"
         >
-          <swiper-slide v-for="(item, index) in posters" :key="item.text">
+          <swiper-slide
+            v-for="(item, index) in posters"
+            :key="item.text"
+            class="cursor-custom-arrow"
+          >
             <div>
               <img :src="item[lang]" class="poster" />
 
-              <Transition
-                name="ear"
-                mode="out-in"
-                :duration="{ enter: 2000, leave: 500 }"
-                enter-active-class="animate__animated animate__fadeIn"
-              >
-                <div class="play cursor-pointer" @click="postChange" v-show="posterIndex === index">
+              <Transition name="ear">
+                <div
+                  class="play cursor-custom-finger"
+                  @click="postChange"
+                  v-show="posterIndex === index"
+                >
                   <img src="@/assets/poster/ear.png" class="ear" />
                   <img src="@/assets/poster/pause.png" class="btn" v-if="posterPlay" />
                   <img src="@/assets/poster/play.png" class="btn" v-else />
@@ -317,7 +328,12 @@
           :loop="true"
           @slideChange="onAlbumSlideChange"
         >
-          <swiper-slide v-for="(item, index) in albums" :key="item.img" :class="item.type">
+          <swiper-slide
+            v-for="(item, index) in albums"
+            :key="item.img"
+            class="cursor-custom-arrow"
+            :class="item.type"
+          >
             <img :src="item.img" class="album" :class="'album-' + index" />
             <template v-if="item.type === 'tape'">
               <img
@@ -344,12 +360,12 @@
               v-else-if="item.type === 'record'"
             />
 
-            <Transition
-              name="ear"
-              mode="out-in"
-              enter-active-class="animate__animated animate__fadeIn"
-            >
-              <div class="play cursor-pointer" @click="recordChange" v-show="albumIndex === index">
+            <Transition name="ear">
+              <div
+                class="play cursor-custom-finger"
+                @click="recordChange"
+                v-show="albumIndex === index"
+              >
                 <img src="@/assets/album/ear.png" class="ear" />
                 <img src="@/assets/album/pause.png" class="btn" v-if="recordPlay" />
                 <img src="@/assets/album/play.png" class="btn" v-else />
@@ -416,7 +432,7 @@
                   <div
                     class="team-popup"
                     :class="'img' + index"
-                    v-if="teamTextIndex === index + 1"
+                    v-show="teamTextIndex === index + 1"
                     @mouseleave="teamTextIndex = -1"
                   >
                     <img :src="item" />
@@ -438,7 +454,7 @@
               <img src="@/assets/en/icp.png" />
             </div>
             <div class="media">
-              <a href="mailto: corcordium@tom.com" target="_blank" class="cursor-pointer">
+              <a href="mailto: corcordium@tom.com" target="_blank" class="cursor-custom-finger">
                 <img :src="teamTexts[lang].email" />
               </a>
             </div>
@@ -504,7 +520,8 @@ export default {
       goActive: false,
       swiperIndex: 0,
       count: 0,
-      autoPlay: false,
+      // autoPlay: false,
+      filePlay: false,
       musicUrl: "",
       fileIndexs: [],
       videoIndex: 0,
@@ -621,104 +638,105 @@ export default {
       files: files,
       gameMusics: [
         {
-          img: require("@/assets/file/1/1.png"),
-          play: require("@/assets/file/1/play.png"),
-          pause: require("@/assets/file/1/pause.png"),
+          img: require("@/assets/files/1/1.png"),
+          play: require("@/assets/files/1/play.png"),
+          pause: require("@/assets/files/1/pause.png"),
           text: "battle",
           music:
             "https://bjetxgzv.cdn.bspapp.com/VKCEYUGU-hello-uniapp/2cc220e0-c27a-11ea-9dfb-6da8e309e0d8.mp3"
         },
         {
-          img: require("@/assets/file/2/2.png"),
-          play: require("@/assets/file/2/play.png"),
-          pause: require("@/assets/file/2/pause.png"),
+          img: require("@/assets/files/2/2.png"),
+          play: require("@/assets/files/2/play.png"),
+          pause: require("@/assets/files/2/pause.png"),
           text: "blooded",
           music: "http://go.163.com/2018/0209/mengniu/audio/bgm.mp3"
         },
         {
-          img: require("@/assets/file/3/3.png"),
-          play: require("@/assets/file/3/play.png"),
-          pause: require("@/assets/file/3/pause.png"),
+          img: require("@/assets/files/3/3.png"),
+          play: require("@/assets/files/3/play.png"),
+          pause: require("@/assets/files/3/pause.png"),
           text: "future",
-          music: ""
+          music:
+            "https://bjetxgzv.cdn.bspapp.com/VKCEYUGU-hello-uniapp/2cc220e0-c27a-11ea-9dfb-6da8e309e0d8.mp3"
         },
         {
-          img: require("@/assets/file/4/4.png"),
-          play: require("@/assets/file/4/play.png"),
-          pause: require("@/assets/file/4/pause.png"),
+          img: require("@/assets/files/4/4.png"),
+          play: require("@/assets/files/4/play.png"),
+          pause: require("@/assets/files/4/pause.png"),
           text: "cyberpunk",
-          music: ""
+          music: "http://go.163.com/2018/0209/mengniu/audio/bgm.mp3"
         },
         {
-          img: require("@/assets/file/5/5.png"),
-          play: require("@/assets/file/5/play.png"),
-          pause: require("@/assets/file/5/pause.png"),
+          img: require("@/assets/files/5/5.png"),
+          play: require("@/assets/files/5/play.png"),
+          pause: require("@/assets/files/5/pause.png"),
           text: "warfare",
           music: ""
         },
         {
-          img: require("@/assets/file/6/6.png"),
+          img: require("@/assets/files/6/6.png"),
           text: "grand",
           music: ""
         },
         {
-          img: require("@/assets/file/7/7.png"),
-          play: require("@/assets/file/7/play.png"),
-          pause: require("@/assets/file/7/pause.png"),
+          img: require("@/assets/files/7/7.png"),
+          play: require("@/assets/files/7/play.png"),
+          pause: require("@/assets/files/7/pause.png"),
           text: "dynamic",
           music: ""
         },
         {
-          img: require("@/assets/file/8/8.png"),
-          play: require("@/assets/file/8/play.png"),
-          pause: require("@/assets/file/8/pause.png"),
+          img: require("@/assets/files/8/8.png"),
+          play: require("@/assets/files/8/play.png"),
+          pause: require("@/assets/files/8/pause.png"),
           text: "speed",
           music: ""
         },
         {
-          img: require("@/assets/file/9/9.png"),
+          img: require("@/assets/files/9/9.png"),
           text: "intense",
           music: ""
         },
         {
-          img: require("@/assets/file/10/10.png"),
-          play: require("@/assets/file/10/play.png"),
-          pause: require("@/assets/file/10/pause.png"),
+          img: require("@/assets/files/10/10.png"),
+          play: require("@/assets/files/10/play.png"),
+          pause: require("@/assets/files/10/pause.png"),
           text: "suspense",
           music: ""
         },
         {
-          img: require("@/assets/file/11/11.png"),
-          play: require("@/assets/file/11/play.png"),
-          pause: require("@/assets/file/11/pause.png"),
+          img: require("@/assets/files/11/11.png"),
+          play: require("@/assets/files/11/play.png"),
+          pause: require("@/assets/files/11/pause.png"),
           text: "psychedelic",
           music: ""
         },
         {
-          img: require("@/assets/file/12/12.png"),
-          play: require("@/assets/file/12/play.png"),
-          pause: require("@/assets/file/12/pause.png"),
+          img: require("@/assets/files/12/12.png"),
+          play: require("@/assets/files/12/play.png"),
+          pause: require("@/assets/files/12/pause.png"),
           text: "retro",
           music: ""
         },
         {
-          img: require("@/assets/file/13/13.png"),
-          play: require("@/assets/file/13/play.png"),
-          pause: require("@/assets/file/13/pause.png"),
+          img: require("@/assets/files/13/13.png"),
+          play: require("@/assets/files/13/play.png"),
+          pause: require("@/assets/files/13/pause.png"),
           text: "leisure",
           music: ""
         },
         {
-          img: require("@/assets/file/14/14.png"),
-          play: require("@/assets/file/14/play.png"),
-          pause: require("@/assets/file/14/pause.png"),
+          img: require("@/assets/files/14/14.png"),
+          play: require("@/assets/files/14/play.png"),
+          pause: require("@/assets/files/14/pause.png"),
           text: "cure",
           music: ""
         },
         {
-          img: require("@/assets/file/15/15.png"),
-          play: require("@/assets/file/15/play.png"),
-          pause: require("@/assets/file/15/pause.png"),
+          img: require("@/assets/files/15/15.png"),
+          play: require("@/assets/files/15/play.png"),
+          pause: require("@/assets/files/15/pause.png"),
           text: "relax",
           music: ""
         }
@@ -915,12 +933,27 @@ export default {
     },
     musicPlay(index) {
       this.musicUrl = this.gameMusics[index].music;
-      this.autoPlay = true;
+      this.fileChange(true);
     },
     setMusicPlay(index) {
       // 左侧菜单播放
       this.count = index + 1;
       this.musicPlay(index);
+    },
+    fileChange(play) {
+      console.log(play);
+      const audio3 = document.getElementById("audio3");
+      if (play) {
+        this.filePlay = true;
+        audio3.play();
+        return false;
+      }
+      if (this.filePlay) {
+        audio3.pause();
+      } else {
+        audio3.play();
+      }
+      this.filePlay = !this.filePlay;
     },
     onSlideChange(swiper) {
       this.swiperIndex = swiper.realIndex;

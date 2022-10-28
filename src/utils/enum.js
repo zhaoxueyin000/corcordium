@@ -1,7 +1,7 @@
 export const files = [
-  require('@/assets/file/file1.png'),
-  require('@/assets/file/file2.png'),
-  require('@/assets/file/file3.png')
+  require('@/assets/files/file1.png'),
+  require('@/assets/files/file2.png'),
+  require('@/assets/files/file3.png')
 ]
 
 export const videos = [

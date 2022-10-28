@@ -5,18 +5,19 @@ body,
 html {
   color: #666;
   background: #000;
+  cursor: url("@/assets/files/arrow.png"), default;
 }
 
-.cursor-pointer {
-  cursor: pointer;
-}
+// .cursor-pointer {
+//   cursor: pointer;
+// }
 
 .cursor-custom-arrow {
-  cursor: url("@/assets/file/arrow.png"), default;
+  cursor: url("@/assets/files/arrow.png"), default;
 }
 
 .cursor-custom-finger {
-  cursor: url("@/assets/file/finger.png"), pointer;
+  cursor: url("@/assets/files/finger.png"), pointer;
 }
 
 .flex-start {
@@ -118,4 +119,13 @@ html {
   &-20 {
     font-size: 20px;
   }
+}
+
+.ear-enter-active {
+  transition: all 0.5s ease-in-out;
+}
+
+.ear-enter-from,
+.ear-enter-to {
+  opacity: 0;
 }

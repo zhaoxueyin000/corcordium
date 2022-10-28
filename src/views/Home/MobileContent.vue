@@ -28,10 +28,8 @@
           <div class="clear" @click="activeIndexs = []" />
         </div>
 
+        <img :src="telTexts[lang].dial" class="dial" :class="lang" />
         <div class="tel">
-          <div class="offset">
-            <p class="green" :class="(lang==='cn' ? 'v-font-12': 'scale-7') + ' ' + lang" v-html="$t('tel')"></p>
-          </div>
           <img src="@/assets/h5/tel.png" />
           <div class="nums red">
             <span v-for="i in 10" :key="i" @click="dial(i)" />
@@ -128,35 +126,46 @@
         </div>
 
         <div class="games">
-          <div v-for="(item, index) in gameMusics" :key="item.img">
-            <img
-              :src="item.img"
-              :class="'img'+ (index + 1)"
-              :style="{'z-index': this.count === index + 1 ? '100' : '99'}"
-              v-if="fileIndexs.indexOf(index) !== -1"
-              @click="setMusicPlay(index)"
-            />
+          <div
+            v-for="(item, index) in gameMusics"
+            :key="item.img"
+            class="modal"
+            :class="'modal'+ (index + 1)"
+            :style="{'z-index': count === index + 1 ? '100' : '99'}"
+          >
+            <div v-show="fileIndexs.indexOf(index) !== -1">
+              <img :src="item.img" @click="setMusicPlay(index)" />
+              <img
+                :src="item.pause"
+                class="btn"
+                v-if="count===index+1 && filePlay"
+                @click.stop="fileChange()"
+              />
+              <img :src="item.play" class="btn" v-else @click.stop="fileChange()" />
+            </div>
           </div>
-          <img src="@/assets/file/modal.png" class="img16" v-if="fileIndexs.indexOf(14) !== -1" />
+          <div class="modal modal16" v-show="fileIndexs.indexOf(14) !== -1">
+            <img src="@/assets/files/modal.png" />
+          </div>
         </div>
 
-        <swiper
-          :slidesPerView="'auto'"
-          :spaceBetween="12"
-          class="mobile-music-swiper blue"
-          @swiper="onMusicSwiper"
-        >
-          <swiper-slide
-            v-for="(item, index) in gameMusics"
-            :key="item.text"
-            @click="setMusicPlay(index)"
-            :class="lang!=='en'&&' v-font-15'"
-          >{{$t('games.'+ item.text)}}</swiper-slide>
-        </swiper>
+        <section class="theme-list">
+          <div class="fixed-nav" ref="fixednav">
+            <div class="fixed-nav-content">
+              <p
+                v-for="(item, index) in gameMusics"
+                :key="item.text"
+                ref="scrollItem"
+                :class="['tab-title blue', activeId === index && 'select-tab', lang!=='en' && 'v-font-15']"
+                @click="setMusicPlay(index, $event)"
+              >{{$t('games.'+ item.text)}}</p>
+            </div>
+          </div>
+        </section>
 
         <p class="wathet scale-8 slide" :class="lang!=='en'&&' v-font-14'">{{ $t('games.slide') }}</p>
 
-        <audio :src="musicUrl" :loop="false" hidden :autoplay="autoPlay" v-if="swiperIndex === 6" />
+        <audio :src="musicUrl" :loop="false" hidden autoplay id="audio3" v-if="swiperIndex === 6" />
       </div>
       <img src="@/assets/page/page_icon5.png" class="page-anchor" />
     </swiper-slide>
@@ -215,11 +224,7 @@
                 v-show="posterIndex === index"
               ></p>
 
-              <Transition
-                name="ear"
-                mode="out-in"
-                enter-active-class="animate__animated animate__fadeIn"
-              >
+              <Transition name="ear">
                 <div class="play" @click="postChange" v-show="posterIndex === index">
                   <img src="@/assets/poster/ear.png" class="ear" />
                   <img src="@/assets/poster/pause.png" class="btn" v-if="posterPlay" />
@@ -296,11 +301,7 @@
                 v-html="$t('album.' + item.text)"
               ></p>
 
-              <Transition
-                name="ear"
-                mode="out-in"
-                enter-active-class="animate__animated animate__fadeIn"
-              >
+              <Transition name="ear">
                 <div class="play" @click="recordChange" v-show="albumIndex === index">
                   <img src="@/assets/album/ear.png" class="ear" />
                   <img src="@/assets/album/pause.png" class="btn" v-if="recordPlay" />
@@ -335,41 +336,14 @@
       <div style="width: 100%">
         <div class="width100">
           <p class="wathet" :class="lang==='en'? 'v-font-17' : 'v-font-20'">{{ $t('team.team') }}</p>
-          <div class="team1">
-            <p
-              class="wathet"
-              :class="lang==='en'? 'scale-9' : 'v-font-15'"
-              v-html="$t('team.trend')"
-            ></p>
-            <p class="green" :class="lang==='en' ? 'scale-8' : 'v-font-13'">
-              <span class="wathet">&lt;&nbsp;</span>
-              <span v-html="$t('team.producer')"></span>
-              <span class="wathet">&nbsp;></span>
-            </p>
-            <p class="green" :class="lang==='en' ? 'scale-8' : 'v-font-13'">
-              <span class="wathet">&lt;&nbsp;</span>
-              <span v-html="$t('team.composers')"></span>
-              <span class="wathet">&nbsp;></span>
-            </p>
-            <p class="blue members scale-65" :class="lang">
-              <span class="green">*</span>
-              <span v-html="$t('team.members')"></span>
-            </p>
+          <div class="team1 text-left">
+            <img :src="teamTexts[lang].top" :class="lang" />
           </div>
 
           <div class="team2">
-            <div
-              v-for="(item, index) in teams"
-              :key="teams"
-              class="yellow"
-              :class="'text' + (index+1)"
-            >
-              <p
-                :class="lang==='en' ? 'scale-9' : 'v-font-13'"
-                v-html="$t('team.' + item)"
-                @mouseover="teamIndex = index + 1"
-              ></p>
-
+            <img :src="teamTexts[lang].bottom" :class="lang" />
+            <div v-for="(item, index) in teamPopTexts[lang]" :key="item">
+              <div :class="'text text' + (index+1)" @mouseover="teamIndex = index + 1"></div>
               <Transition
                 name="team"
                 mode="out-in"
@@ -379,16 +353,17 @@
                 <div
                   class="team-popup"
                   :class="'popup-' + (index+1)"
-                  v-if="teamIndex === index + 1"
+                  v-show="teamIndex === index + 1"
                   @mouseleave="teamIndex = -1"
                 >
-                  <p class="white scale-8" v-html="$t('team.' + item + '1')"></p>
+                  <img :src="item" />
                 </div>
               </Transition>
             </div>
           </div>
         </div>
-        <div class="width100 media">
+
+        <div class="width100 media text-left">
           <img src="@/assets/h5/cn/media.png" v-if="lang==='en'" />
           <img src="@/assets/h5/en/media.png" v-else />
         </div>
@@ -435,13 +410,14 @@ export default {
   },
   data() {
     return {
+      activeId: 0,
       swiperIndex: 0,
       activeIndexs: [],
       popupVisible: false,
       fileIndexs: [],
       count: 0,
       musicUrl: "",
-      autoPlay: false,
+      filePlay: false,
       canvasWidth: 375,
       videoIndex: 0,
       posterIndex: 0,
@@ -454,15 +430,18 @@ export default {
       telTexts: {
         en: {
           guide: require("@/assets/h5/en/guide.png"),
-          screen: require("@/assets/h5/en/screen.png")
+          screen: require("@/assets/h5/en/screen.png"),
+          dial: require("@/assets/h5/en/dial.png")
         },
         cn: {
           guide: require("@/assets/h5/cn/guide.png"),
-          screen: require("@/assets/h5/cn/screen.png")
+          screen: require("@/assets/h5/cn/screen.png"),
+          dial: require("@/assets/h5/cn/dial.png")
         },
         jp: {
           guide: require("@/assets/h5/jp/guide.png"),
-          screen: require("@/assets/h5/jp/screen.png")
+          screen: require("@/assets/h5/jp/screen.png"),
+          dial: require("@/assets/h5/jp/dial.png")
         }
       },
       tels: [
@@ -502,78 +481,105 @@ export default {
       files: files,
       gameMusics: [
         {
-          img: require("@/assets/h5/files/1.png"),
+          img: require("@/assets/h5/files/1/1.png"),
+          play: require("@/assets/h5/files/1/play.png"),
+          pause: require("@/assets/h5/files/1/pause.png"),
           text: "battle",
           music:
             "https://bjetxgzv.cdn.bspapp.com/VKCEYUGU-hello-uniapp/2cc220e0-c27a-11ea-9dfb-6da8e309e0d8.mp3"
         },
         {
-          img: require("@/assets/h5/files/2.png"),
+          img: require("@/assets/h5/files/2/2.png"),
+          play: require("@/assets/h5/files/2/play.png"),
+          pause: require("@/assets/h5/files/2/pause.png"),
           text: "blooded",
           music: "http://go.163.com/2018/0209/mengniu/audio/bgm.mp3"
         },
         {
-          img: require("@/assets/h5/files/3.png"),
+          img: require("@/assets/h5/files/3/3.png"),
+          play: require("@/assets/h5/files/3/play.png"),
+          pause: require("@/assets/h5/files/3/pause.png"),
           text: "future",
-          music: ""
+          music:
+            "https://bjetxgzv.cdn.bspapp.com/VKCEYUGU-hello-uniapp/2cc220e0-c27a-11ea-9dfb-6da8e309e0d8.mp3"
         },
         {
-          img: require("@/assets/h5/files/4.png"),
+          img: require("@/assets/h5/files/4/4.png"),
+          play: require("@/assets/h5/files/4/play.png"),
+          pause: require("@/assets/h5/files/4/pause.png"),
           text: "cyberpunk",
-          music: ""
+          music: "http://go.163.com/2018/0209/mengniu/audio/bgm.mp3"
         },
         {
-          img: require("@/assets/h5/files/5.png"),
+          img: require("@/assets/h5/files/5/5.png"),
+          play: require("@/assets/h5/files/5/play.png"),
+          pause: require("@/assets/h5/files/5/pause.png"),
           text: "warfare",
           music: ""
         },
         {
-          img: require("@/assets/h5/files/6.png"),
+          img: require("@/assets/h5/files/6/6.png"),
           text: "grand",
           music: ""
         },
         {
-          img: require("@/assets/h5/files/7.png"),
+          img: require("@/assets/h5/files/7/7.png"),
+          play: require("@/assets/h5/files/7/play.png"),
+          pause: require("@/assets/h5/files/7/pause.png"),
           text: "dynamic",
           music: ""
         },
         {
-          img: require("@/assets/h5/files/8.png"),
+          img: require("@/assets/h5/files/8/8.png"),
+          play: require("@/assets/h5/files/8/play.png"),
+          pause: require("@/assets/h5/files/8/pause.png"),
           text: "speed",
           music: ""
         },
         {
-          img: require("@/assets/h5/files/9.png"),
+          img: require("@/assets/h5/files/9/9.png"),
           text: "intense",
           music: ""
         },
         {
-          img: require("@/assets/h5/files/10.png"),
+          img: require("@/assets/h5/files/10/10.png"),
+          play: require("@/assets/h5/files/10/play.png"),
+          pause: require("@/assets/h5/files/10/pause.png"),
           text: "suspense",
           music: ""
         },
         {
-          img: require("@/assets/h5/files/11.png"),
+          img: require("@/assets/h5/files/11/11.png"),
+          play: require("@/assets/h5/files/11/play.png"),
+          pause: require("@/assets/h5/files/11/pause.png"),
           text: "psychedelic",
           music: ""
         },
         {
-          img: require("@/assets/h5/files/12.png"),
+          img: require("@/assets/h5/files/12/12.png"),
+          play: require("@/assets/h5/files/12/play.png"),
+          pause: require("@/assets/h5/files/12/pause.png"),
           text: "retro",
           music: ""
         },
         {
-          img: require("@/assets/h5/files/13.png"),
+          img: require("@/assets/h5/files/13/13.png"),
+          play: require("@/assets/h5/files/13/play.png"),
+          pause: require("@/assets/h5/files/13/pause.png"),
           text: "leisure",
           music: ""
         },
         {
-          img: require("@/assets/h5/files/14.png"),
+          img: require("@/assets/h5/files/14/14.png"),
+          play: require("@/assets/h5/files/14/play.png"),
+          pause: require("@/assets/h5/files/14/pause.png"),
           text: "cure",
           music: ""
         },
         {
-          img: require("@/assets/h5/files/15.png"),
+          img: require("@/assets/h5/files/15/15.png"),
+          play: require("@/assets/h5/files/15/play.png"),
+          pause: require("@/assets/h5/files/15/pause.png"),
           text: "relax",
           music: ""
         }
@@ -638,7 +644,40 @@ export default {
       posterMusics: posterMusics,
       albums: albums,
       albumMusics: albumMusics,
-      teams: ["plan", "analysis", "design", "art"]
+      teamTexts: {
+        en: {
+          top: require("@/assets/h5/en/team/team_top.png"),
+          bottom: require("@/assets/h5/en/team/team_bottom.png")
+        },
+        cn: {
+          top: require("@/assets/h5/cn/team/team_top.png"),
+          bottom: require("@/assets/h5/cn/team/team_bottom.png")
+        },
+        jp: {
+          top: require("@/assets/h5/jp/team/team_top.png"),
+          bottom: require("@/assets/h5/jp/team/team_bottom.png")
+        }
+      },
+      teamPopTexts: {
+        en: [
+          require("@/assets/h5/en/team/pop1.png"),
+          require("@/assets/h5/en/team/pop2.png"),
+          require("@/assets/h5/en/team/pop3.png"),
+          require("@/assets/h5/en/team/pop4.png")
+        ],
+        cn: [
+          require("@/assets/h5/cn/team/pop1.png"),
+          require("@/assets/h5/cn/team/pop2.png"),
+          require("@/assets/h5/cn/team/pop3.png"),
+          require("@/assets/h5/cn/team/pop4.png")
+        ],
+        jp: [
+          require("@/assets/h5/jp/team/pop1.png"),
+          require("@/assets/h5/jp/team/pop2.png"),
+          require("@/assets/h5/jp/team/pop3.png"),
+          require("@/assets/h5/jp/team/pop4.png")
+        ]
+      }
     };
   },
   mounted() {
@@ -688,14 +727,50 @@ export default {
         this.count++;
       }
     },
-    musicPlay(index) {
+    musicPlay(index, event) {
       this.musicUrl = this.gameMusics[index].music;
-      this.autoPlay = true;
-      musicSwiper.slideTo(index);
+      this.changeTab(index, event);
+      this.fileChange(true);
     },
-    setMusicPlay(index) {
+    setMusicPlay(index, event) {
+      // 左侧菜单播放
       this.count = index + 1;
-      this.musicPlay(index);
+      this.musicPlay(index, event);
+    },
+    fileChange(play) {
+      console.log(play);
+      const audio3 = document.getElementById("audio3");
+      if (play) {
+        this.filePlay = true;
+        audio3.play();
+        return false;
+      }
+      if (this.filePlay) {
+        audio3.pause();
+      } else {
+        audio3.play();
+      }
+      this.filePlay = !this.filePlay;
+    },
+    changeTab(index, event) {
+      // 如果选择的和当前激活的不同
+      console.log(this.$refs.scrollItem[index].offsetWidth);
+      if (index !== this.activeId && event) { // TODO
+        this.activeId = index;
+        // 计算当前按钮的位置，看是否需要移动
+        console.log(event);
+        const spanLeft = event.clientX; // 当前点击的元素左边距离
+        const divBox = document.querySelector(".select-tab").clientWidth / 2; // 点击的元素一半宽度
+        const totalWidths = document.body.clientWidth; // 屏幕总宽度
+        const widths = totalWidths / 2; // 一半的屏幕宽度
+        const spanRight = totalWidths - spanLeft; // 元素的右边距离
+        const scrollBox = document.querySelector(".fixed-nav"); // 获取最外层的元素
+        const scrollL = scrollBox.scrollLeft; // 滚动条滚动的距离
+        // 当元素左边距离 或者 右边距离小于100时进行滑动
+        if (spanRight < 100 || spanLeft < 100) {
+          scrollBox.scrollLeft = scrollL + (spanLeft - widths) + divBox;
+        }
+      }
     },
     onPosterSlideChange(swiper) {
       console.log(swiper.realIndex);

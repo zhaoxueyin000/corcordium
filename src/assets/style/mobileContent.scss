@@ -95,21 +95,28 @@
       margin-top: 50px;
     }
 
+    .dial {
+      position: absolute;
+      width: 313px;
+      bottom: 480px;
+      right: 67px;
+
+      &.jp {
+        width: 334px;
+        right: 59px;
+      }
+
+      &.cn {
+        width: 171px;
+        right: 144px;
+        bottom: 484px;
+      }
+    }
+
     .tel {
       position: absolute;
       bottom: 68px;
       right: 98px;
-
-      .offset {
-        text-shadow: 3px 3px 0px rgb(0, 0, 255);
-        transform: rotate(4deg);
-        margin-right: -44%;
-        margin-bottom: 10px;
-
-        .en {
-          margin-bottom: -3px;
-        }
-      }
 
       img {
         width: 457px;
@@ -118,7 +125,7 @@
       .nums {
         position: absolute;
         right: 0;
-        top: 70px;
+        top: 0;
         width: 208px;
 
         span {
@@ -315,22 +322,27 @@
     .title {
       width: 100%;
       height: 235px;
-      padding: 60px 34px 0;
+      padding-top: 60px;
+      text-align: center;
       background: #0000ff url("@/assets/h5/bg/7.png") no-repeat;
       background-position: bottom;
 
       img {
-        width: 100%;
+        width: 633px;
 
-        &.en {
-          width: 96%;
+        &.cn {
+          width: 686px;
+        }
+
+        &.jp {
+          width: 656px;
         }
       }
     }
 
     .files {
       position: absolute;
-      right: 44px;
+      right: 45px;
       top: 265px;
 
       img {
@@ -341,102 +353,185 @@
     }
 
     .games {
-      img {
+      .modal {
         position: absolute;
 
-        &.img1 {
-          width: 421px;
-          top: 812px;
-          left: 104px;
+        img:first-child {
+          width: 100%;
         }
 
-        &.img2 {
+        .btn {
+          position: absolute;
+          left: 50%;
+          top: 50%;
+        }
+
+        &.modal1 {
+          width: 431px;
+          top: 809px;
+          left: 102px;
+
+          .btn {
+            width: 25px;
+            margin-left: -12px;
+          }
+        }
+
+        &.modal2 {
           width: 644px;
-          top: 535px;
-          right: 23px;
+          top: 529px;
+          left: 85px;
+
+          .btn {
+            width: 45px;
+            margin-left: -22px;
+          }
         }
 
-        &.img3 {
-          width: 485px;
-          top: 678px;
-          left: 149px;
+        &.modal3 {
+          width: 497px;
+          top: 675px;
+          left: 161px;
+
+          .btn {
+            width: 30px;
+            margin-left: -15px;
+          }
         }
 
-        &.img4 {
-          width: 372px;
-          top: 411px;
-          left: 136px;
+        &.modal4 {
+          width: 382px;
+          top: 364px;
+          left: 131px;
+
+          .btn {
+            width: 25px;
+            margin-left: -12px;
+          }
         }
 
-        &.img5 {
+        &.modal5 {
           width: 206px;
-          top: 479px;
-          margin-left: 25px;
+          top: 463px;
+          left: 393px;
+
+          .btn {
+            width: 38px;
+            margin-left: -19px;
+            top: 158px;
+          }
         }
 
-        &.img6 {
-          width: 478px;
-          top: 706px;
+        &.modal6 {
+          width: 477px;
+          top: 699px;
           left: 39px;
         }
 
-        &.img7 {
+        &.modal7 {
           width: 390px;
-          top: 650px;
-          right: 82px;
+          top: 648px;
+          left: 278px;
+
+          .btn {
+            width: 30px;
+            margin-left: -15px;
+            top: 115px;
+          }
         }
 
-        &.img8 {
+        &.modal8 {
           width: 149px;
-          top: 776px;
+          top: 754px;
           left: 130px;
+
+          .btn {
+            width: 20px;
+            margin-left: -10px;
+            top: 75px;
+          }
         }
 
-        &.img9 {
-          width: 398px;
-          top: 1053px;
-          left: 239px;
+        &.modal9 {
+          width: 395px;
+          top: 1045px;
+          left: 248px;
         }
 
-        &.img10 {
-          width: 174px;
-          top: 324px;
-          left: 112px;
+        &.modal10 {
+          width: 191px;
+          top: 317px;
+          left: 105px;
+
+          .btn {
+            width: 18px;
+            margin-left: -9px;
+            top: 108px;
+          }
         }
 
-        &.img11 {
-          width: 516px;
-          top: 984px;
-          left: 60px;
+        &.modal11 {
+          width: 517px;
+          top: 980px;
+          left: 58px;
+
+          .btn {
+            width: 11px;
+            left: 22px;
+            top: 67px;
+          }
         }
 
-        &.img12 {
-          width: 168px;
-          top: 574px;
-          right: 112px;
+        &.modal12 {
+          width: 176px;
+          top: 559px;
+          left: 461px;
+
+          .btn {
+            width: 33px;
+            margin-left: -16px;
+            top: 135px;
+          }
         }
 
-        &.img13 {
-          width: 405px;
-          top: 574px;
+        &.modal13 {
+          width: 410px;
+          top: 547px;
           left: 10px;
+
+          .btn {
+            width: 10px;
+            left: 17px;
+            top: 53px;
+          }
         }
 
-        &.img14 {
-          width: 232px;
-          top: 855px;
+        &.modal14 {
+          width: 235px;
+          top: 858px;
+          left: 380px;
+
+          .btn {
+            width: 25px;
+            margin-left: -12px;
+          }
         }
 
-        &.img15 {
-          width: 269px;
-          top: 802px;
-          margin-left: -135px;
+        &.modal15 {
+          width: 271px;
+          top: 795px;
+          left: 258px;
+
+          .btn {
+            width: 20px;
+            margin-left: -10px;
+          }
         }
 
-        &.img16 {
-          width: 102px;
-          top: 479px;
-          left: 256px;
+        &.modal16 {
+          width: 104px;
+          top: 474px;
+          left: 254px;
           z-index: 100;
         }
       }
@@ -445,45 +540,60 @@
     .slide {
       width: 100%;
       position: absolute;
-      bottom: 60px;
+      bottom: 64px;
     }
 
-    .mobile-music-swiper {
+    .theme-list {
       position: absolute;
-      bottom: 105px;
+      bottom: 110px;
       width: 100%;
       height: auto;
       z-index: 1000;
 
-      .swiper-slide {
-        width: auto;
-        padding-right: 22px;
+      .fixed-nav {
+        overflow-x: scroll;
+        -webkit-overflow-scrolling: touch;
 
-        &:after {
-          content: "";
-          position: absolute;
-          right: 0;
-          top: 5px;
-          width: 16px;
-          height: 16px;
-          background: #0000ff;
-          border-radius: 50%;
-        }
+        .fixed-nav-content {
+          display: flex;
 
-        &.swiper-slide-active {
-          color: #00ff00;
+          .tab-title {
+            position: relative;
+            padding: 0 27px;
+            flex-shrink: 0;
 
-          &:after {
-            background: #00ff00;
+            &:after {
+              content: "";
+              position: absolute;
+              right: 0;
+              top: 7px;
+              width: 16px;
+              height: 16px;
+              background: #0000ff;
+              border-radius: 50%;
+            }
+
+            &.select-tab {
+              color: #00ff00;
+
+              &:after {
+                background: #00ff00;
+              }
+            }
+
+            &.v-font-15:after {
+              top: 7px;
+            }
           }
-        }
 
-        &.v-font-15:after {
-          top: 7px;
         }
+      }
 
+      ::-webkit-scrollbar {
+        display: none;
       }
     }
+
   }
 
   .swipe8 {
@@ -764,7 +874,7 @@
     overflow: hidden;
 
     .width100:first-child {
-      padding-top: 70px;
+      padding: 70px 0 100px;
       background: url("@/assets/h5/bg/11.png") no-repeat;
       background-size: 100% auto;
 
@@ -773,123 +883,92 @@
       }
 
       .team1 {
-        margin: 60px 0 70px 58px;
-        padding-top: 45px;
-        background: url("@/assets/h5/bg/team1.png") no-repeat;
-        background-size: 162px;
+        width: 578px;
+        height: 321px;
+        margin: 54px 0 66px 58px;
 
-        p {
-          margin: 0 0 20px -40px;
-
-          &:first-child {
-            margin-bottom: 25px;
-          }
+        .en {
+          width: 578px;
+          margin-bottom: 9px;
         }
 
-        .members {
-          width: 160%;
-          margin-left: -33%;
-          margin-top: -10px;
-          line-height: 1.2;
+        .cn {
+          width: 512px;
+          margin-bottom: 24px;
         }
 
-        .v-font-15 {
-          margin-top: 8px;
-          margin-bottom: 20px !important;
-        }
-
-        .scale-65.cn {
-          transform: scale(0.9);
-          margin-top: 30px;
-          margin-bottom: 10px;
-        }
-
-        .scale-65.jp {
-          transform: scale(0.9);
-          margin-top: 22px;
+        .jp {
+          width: 532px;
         }
       }
 
       .team2 {
-        padding-bottom: 35px;
+        position: relative;
+        margin-right: 100px;
+        text-align: right;
 
-        >div {
-          position: relative;
-          margin-bottom: 40px;
+        img {
+          height: 363px;
         }
 
-        div {
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-
-          &.text1 {
-            height: 78px;
-            background: url("@/assets/h5/bg/team2.png") no-repeat;
-            background-size: auto 100%;
-            background-position: 88%;
-          }
+        .text {
+          position: absolute;
+          width: 460px;
+          height: 74px;
+          top: 0;
+          right: 0;
 
           &.text2 {
             height: 60px;
-            background: url("@/assets/h5/bg/team3.png") no-repeat;
-            background-size: auto 100%;
-            background-position: 82%;
+            top: 113px;
           }
 
           &.text3 {
             height: 66px;
-            color: #ff00ff;
-            background: url("@/assets/h5/bg/team4.png") no-repeat;
-            background-size: auto 100%;
-            background-position: 82%;
+            top: 214px;
           }
 
           &.text4 {
             height: 44px;
-            color: #ff00ff;
-            background: url("@/assets/h5/bg/team5.png") no-repeat;
-            background-size: auto 100%;
-            background-position: 78%;
+            top: 319px;
           }
         }
 
         .team-popup {
           position: absolute;
-          height: 72px;
-          top: 0;
-          right: 22%;
-          // padding: 0 34px;
-          width: 410px;
-          background: rgba(0, 0, 255, 0.8);
+          top: 11px;
+          right: 81px;
 
-          p {
-            line-height: 1.3;
+          img {
+            height: 70px;
+            width: 400px;
           }
 
           &.popup-2 {
-            right: 26%;
-            width: 87%;
-            padding: 0;
-            width: 495px;
+            right: 111px;
+            top: 110px;
 
-            p {
-              // margin-right: -15%;
+            img {
+              width: 491px;
             }
           }
 
           &.popup-3 {
-            right: 26%;
-            top: -3px;
-            // padding: 0 30px;
-            width: 347px;
+            right: 111px;
+            top: 208px;
+
+            img {
+              width: 339px;
+            }
           }
 
           &.popup-4 {
-            right: 32%;
-            top: -5px;
-            // padding: 0 22px;
-            width: 342px;
+            right: 151px;
+            top: 307px;
+
+            img {
+              width: 343px;
+            }
           }
         }
       }
@@ -899,9 +978,10 @@
     .media {
       position: absolute;
       bottom: 112px;
+      left: 69px;
 
       img {
-        width: 591px;
+        height: 134px;
       }
     }
   }
