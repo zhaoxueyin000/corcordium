@@ -20,22 +20,20 @@
     </swiper-slide>
 
     <swiper-slide class="swipe2">
+      <img :src="telTexts[lang].guide" class="guide" />
       <div>
-        <img :src="telTexts[lang].guide" class="guide" />
-        <div>
-          <img :src="telTexts[lang].screen" class="screen" />
-          <img :src="tels[item]" v-for="item in activeIndexs" :key="item" class="view" />
-          <div class="clear" @click="activeIndexs = []" />
-        </div>
+        <img :src="telTexts[lang].screen" class="screen" />
+        <img :src="tels[item]" v-for="item in activeIndexs" :key="item" class="view" />
+        <div class="clear" @click="activeIndexs = []" />
+      </div>
 
-        <img :src="telTexts[lang].dial" class="dial" :class="lang" />
-        <div class="tel">
-          <img src="@/assets/h5/tel.png" />
-          <div class="nums red">
-            <span v-for="i in 10" :key="i" @click="dial(i)" />
-          </div>
-          <div class="go" @click="slideTo" />
+      <img :src="telTexts[lang].dial" class="dial" :class="lang" />
+      <div class="tel">
+        <img src="@/assets/h5/tel.png" />
+        <div class="nums">
+          <span v-for="i in 10" :key="i" @click="dial(i)" />
         </div>
+        <div class="go" @click="slideTo" />
       </div>
     </swiper-slide>
 
@@ -103,13 +101,14 @@
       <div class="width100">
         <img src="@/assets/h5/game_center.png" class="game-center" />
         <p class="red" :class="lang==='en'? 'v-font-17' : 'v-font-19'">{{ $t('sport') }}</p>
-        <VueMatrixRaindrop
+        <!-- <VueMatrixRaindrop
           :canvasWidth="canvasWidth"
           :canvasHeight="600"
           :speed="5"
           :fontSize="14"
           v-if="swiperIndex === 5"
-        ></VueMatrixRaindrop>
+        ></VueMatrixRaindrop>-->
+        <Matrix />
         <img src="@/assets/h5/bg/7.png" class="line" />
       </div>
       <img src="@/assets/page/page_icon4.png" class="page-anchor" />
@@ -117,9 +116,7 @@
 
     <swiper-slide class="swipe7 flex-start">
       <div class="width100">
-        <div class="title">
-          <img :src="titles[lang]" :class="lang" />
-        </div>
+        <img :src="titles[lang]" class="title" />
 
         <div class="files">
           <img v-for="item in files" :key="item" :src="item" @click="openFile" />
@@ -149,28 +146,23 @@
           </div>
         </div>
 
-        <section class="theme-list">
-          <div class="fixed-nav" ref="fixednav">
-            <div class="fixed-nav-content">
-              <p
-                v-for="(item, index) in gameMusics"
-                :key="item.text"
-                ref="scrollItem"
-                :class="['tab-title blue', activeId === index && 'select-tab', lang!=='en' && 'v-font-15']"
-                @click="setMusicPlay(index, $event)"
-              >{{$t('games.'+ item.text)}}</p>
-            </div>
-          </div>
-        </section>
+        <Nav :data="gameMusics" :lang="lang" @func="setMusicPlay" ref="nav" />
+        <audio
+          :src="musicUrl"
+          :loop="false"
+          hidden
+          autoplay
+          preload="auto"
+          id="audio3"
+          v-if="swiperIndex === 6"
+        />
 
         <p class="wathet scale-8 slide" :class="lang!=='en'&&' v-font-14'">{{ $t('games.slide') }}</p>
-
-        <audio :src="musicUrl" :loop="false" hidden autoplay id="audio3" v-if="swiperIndex === 6" />
       </div>
       <img src="@/assets/page/page_icon5.png" class="page-anchor" />
     </swiper-slide>
 
-    <swiper-slide class="swipe8">
+    <swiper-slide class="swipe8 flex-start">
       <div class="width100">
         <p class="wathet" :class="lang==='en' ? 'v-font-17' : 'v-font-20'">{{ $t('sport') }}</p>
         <div class="games text-right">
@@ -207,8 +199,17 @@
           :modules="modules1"
           :navigation="true"
           :grabCursor="true"
+          :effect="'coverflow'"
           :centeredSlides="true"
           :slidesPerView="'auto'"
+          :coverflowEffect="{
+            rotate: 0,
+            stretch: 0,
+            scale: 0.82,
+            depth: 0,
+            modifier: 1,
+            slideShadows: false,
+          }"
           :loop="true"
           :speed="800"
           class="mobile-poster-swiper"
@@ -374,10 +375,13 @@
 </template>
 
 <script>
-import VueMatrixRaindrop from "vue-matrix-digit-rain";
+// import VueMatrixRaindrop from "vue-matrix-digit-rain";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import { Mousewheel, Navigation, EffectCoverflow } from "swiper";
 import { files, videos, posterMusics, albums, albumMusics } from "@/utils/enum";
+import Matrix from "@/components/Matrix";
+import Nav from "@/components/Nav";
+import { last } from "lodash";
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -397,7 +401,9 @@ export default {
   components: {
     Swiper,
     SwiperSlide,
-    VueMatrixRaindrop
+    // VueMatrixRaindrop,
+    Matrix,
+    Nav
   },
   props: ["lang", "font"],
   setup() {
@@ -617,6 +623,12 @@ export default {
           text: "edps"
         },
         {
+          en: require("@/assets/h5/en/poster/jcxrdn.jpg"),
+          cn: require("@/assets/h5/cn/poster/jcxrdn.jpg"),
+          jp: require("@/assets/h5/jp/poster/jcxrdn.jpg"),
+          text: "edps"
+        },
+        {
           en: require("@/assets/h5/en/poster/jt.jpg"),
           cn: require("@/assets/h5/cn/poster/jt.jpg"),
           jp: require("@/assets/h5/jp/poster/jt.jpg"),
@@ -680,9 +692,9 @@ export default {
       }
     };
   },
-  mounted() {
-    this.canvasWidth = window.innerWidth;
-  },
+  // mounted() {
+  //   this.canvasWidth = window.innerWidth;
+  // },
   methods: {
     onSlideChange(swiper) {
       this.swiperIndex = swiper.realIndex;
@@ -727,15 +739,18 @@ export default {
         this.count++;
       }
     },
-    musicPlay(index, event) {
+    musicPlay(index) {
       this.musicUrl = this.gameMusics[index].music;
-      this.changeTab(index, event);
+      this.$refs.nav.handleNavClick(index);
       this.fileChange(true);
     },
-    setMusicPlay(index, event) {
-      // 左侧菜单播放
+    setMusicPlay(index) {
+      // 底部菜单播放
+      this.musicPlay(index);
+      if (_.indexOf(this.fileIndexs, index) === -1) {
+        this.fileIndexs.push(index);
+      }
       this.count = index + 1;
-      this.musicPlay(index, event);
     },
     fileChange(play) {
       console.log(play);
@@ -752,28 +767,8 @@ export default {
       }
       this.filePlay = !this.filePlay;
     },
-    changeTab(index, event) {
-      // 如果选择的和当前激活的不同
-      console.log(this.$refs.scrollItem[index].offsetWidth);
-      if (index !== this.activeId && event) { // TODO
-        this.activeId = index;
-        // 计算当前按钮的位置，看是否需要移动
-        console.log(event);
-        const spanLeft = event.clientX; // 当前点击的元素左边距离
-        const divBox = document.querySelector(".select-tab").clientWidth / 2; // 点击的元素一半宽度
-        const totalWidths = document.body.clientWidth; // 屏幕总宽度
-        const widths = totalWidths / 2; // 一半的屏幕宽度
-        const spanRight = totalWidths - spanLeft; // 元素的右边距离
-        const scrollBox = document.querySelector(".fixed-nav"); // 获取最外层的元素
-        const scrollL = scrollBox.scrollLeft; // 滚动条滚动的距离
-        // 当元素左边距离 或者 右边距离小于100时进行滑动
-        if (spanRight < 100 || spanLeft < 100) {
-          scrollBox.scrollLeft = scrollL + (spanLeft - widths) + divBox;
-        }
-      }
-    },
     onPosterSlideChange(swiper) {
-      console.log(swiper.realIndex);
+      // console.log(swiper.realIndex);
       this.posterIndex = swiper.realIndex;
       this.posterPlay = true;
     },

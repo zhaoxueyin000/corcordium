@@ -15,6 +15,7 @@ function loadLocaleMessages() {
 
 const i18n = createI18n({
   locale: 'en',
+  fallbackLocale: 'en',
   legacy: false,
   globalInjection: true,
   warnHtmlMessage: false,

@@ -43,7 +43,7 @@
 
   .swiper-slide-prev,
   .swiper-slide-next {
-    
+
 
     img {
       transform: translate3d(0, 20%, 0);
@@ -51,11 +51,6 @@
   }
 
   &.poster-swiper {
-    perspective: 1200px;
-
-    .swiper-wrapper {
-      transform-style: preserve-3d;
-    }
 
     .swiper-slide {
       width: 66%;
@@ -67,8 +62,7 @@
       &.swiper-slide-prev,
       &.swiper-slide-next {
         opacity: 0.5;
-        transform-style: preserve-3d;
-        transform: translate3d(0px, 30px, -60px) rotateX(0deg) rotateY(0deg) scale(0.6)
+        transform: translate3d(0px, 30px, -60px) rotateX(0deg) rotateY(0deg) scale(0.6) !important
       }
     }
 
@@ -78,14 +72,6 @@
 
     .swiper-button-next:after {
       content: url(@/assets/arrow1_right.png);
-    }
-
-    &.swiper-3d {
-
-      .swiper-slide-shadow-left,
-      .swiper-slide-shadow-right {
-        top: 15%;
-      }
     }
   }
 
@@ -97,13 +83,17 @@
     }
 
     .swiper-button-prev {
-      left: 18%;
-      top: 57%;
+      left: 16.5%;
+      top: 47%;
+      width: auto;
+      height: auto;
     }
 
     .swiper-button-next {
-      right: 18%;
-      top: 57%;
+      right: 16.5%;
+      top: 47%;
+      width: auto;
+      height: auto;
     }
 
     .swiper-button-prev:after {
@@ -117,11 +107,9 @@
   }
 }
 
-
 .mobile-poster-swiper {
 
   .swiper-wrapper {
-    transform-style: preserve-3d;
 
     .swiper-slide {
       width: 78%;
@@ -129,17 +117,16 @@
 
       &.swiper-slide-prev,
       &.swiper-slide-next {
-        opacity: 0.5;
-        transform-style: preserve-3d;
+        opacity: 0.3;
         z-index: -1;
       }
 
       &.swiper-slide-next {
-        transform: translate3d(-36%, 6%, 0) rotateX(0deg) rotateY(0deg) scale(0.82)
+        transform: translate3d(-36%, 6%, 0) scale(0.82) !important;
       }
 
       &.swiper-slide-prev {
-        transform: translate3d(36%, 6%, 0) rotateX(0deg) rotateY(0deg) scale(0.82)
+        transform: translate3d(36%, 6%, 0) scale(0.82) !important;
       }
     }
   }

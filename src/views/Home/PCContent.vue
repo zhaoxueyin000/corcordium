@@ -14,11 +14,9 @@
         <video autoplay muted loop preload="auto" class="video">
           <source src="@/assets/logo.mp4" type="video/mp4" />
         </video>
-        <WhiteSpace gutter="40px" />
-        <div>
+        <div class="logo">
           <img src="@/assets/logo.png" width="180" />
         </div>
-        <WhiteSpace gutter="0.05rem" />
         <div>
           <img :src="logoText[lang]" height="14" />
         </div>
@@ -31,18 +29,16 @@
           <div class="tel-container">
             <img :src="telTexts[lang].title" class="title" :class="lang" />
             <div class="tels">
-              <div class="grid">
-                <Grid :border="false" padding="3px 12px">
-                  <GridItem
-                    v-for="(item, index) in tels"
-                    :key="item.img"
-                    class="cursor-custom-finger"
-                    @click="dial(index)"
-                  >
-                    <img :src="item.active" v-if="activeIndexs.indexOf(index) !== -1" />
-                    <img :src="item.img" v-else />
-                  </GridItem>
-                </Grid>
+              <div class="grid cursor-custom-finger">
+                <div
+                  v-for="(item, index) in tels"
+                  :key="item.img"
+                  :class="'num' + (index+1)"
+                  @click="dial(index)"
+                >
+                  <img :src="item.active" v-if="activeIndexs.indexOf(index) !== -1" />
+                  <img :src="item.img" v-else />
+                </div>
               </div>
             </div>
 
@@ -96,9 +92,9 @@
     </swiper-slide>
 
     <swiper-slide class="slide4 flex-start">
-      <div style="width: 100%">
+      <div style="width: 100%; height: 100%">
         <div class="line" />
-        <img src="@/assets/brain.gif" class="img-fill" />
+        <img src="@/assets/brain.gif" class="img-fill gif" />
         <img :src="brainTexts[lang]" class="img-fill brain" />
       </div>
       <img src="@/assets/page/page_icon2.png" width="101" class="page-anchor" />
@@ -113,9 +109,9 @@
       <img src="@/assets/page/page_icon3.png" width="101" class="page-anchor" />
     </swiper-slide>
 
-    <swiper-slide class="slide6">
-      <div>
-        <video autoplay muted loop preload="auto" class="video">
+    <swiper-slide class="slide6 flex-start">
+      <div class="container2">
+        <video autoplay muted loop preload="auto" class="video" style="object-fit:cover">
           <source src="@/assets/data_animation.mp4" type="video/mp4" />
         </video>
         <div class="title text-center">
@@ -131,57 +127,49 @@
         <div class="title">
           <img src="@/assets/cn/games_text.png" style="width: 2.11rem" v-if="lang==='cn'" />
           <img src="@/assets/jp/games_text.png" style="width: 3.64rem" v-else-if="lang==='jp'" />
-          <img src="@/assets/en/games_text.png" style="width: 4.92rem" v-else />
+          <img src="@/assets/en/games_text.png" style="width: 4.93rem" v-else />
         </div>
         <audio :src="musicUrl" :loop="false" hidden autoplay id="audio3" v-if="swiperIndex === 6" />
 
-        <Row class="game">
-          <Col>
-            <div class="text-right names" :class="font + ' ' + lang">
-              <div
-                v-for="(item, index) in gameMusics"
-                :key="item.img"
-                class="name"
-                :class="(lang==='en'?'v-font-12':'v-font-14')+' '+(this.count===index+1?'active':'')"
-                @click="setMusicPlay(index)"
-              >{{$t('games.'+ item.text)}}</div>
-            </div>
-          </Col>
-
-          <Col span="18">
-            <div class="games">
-              <div
-                v-for="(item, index) in gameMusics"
-                :key="item.img"
-                class="cursor-custom-finger modal"
-                :class="'modal'+ (index + 1)"
-                :style="{'z-index': this.count === index + 1 ? '100' : '99'}"
-              >
-                <div v-show="fileIndexs.indexOf(index) !== -1">
-                  <img :src="item.img" @click="setMusicPlay(index)" />
-                  <img
-                    :src="item.pause"
-                    class="btn"
-                    v-if="this.count===index+1 && filePlay"
-                    @click.stop="fileChange()"
-                  />
-                  <img :src="item.play" class="btn" v-else @click.stop="fileChange()" />
-                </div>
-              </div>
-              <div
-                class="cursor-custom-finger modal modal16"
-                v-show="fileIndexs.indexOf(14) !== -1"
-              >
-                <img src="@/assets/files/modal.png" />
+        <div class="game">
+          <div class="text-right names" :class="font">
+            <div
+              v-for="(item, index) in gameMusics"
+              :key="item.img"
+              class="name"
+              :class="[this.count===index+1 && 'active', lang==='en'?'font-13':'font-18']"
+              @click="setMusicPlay(index)"
+            >{{$t('games.'+ item.text)}}</div>
+          </div>
+          <div class="modals">
+            <div
+              v-for="(item, index) in gameMusics"
+              :key="item.img"
+              class="cursor-custom-finger modal"
+              :class="'modal'+ (index + 1)"
+              :style="{'z-index': this.count === index + 1 ? '100' : '99'}"
+            >
+              <div v-show="fileIndexs.indexOf(index) !== -1">
+                <img :src="item.img" @click="setMusicPlay(index)" />
+                <img
+                  :src="item.pause"
+                  class="btn"
+                  v-if="this.count===index+1 && filePlay"
+                  @click.stop="fileChange()"
+                />
+                <img :src="item.play" class="btn" v-else @click.stop="fileChange()" />
               </div>
             </div>
-            <div class="cursor-custom-finger files">
-              <div v-for="item in files" :key="item">
-                <img :src="item" @click="openFile" />
-              </div>
+            <div class="cursor-custom-finger modal modal16" v-show="fileIndexs.indexOf(14) !== -1">
+              <img src="@/assets/files/modal.png" />
             </div>
-          </Col>
-        </Row>
+          </div>
+          <div class="cursor-custom-finger files">
+            <div v-for="item in files" :key="item">
+              <img :src="item" @click="openFile" />
+            </div>
+          </div>
+        </div>
       </div>
       <img src="@/assets/page/page_icon5.png" width="101" class="page-anchor" />
     </swiper-slide>
@@ -204,7 +192,7 @@
               @click="videoIndex = index"
             />
           </div>
-          <video autoplay muted loop preload="auto" class="video">
+          <video autoplay muted loop preload="auto" class="video" style="object-fit:cover">
             <source :src="videos[videoIndex]" type="video/mp4" />
           </video>
         </div>
@@ -232,20 +220,29 @@
     </swiper-slide>
 
     <swiper-slide class="slide9">
-      <div style="position:relative">
+      <div style="position:relative; padding-top: 40px">
         <img src="@/assets/cn/poster_text1.png" class="text-height-1" v-if="lang === 'cn'" />
         <img src="@/assets/jp/poster_text1.png" class="text-height-1" v-else-if="lang === 'jp'" />
         <img src="@/assets/en/poster_text1.png" class="text-height-2 title" v-else />
 
-        <WhiteSpace gutter="0.29rem" />
+        <WhiteSpace gutter="0.26rem" />
         <swiper
           class="nested-swiper poster-swiper"
+          :effect="'coverflow'"
           :modules="modules1"
           :speed="800"
           :navigation="true"
           :grabCursor="true"
           :centeredSlides="true"
           :slidesPerView="'auto'"
+          :coverflowEffect="{
+            rotate: 0,
+            stretch: 0,
+            scale: 0.6,
+            depth: 60,
+            modifier: 1,
+            slideShadows: false,
+          }"
           :loop="true"
           @slideChange="onPosterSlideChange"
         >
@@ -445,7 +442,6 @@
         </div>
 
         <div class="footer">
-          <WhiteSpace gutter="0.26rem" />
           <Row justify="center">
             <img src="@/assets/logo.png" class="logo" />
             <div class="media">
@@ -461,7 +457,7 @@
           </Row>
         </div>
       </div>
-      <img src="@/assets/page/page_icon9.png" width="101" class="page-anchor" />
+      <img src="@/assets/page/page_icon9.png" width="101" class="page-anchor page-anchor-1" />
     </swiper-slide>
   </swiper>
 
@@ -488,6 +484,7 @@ import WhiteSpace from "@/components/WhiteSpace";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import { Mousewheel, Navigation, EffectCoverflow } from "swiper";
 import { files, videos, posterMusics, albums, albumMusics } from "@/utils/enum";
+import { last } from "lodash";
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -520,7 +517,6 @@ export default {
       goActive: false,
       swiperIndex: 0,
       count: 0,
-      // autoPlay: false,
       filePlay: false,
       musicUrl: "",
       fileIndexs: [],
@@ -791,6 +787,12 @@ export default {
           text: "edps1"
         },
         {
+          en: require("@/assets/en/poster/jcxrdn.jpg"),
+          cn: require("@/assets/cn/poster/jcxrdn.jpg"),
+          jp: require("@/assets/jp/poster/jcxrdn.jpg"),
+          text: "edps1"
+        },
+        {
           en: require("@/assets/en/poster/jt.jpg"),
           cn: require("@/assets/cn/poster/jt.jpg"),
           jp: require("@/assets/jp/poster/jt.jpg"),
@@ -937,8 +939,11 @@ export default {
     },
     setMusicPlay(index) {
       // 左侧菜单播放
-      this.count = index + 1;
       this.musicPlay(index);
+      if (_.indexOf(this.fileIndexs, index) === -1) {
+        this.fileIndexs.push(index);
+      }
+      this.count = index + 1;
     },
     fileChange(play) {
       console.log(play);
