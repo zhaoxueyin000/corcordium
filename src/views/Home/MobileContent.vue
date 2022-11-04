@@ -381,7 +381,6 @@ import { Mousewheel, Navigation, EffectCoverflow } from "swiper";
 import { files, videos, posterMusics, albums, albumMusics } from "@/utils/enum";
 import Matrix from "@/components/Matrix";
 import Nav from "@/components/Nav";
-import { last } from "lodash";
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -747,7 +746,7 @@ export default {
     setMusicPlay(index) {
       // 底部菜单播放
       this.musicPlay(index);
-      if (_.indexOf(this.fileIndexs, index) === -1) {
+      if (this.fileIndexs.indexOf(index) === -1) {
         this.fileIndexs.push(index);
       }
       this.count = index + 1;

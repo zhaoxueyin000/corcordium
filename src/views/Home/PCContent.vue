@@ -11,7 +11,7 @@
   >
     <swiper-slide class="slide1 flex-start">
       <div>
-        <video autoplay muted loop preload="auto" class="video">
+        <video autoplay muted loop preload="auto" class="video" style="object-fit:cover">
           <source src="@/assets/logo.mp4" type="video/mp4" />
         </video>
         <div class="logo">
@@ -94,7 +94,7 @@
     <swiper-slide class="slide4 flex-start">
       <div style="width: 100%; height: 100%">
         <div class="line" />
-        <img src="@/assets/brain.gif" class="img-fill gif" />
+        <img src="@/assets/brain.gif" class="gif" />
         <img :src="brainTexts[lang]" class="img-fill brain" />
       </div>
       <img src="@/assets/page/page_icon2.png" width="101" class="page-anchor" />
@@ -484,7 +484,6 @@ import WhiteSpace from "@/components/WhiteSpace";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import { Mousewheel, Navigation, EffectCoverflow } from "swiper";
 import { files, videos, posterMusics, albums, albumMusics } from "@/utils/enum";
-import { last } from "lodash";
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -940,7 +939,7 @@ export default {
     setMusicPlay(index) {
       // 左侧菜单播放
       this.musicPlay(index);
-      if (_.indexOf(this.fileIndexs, index) === -1) {
+      if (this.fileIndexs.indexOf(index) === -1) {
         this.fileIndexs.push(index);
       }
       this.count = index + 1;

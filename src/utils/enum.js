@@ -1,3 +1,4 @@
+// PC/h5相同的枚举统一管理
 export const files = [
   require('@/assets/files/file1.png'),
   require('@/assets/files/file2.png'),
